@@ -19,7 +19,7 @@ namespace ConoverHomeInspections.Shared
         public bool PrefersText { get; set; } = false;
         public DateRange[]? PreferredContactTimes { get; set; }
         public Address InspectionAddress { get; set; }
-        public ServiceProduct[] RequestedServices { get; set; } = [];
+        public SiteService[] RequestedServices { get; set; } = [];
         public string? Notes { get; set; }
     }
 }

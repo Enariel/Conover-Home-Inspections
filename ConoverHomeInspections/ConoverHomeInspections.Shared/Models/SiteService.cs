@@ -6,11 +6,12 @@
 namespace ConoverHomeInspections.Shared
 {
 
-    public class ServiceProduct
+    public class SiteService
     {
-        public ServiceProduct()
+        public SiteService()
         {
-            Details = new HashSet<ProductDetail>();
+            Details = new HashSet<ServiceDetail>();
+            Task = new HashSet<AssignmentTask>();
         }
 
         public int ServiceId { get; set; }
@@ -19,8 +20,11 @@ namespace ConoverHomeInspections.Shared
         public string? Description { get; set; }
         public decimal Price { get; set; }
         public int EstimatedCompletionTimeInMins { get; set; }
-        public ProductGroup? Group { get; set; }
-        public ICollection<ProductDetail> Details { get; set; }
+        public int? Order { get; set; }
+        public int? SKU { get; set; }
+        public virtual SiteGroup? Group { get; set; }
+        public virtual ICollection<ServiceDetail> Details { get; set; }
+        public virtual ICollection<AssignmentTask> Task { get; set; }
     }
 
 }

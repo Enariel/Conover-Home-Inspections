@@ -20,17 +20,42 @@ namespace ConoverHomeInspections.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ServiceProduct[]>> GetServicesAsync()
+        public async Task<ActionResult<SiteService[]>> GetServicesAsync()
         {
-            var services = await _productService.GetServicesAsync();
+            var services = await _productService.GetSiteServicesAsync();
             return Ok(services);
         }
 
         [HttpGet("Groups")]
-        public async Task<ActionResult<ServiceProduct[]>> GetServiceGroupsAsync()
+        public async Task<ActionResult<SiteService[]>> GetServiceGroupsAsync()
         {
-            var groups = await _productService.GetServiceGroupsAsync();
+            var groups = await _productService.GetSiteGroupsAsync();
             return Ok(groups);
+        }
+
+        [HttpGet("ServiceGroup/{groupId:int}")]
+        public async Task<ActionResult<SiteService[]>> GetServicesByGroupIdAsync(int? groupId)
+        {
+            if (groupId <= 0)
+                return BadRequest("Invalid Group Id");
+
+            if (groupId == null)
+                return BadRequest("Invalid Group Id");
+
+            var services = await _productService.GetServicesByGroupIdAsync(groupId.Value);
+            return Ok(services);
+        }
+
+        [HttpGet("Service/{serviceId}")]
+        public async Task<ActionResult<SiteService>> GetServiceById(int? serviceId)
+        {
+            if (serviceId <= 0)
+                return BadRequest("Invalid Service Id");
+            if (serviceId == null)
+                return BadRequest("Invalid Service Id");
+
+            var service = await _productService.GetServiceById(serviceId.Value);
+            return Ok(service);
         }
     }
 }

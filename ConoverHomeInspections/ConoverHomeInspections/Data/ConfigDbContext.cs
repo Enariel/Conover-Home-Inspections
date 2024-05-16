@@ -28,10 +28,11 @@ namespace ConoverHomeInspections.Data
 
         // Tables
 
-        public virtual DbSet<ProductGroup> Groups { get; set; }
-        public virtual DbSet<ServiceProduct> Services { get; set; }
-        public virtual DbSet<ProductDetail> Details { get; set; }
-        public virtual DbSet<WorkUnit> WorkUnits { get; set; }
+        public virtual DbSet<AssignmentTask> Tasks { get; set; }
+        public virtual DbSet<Assignment> Assignments { get; set; }
+        public virtual DbSet<SiteGroup> Groups { get; set; }
+        public virtual DbSet<SiteService> Services { get; set; }
+        public virtual DbSet<ServiceDetail> Details { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -40,8 +41,34 @@ namespace ConoverHomeInspections.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AssignmentTask>(entity =>
+            {
+                entity.ToTable("Tasks");
+                entity.HasKey(w => new { w.AssignmentId, w.ServiceId });
+                entity.HasOne(ws => ws.Assignment)
+                      .WithMany(wo => wo.RequestedServices)
+                      .HasForeignKey(ws => ws.AssignmentId)
+                      .OnDelete(DeleteBehavior.Cascade);
+                entity.HasOne(ws => ws.Service)
+                      .WithMany(s => s.Task)
+                      .HasForeignKey(ws => ws.ServiceId)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
 
-            modelBuilder.Entity<ServiceProduct>(entity =>
+            modelBuilder.Entity<Assignment>(entity =>
+            {
+                entity.ToTable("Assignments");
+                entity.HasKey(e => e.AssignmentId);
+                entity.Property(e => e.AssignmentId).ValueGeneratedOnAdd();
+
+                entity.HasMany(wo => wo.RequestedServices)
+                      .WithOne(ws => ws.Assignment)
+                      .HasForeignKey(ws => ws.AssignmentId);
+
+                entity.OwnsOne(e => e.Location);
+            });
+
+            modelBuilder.Entity<SiteService>(entity =>
             {
                 entity.ToTable("Services");
                 entity.HasKey(e => e.ServiceId);
@@ -50,17 +77,38 @@ namespace ConoverHomeInspections.Data
                 entity.Property(e => e.Description).HasMaxLength(1000);
                 entity.Property(e => e.Price).HasColumnType("decimal(18,2)");
 
-                entity.HasOne(e=>e.Group)
-                      .WithMany()
-                      .HasForeignKey(e=>e.GroupId)
+                entity.HasMany(sp => sp.Task)
+                      .WithOne(ws => ws.Service)
+                      .HasForeignKey(ws => ws.ServiceId)
                       .OnDelete(DeleteBehavior.SetNull);
+                entity.HasOne(sp => sp.Group)
+                      .WithMany(g => g.Services)// if Group has a collection of ServiceProduct, define it here
+                      .HasForeignKey(sp => sp.GroupId)
+                      .OnDelete(DeleteBehavior.SetNull)
+                      .HasConstraintName("FK_Groups_Services");
                 entity.HasMany(e => e.Details)
                       .WithOne(e => e.Service)
                       .HasForeignKey(e => e.ServiceId)
                       .OnDelete(DeleteBehavior.Cascade);
             });
 
-            modelBuilder.Entity<ProductDetail>(entity =>
+
+            modelBuilder.Entity<SiteGroup>(entity =>
+            {
+                entity.ToTable("Groups");
+                entity.HasKey(e => e.GroupId);
+                entity.Property(e => e.GroupId).ValueGeneratedOnAdd();
+                entity.Property(e => e.GroupName).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.Description).HasMaxLength(500);
+
+                // entity.HasMany<ServiceProduct>(e => e.Services)
+                //       .WithOne(e=>e.Group)
+                //       .HasForeignKey(e => e.GroupId)
+                //       .HasConstraintName("FK_Groups_Services")
+                //       .OnDelete(DeleteBehavior.SetNull);
+            });
+
+            modelBuilder.Entity<ServiceDetail>(entity =>
             {
                 entity.ToTable("Details");
                 entity.HasKey(e => e.DetailId);
@@ -70,41 +118,14 @@ namespace ConoverHomeInspections.Data
                 entity.Property(e => e.Description).HasMaxLength(1000);
             });
 
-            modelBuilder.Entity<ProductGroup>(entity =>
-            {
-                entity.ToTable("Groups");
-                entity.HasKey(e => e.GroupId);
-                entity.Property(e => e.GroupId).ValueGeneratedOnAdd();
-                entity.Property(e => e.GroupName).IsRequired().HasMaxLength(100);
-                entity.Property(e => e.Description).HasMaxLength(500);
-            });
 
-            modelBuilder.Entity<WorkUnit>(entity =>
-            {
-                entity.ToTable("Assignments");
-                entity.HasKey(e => e.WorkOrderId);
-                entity.Property(e => e.WorkOrderId).ValueGeneratedOnAdd();
-
-                entity.HasMany(e => e.Services)
-                      .WithOne()
-                      .OnDelete(DeleteBehavior.NoAction);
-
-                entity.OwnsOne(e => e.Location, location => {
-                    location.Property(e => e.Street).HasMaxLength(255);
-                    location.Property(e => e.Street2).HasMaxLength(255);
-                    location.Property(e => e.City).HasMaxLength(100);
-                    location.Property(e => e.State).HasMaxLength(2);
-                    location.Property(e => e.ZipCode).HasMaxLength(6);
-                    location.Property(e => e.Zip4).HasMaxLength(4);
-                });
-            });
         }
 
         public static string GetConnectionString()
         {
             var workingDir = Environment.CurrentDirectory;
             var projectDirectory = Directory.GetParent(workingDir)!.FullName;
-            var configPath = Path.Combine(projectDirectory,"ConoverHomeInspections", "Data", "ConfigData.db");
+            var configPath = Path.Combine(projectDirectory, "ConoverHomeInspections", "Data", "ConfigData.db");
             Console.WriteLine($"Database path: {configPath}");
             var connString = $"Data Source={configPath}";
             return connString;
