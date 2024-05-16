@@ -13,41 +13,41 @@ namespace ConoverHomeInspections.Services
         // private DbContext _ctx;
 
         /// <inheritdoc />
-        public Task<Service[]> GetServicesAsync()
+        public Task<ServiceProduct[]> GetServicesAsync()
         {
-            return Task.FromResult(new Service[]
+            return Task.FromResult(new ServiceProduct[]
                                    {
-                                       new Service
+                                       new ServiceProduct
                                        {
                                            ServiceId = 0,
                                            ServiceName = "Service 1",
                                            Description = "This is service 1.",
                                            Price = 100,
-                                           Details = new List<ServiceDetail>()
+                                           Details = new List<ProductDetail>()
                                        },
-                                       new Service
+                                       new ServiceProduct
                                        {
                                            ServiceId = 1,
                                            ServiceName = "Service 2",
                                            Description = "This is service 2.",
                                            Price = 200,
-                                           Details = new List<ServiceDetail>()
+                                           Details = new List<ProductDetail>()
                                        },
-                                        new Service
+                                        new ServiceProduct
                                         {
                                              ServiceId = 2,
                                              ServiceName = "Service 3",
                                              Description = "This is service 3.",
                                              Price = 300,
-                                             Details = new List<ServiceDetail>()
+                                             Details = new List<ProductDetail>()
                                         },
-                                        new Service
+                                        new ServiceProduct
                                         {
                                             ServiceId = 3,
                                             ServiceName = "Service 4",
                                             Description = "This is service 4.",
                                             Price = 50,
-                                            Details = new List<ServiceDetail>()
+                                            Details = new List<ProductDetail>()
                                         },
                                    });
         }

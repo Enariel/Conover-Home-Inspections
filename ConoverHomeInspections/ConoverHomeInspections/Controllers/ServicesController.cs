@@ -20,7 +20,7 @@ namespace ConoverHomeInspections.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Service[]>> GetServicesAsync()
+        public async Task<ActionResult<ServiceProduct[]>> GetServicesAsync()
         {
             var services = await _productService.GetServicesAsync();
             return Ok(services);

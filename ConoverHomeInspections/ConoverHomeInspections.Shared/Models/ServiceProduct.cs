@@ -5,18 +5,19 @@
 // Modified: 16-05-2024
 namespace ConoverHomeInspections.Shared
 {
-    public class Service
+    public class ServiceProduct
     {
-        public Service()
+        public ServiceProduct()
         {
-            Details = new HashSet<ServiceDetail>();
+            Details = new HashSet<ProductDetail>();
         }
 
         public int ServiceId { get; set; }
         public string? ServiceName { get; set; }
+        public string? Group { get; set; }
         public string? Description { get; set; }
         public decimal Price { get; set; }
-        public ICollection<ServiceDetail> Details { get; set; }
+        public ICollection<ProductDetail> Details { get; set; }
     }
 
 }

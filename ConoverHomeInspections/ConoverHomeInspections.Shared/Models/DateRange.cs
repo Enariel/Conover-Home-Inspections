@@ -1,12 +1,13 @@
 // ConoverHomeInspections
-// IProductService.cs
+// DateRange.cs
 //  2024
 // Oliver Conover
 // Modified: 16-05-2024
 namespace ConoverHomeInspections.Shared
 {
-    public interface IProductService
+    public class DateRange
     {
-        public Task<ServiceProduct[]> GetServicesAsync();
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
     }
 }

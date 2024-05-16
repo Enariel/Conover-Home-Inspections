@@ -9,14 +9,14 @@ namespace ConoverHomeInspections.Client.Pages
         [Inject] public PersistentComponentState PersistentComponentState { get; set; }
         [Inject] public IProductService ProductService { get; set; }
 
-        private Service[]? _services;
+        private ServiceProduct[]? _services;
         private PersistingComponentStateSubscription? _subscription;
 
         /// <inheritdoc />
         protected override async Task OnInitializedAsync()
         {
             _subscription = PersistentComponentState.RegisterOnPersisting(PersistData);
-            if (!PersistentComponentState.TryTakeFromJson<Service[]>(nameof(_services), out _services))
+            if (!PersistentComponentState.TryTakeFromJson<ServiceProduct[]>(nameof(_services), out _services))
             {
                 _services = await ProductService.GetServicesAsync();
             }

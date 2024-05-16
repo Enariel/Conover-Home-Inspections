@@ -20,11 +20,11 @@ namespace ConoverHomeInspections.Client.Services
         }
 
         /// <inheritdoc />
-        public async Task<Service[]> GetServicesAsync()
+        public async Task<ServiceProduct[]> GetServicesAsync()
         {
             try
             {
-                var services = await _client.GetFromJsonAsync<Service[]>("api/v1/Services");
+                var services = await _client.GetFromJsonAsync<ServiceProduct[]>("api/v1/Services");
                 _logger.LogInformation("Successfully got services...");
                 return services!;
             }

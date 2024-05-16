@@ -5,13 +5,13 @@
 // Modified: 16-05-2024
 namespace ConoverHomeInspections.Shared
 {
-    public class ServiceDetail
+    public class ProductDetail
     {
         public int ServiceId { get; set; }
         public int DetailId { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
         
-        public Service? Service { get; set; }
+        public ServiceProduct? Service { get; set; }
     }
 }
