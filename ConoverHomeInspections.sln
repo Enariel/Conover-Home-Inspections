@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConoverHomeInspections", "ConoverHomeInspections\ConoverHomeInspections\ConoverHomeInspections.csproj", "{147E28A1-59DA-4591-A175-C52C26B0E51A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConoverHomeInspections.Client", "ConoverHomeInspections\ConoverHomeInspections.Client\ConoverHomeInspections.Client.csproj", "{AD1FE391-E00E-4BD1-8496-A92E8B2A7896}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConoverHomeInspections.Shared", "ConoverHomeInspections.Shared\ConoverHomeInspections.Shared.csproj", "{5A51A571-7198-49E9-ABAF-24DA13DC79CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{147E28A1-59DA-4591-A175-C52C26B0E51A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{147E28A1-59DA-4591-A175-C52C26B0E51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{147E28A1-59DA-4591-A175-C52C26B0E51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{147E28A1-59DA-4591-A175-C52C26B0E51A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD1FE391-E00E-4BD1-8496-A92E8B2A7896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD1FE391-E00E-4BD1-8496-A92E8B2A7896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD1FE391-E00E-4BD1-8496-A92E8B2A7896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD1FE391-E00E-4BD1-8496-A92E8B2A7896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A51A571-7198-49E9-ABAF-24DA13DC79CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A51A571-7198-49E9-ABAF-24DA13DC79CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A51A571-7198-49E9-ABAF-24DA13DC79CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A51A571-7198-49E9-ABAF-24DA13DC79CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
