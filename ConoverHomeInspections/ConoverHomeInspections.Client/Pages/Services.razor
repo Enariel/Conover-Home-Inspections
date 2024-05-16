@@ -1,0 +1,20 @@
+@rendermode InteractiveAuto
+@page "/Services"
+<MainHeader Title="Services" />
+
+@if (_services == null)
+{
+	<MudText>Loading...</MudText>
+}
+else
+{
+	<MudList Dense="true">
+		@foreach (var item in _services)
+		{
+			<MudListItem @key=@item.ServiceId Dense="true" Text="@item.ServiceName"/>
+		}
+	</MudList>
+}
+
+@code {
+}

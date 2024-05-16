@@ -1,0 +1,9 @@
+@code {
+	[Inject] private NavigationManager Nav { get; set; }
+	/// <inheritdoc />
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+		Nav.NavigateTo("/Error");
+	}
+}

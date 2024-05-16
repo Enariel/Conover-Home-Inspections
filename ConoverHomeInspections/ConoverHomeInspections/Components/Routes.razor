@@ -1,6 +1,16 @@
-﻿<Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly }">
+﻿@using ConoverHomeInspections.Components.Pages
+<Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly }">
 	<Found Context="routeData">
 		<RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
 		<FocusOnNavigate RouteData="routeData" Selector="h1" />
 	</Found>
+	<NotFound>
+		<PageTitle>Error: 404 - Page Not Found</PageTitle>
+		<HeadContent>
+			<meta name="robots" content="noindex" />
+		</HeadContent>
+		<LayoutView Layout="typeof(Layout.MainLayout)">
+			<Error />
+		</LayoutView>
+	</NotFound>
 </Router>
