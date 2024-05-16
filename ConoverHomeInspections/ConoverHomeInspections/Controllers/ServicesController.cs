@@ -25,5 +25,12 @@ namespace ConoverHomeInspections.Controllers
             var services = await _productService.GetServicesAsync();
             return Ok(services);
         }
+
+        [HttpGet("Groups")]
+        public async Task<ActionResult<ServiceProduct[]>> GetServiceGroupsAsync()
+        {
+            var groups = await _productService.GetServiceGroupsAsync();
+            return Ok(groups);
+        }
     }
 }

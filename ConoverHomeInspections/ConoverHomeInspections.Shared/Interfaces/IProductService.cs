@@ -7,6 +7,8 @@ namespace ConoverHomeInspections.Shared
 {
     public interface IProductService
     {
+        public Task<ProductGroup[]> GetServiceGroupsAsync();
+
         public Task<ServiceProduct[]> GetServicesAsync();
     }
 }

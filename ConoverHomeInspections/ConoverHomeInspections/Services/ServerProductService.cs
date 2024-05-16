@@ -3,53 +3,28 @@
 //  2024
 // Oliver Conover
 // Modified: 16-05-2024
+using ConoverHomeInspections.Data;
 using ConoverHomeInspections.Shared;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConoverHomeInspections.Services
 {
     public class ServerProductService : IProductService
     {
-        // TODO: Implement database functionality.
-        // private DbContext _ctx;
+        /// <inheritdoc />
+        public async Task<ProductGroup[]> GetServiceGroupsAsync()
+        {
+            await using var ctx = new ConfigDbContext();
+            var groups = await ctx.Groups.Include(x=>x.Services).ThenInclude(x=>x.Details).ToArrayAsync();
+            return groups;
+        }
 
         /// <inheritdoc />
-        public Task<ServiceProduct[]> GetServicesAsync()
+        public async Task<ServiceProduct[]> GetServicesAsync()
         {
-            return Task.FromResult(new ServiceProduct[]
-                                   {
-                                       new ServiceProduct
-                                       {
-                                           ServiceId = 0,
-                                           ServiceName = "Service 1",
-                                           Description = "This is service 1.",
-                                           Price = 100,
-                                           Details = new List<ProductDetail>()
-                                       },
-                                       new ServiceProduct
-                                       {
-                                           ServiceId = 1,
-                                           ServiceName = "Service 2",
-                                           Description = "This is service 2.",
-                                           Price = 200,
-                                           Details = new List<ProductDetail>()
-                                       },
-                                        new ServiceProduct
-                                        {
-                                             ServiceId = 2,
-                                             ServiceName = "Service 3",
-                                             Description = "This is service 3.",
-                                             Price = 300,
-                                             Details = new List<ProductDetail>()
-                                        },
-                                        new ServiceProduct
-                                        {
-                                            ServiceId = 3,
-                                            ServiceName = "Service 4",
-                                            Description = "This is service 4.",
-                                            Price = 50,
-                                            Details = new List<ProductDetail>()
-                                        },
-                                   });
+            await using var ctx = new ConfigDbContext();
+            var services = await ctx.Services.ToArrayAsync();
+            return services;
         }
     }
 }

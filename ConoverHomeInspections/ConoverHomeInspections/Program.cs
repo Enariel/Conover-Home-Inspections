@@ -1,8 +1,10 @@
 using ConoverHomeInspections.Client.Pages;
 using ConoverHomeInspections.Components;
+using ConoverHomeInspections.Data;
 using ConoverHomeInspections.Services;
 using ConoverHomeInspections.Shared;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
 using System.Text.Json.Serialization;
 
@@ -15,10 +17,10 @@ builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequ
        {
            options.InvalidModelStateResponseFactory = context => new BadRequestObjectResult(context.ModelState);
        });
-
 builder.Services.AddRazorComponents()
        .AddInteractiveServerComponents()
        .AddInteractiveWebAssemblyComponents();
+builder.Services.AddDbContext<ConfigDbContext>();
 builder.Services.AddSingleton<IProductService, ServerProductService>();
 builder.Services.AddMudServices();
 builder.Services.AddEndpointsApiExplorer();

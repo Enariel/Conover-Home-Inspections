@@ -2,19 +2,14 @@
 @page "/Services"
 <MainHeader Title="Services" />
 
-@if (_services == null)
-{
-	<MudText>Loading...</MudText>
-}
-else
-{
-	<MudList Dense="true">
-		@foreach (var item in _services)
-		{
-			<MudListItem @key=@item.ServiceId Dense="true" Text="@item.ServiceName"/>
-		}
-	</MudList>
-}
+<MudGrid Spacing="2" Justify="Justify.SpaceEvenly">
+	<MudItem md="6" sm="12">
+		<SectionHeader Title="Inspection Services"/>
+	</MudItem>
+	<MudItem md="6" sm="12">
+		<GroupAccordion Groups="@_productGroups" />
+	</MudItem>
+</MudGrid>
 
 @code {
 }

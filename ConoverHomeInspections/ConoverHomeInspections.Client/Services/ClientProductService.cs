@@ -20,6 +20,22 @@ namespace ConoverHomeInspections.Client.Services
         }
 
         /// <inheritdoc />
+        public async Task<ProductGroup[]> GetServiceGroupsAsync()
+        {
+            try
+            {
+                var groups = await _client.GetFromJsonAsync<ProductGroup[]>("api/v1/Services/Groups");
+                _logger.LogInformation("Successfully got groups...");
+                return groups!;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Failed to get services...");
+                return null!;
+            }
+        }
+
+        /// <inheritdoc />
         public async Task<ServiceProduct[]> GetServicesAsync()
         {
             try

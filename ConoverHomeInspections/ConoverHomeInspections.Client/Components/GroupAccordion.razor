@@ -1,0 +1,26 @@
+@using ConoverHomeInspections.Shared
+
+@if (Groups == null)
+{
+	<MudText Typo="Typo.caption">Loading...</MudText>
+}
+else
+{
+	<MudExpansionPanels Dense="false" Elevation="0" Square="true" DisableBorders="true" Class="border-b-1">
+		@foreach (var group in Groups)
+		{
+			<MudExpansionPanel>
+				<TitleContent>
+					<MudText Typo="Typo.h6">@group?.GroupName</MudText>
+				</TitleContent>
+				<ChildContent>
+					<MudText>@group?.Description</MudText>
+				</ChildContent>
+			</MudExpansionPanel>
+		}
+	</MudExpansionPanels>
+}
+
+@code {
+	[Parameter] public ProductGroup[]? Groups { get; set; } = null!;
+}
