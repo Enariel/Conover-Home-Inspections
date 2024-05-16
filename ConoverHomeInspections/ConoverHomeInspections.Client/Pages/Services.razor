@@ -4,9 +4,16 @@
 <MainHeader Title="Services" />
 <MudGrid Spacing="2" Justify="Justify.SpaceEvenly">
 	<MudItem md="6" sm="12">
-		<SectionHeader Title="Inspection Services"/>
+		<SectionHeader Title="Inspection Services" />
 	</MudItem>
 	<MudItem md="6" sm="12">
-		<GroupAccordion Groups="@_productGroups" />
+		@if (_productGroups != null)
+		{
+			<GroupAccordion Groups="@_productGroups" />
+		}
 	</MudItem>
 </MudGrid>
+
+@code{
+	
+}

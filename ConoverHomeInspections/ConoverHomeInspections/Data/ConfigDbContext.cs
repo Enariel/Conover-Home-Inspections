@@ -82,10 +82,9 @@ namespace ConoverHomeInspections.Data
                       .HasForeignKey(ws => ws.ServiceId)
                       .OnDelete(DeleteBehavior.SetNull);
                 entity.HasOne(sp => sp.Group)
-                      .WithMany(g => g.Services)// if Group has a collection of ServiceProduct, define it here
+                      .WithMany(g=>g.Services)// if Group has a collection of ServiceProduct, define it here
                       .HasForeignKey(sp => sp.GroupId)
-                      .OnDelete(DeleteBehavior.SetNull)
-                      .HasConstraintName("FK_Groups_Services");
+                      .OnDelete(DeleteBehavior.SetNull);
                 entity.HasMany(e => e.Details)
                       .WithOne(e => e.Service)
                       .HasForeignKey(e => e.ServiceId)
@@ -100,12 +99,6 @@ namespace ConoverHomeInspections.Data
                 entity.Property(e => e.GroupId).ValueGeneratedOnAdd();
                 entity.Property(e => e.GroupName).IsRequired().HasMaxLength(100);
                 entity.Property(e => e.Description).HasMaxLength(500);
-
-                // entity.HasMany<ServiceProduct>(e => e.Services)
-                //       .WithOne(e=>e.Group)
-                //       .HasForeignKey(e => e.GroupId)
-                //       .HasConstraintName("FK_Groups_Services")
-                //       .OnDelete(DeleteBehavior.SetNull);
             });
 
             modelBuilder.Entity<ServiceDetail>(entity =>

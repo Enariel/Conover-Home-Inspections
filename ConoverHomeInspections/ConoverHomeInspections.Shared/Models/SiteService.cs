@@ -3,6 +3,8 @@
 //  2024
 // Oliver Conover
 // Modified: 16-05-2024
+using System.Text.Json.Serialization;
+
 namespace ConoverHomeInspections.Shared
 {
 
@@ -22,7 +24,8 @@ namespace ConoverHomeInspections.Shared
         public int EstimatedCompletionTimeInMins { get; set; }
         public int? Order { get; set; }
         public int? SKU { get; set; }
-        public virtual SiteGroup? Group { get; set; }
+        [JsonIgnore]
+        public SiteGroup? Group { get; set; }
         public virtual ICollection<ServiceDetail> Details { get; set; }
         public virtual ICollection<AssignmentTask> Task { get; set; }
     }

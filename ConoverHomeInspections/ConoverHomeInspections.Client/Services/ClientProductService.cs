@@ -28,17 +28,8 @@ namespace ConoverHomeInspections.Client.Services
         /// <inheritdoc />
         public async Task<SiteGroup[]> GetSiteGroupsAsync()
         {
-            try
-            {
-                var groups = await _client.GetFromJsonAsync<SiteGroup[]>("api/v1/Services/Groups");
-                _logger.LogInformation("Successfully got groups...");
-                return groups!;
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Failed to get services...");
-                return null!;
-            }
+            SiteGroup[] groups = await _client.GetFromJsonAsync<SiteGroup[]>("api/v1/Services/Groups") ?? Array.Empty<SiteGroup>();
+            return groups;
         }
 
         /// <inheritdoc />

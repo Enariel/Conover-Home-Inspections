@@ -10,22 +10,22 @@ namespace ConoverHomeInspections.Client.Pages
         [Inject] public IProductService ProductService { get; set; }
 
         private SiteGroup[]? _productGroups;
-        private SiteService[]? _services;
+        //private SiteService[]? _services;
         private PersistingComponentStateSubscription? _subscription;
 
         /// <inheritdoc />
         protected override async Task OnInitializedAsync()
         {
             _subscription = PersistentComponentState.RegisterOnPersisting(PersistData);
-            if (!PersistentComponentState.TryTakeFromJson<SiteService[]>(nameof(_services), out _services))
-                _services = await ProductService.GetSiteServicesAsync();
+            // if (!PersistentComponentState.TryTakeFromJson<SiteService[]>(nameof(_services), out _services))
+            //     _services = await ProductService.GetSiteServicesAsync();
             if (!PersistentComponentState.TryTakeFromJson<SiteGroup[]>(nameof(_productGroups), out _productGroups))
                 _productGroups = await ProductService.GetSiteGroupsAsync();
         }
 
         private Task PersistData()
         {
-            PersistentComponentState.PersistAsJson(nameof(_services), _services);
+            //PersistentComponentState.PersistAsJson(nameof(_services), _services);
             PersistentComponentState.PersistAsJson(nameof(_productGroups), _productGroups);
             return Task.CompletedTask;
         }

@@ -11,15 +11,12 @@ using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true)
-       .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles)
-       .ConfigureApiBehaviorOptions(options =>
-       {
-           options.InvalidModelStateResponseFactory = context => new BadRequestObjectResult(context.ModelState);
-       });
 builder.Services.AddRazorComponents()
        .AddInteractiveServerComponents()
        .AddInteractiveWebAssemblyComponents();
+builder.Services.AddControllersWithViews()
+       .ConfigureApiBehaviorOptions(options => { options.InvalidModelStateResponseFactory = context => new BadRequestObjectResult(context.ModelState); })
+       .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 builder.Services.AddDbContext<ConfigDbContext>();
 builder.Services.AddSingleton<IProductService, ServerProductService>();
 builder.Services.AddMudServices();

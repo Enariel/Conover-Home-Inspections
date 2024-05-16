@@ -24,8 +24,8 @@ namespace ConoverHomeInspections.Services
             var groups = await ctx.Groups
                                   .Include(x=>x.Services
                                                .OrderBy(s=>s.Order))
-                                  .ThenInclude(x=>x.Details.OrderBy(d=>d.Order))
                                   .OrderBy(g=>g.Order)
+                                  .Select(x=>x)
                                   .ToArrayAsync();
             return groups;
         }
