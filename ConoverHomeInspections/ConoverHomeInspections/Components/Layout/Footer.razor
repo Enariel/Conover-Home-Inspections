@@ -1,26 +1,30 @@
-<footer class="d-flex justify-center flex-grow-1 mud-theme-dark ma-0 py-10">
-	<div class="align-center flex-shrink-1 my-auto">
-		<MudStack Spacing="2">
-			<MudDivider DividerType="DividerType.Inset" Light="false" Class="mt-5 mb-2 py-4 mud-border-secondary" />
-			<MudStack Row="true" Justify="Justify.FlexEnd" AlignItems="AlignItems.Center">
-				<MudStack>
+<footer class="d-flex justify-center flex-grow-1 mud-theme-dark ma-0 pb-2">
+	<MudStack Spacing="2" Justify="Justify.SpaceBetween" Class="w-100 px-4">
+		<MudDivider DividerType="DividerType.Middle" Light="false" Class="mb-4 mt-0 py-4 mud-border-secondary" />
+		<MudStack Row="false" Justify="Justify.SpaceEvenly" AlignItems="AlignItems.Start" Spacing="0">
+			<MudStack Spacing="1" Row="true" AlignItems="AlignItems.Baseline">
+				<MudText>Address: </MudText>
+				<MudStack Spacing="0">
 					<MudText Typo="Typo.body2">7600 Mako Dr</MudText>
 					<MudText Typo="Typo.body2">Hudson Fl, 34667</MudText>
 				</MudStack>
-				<MudStack>
-					<MudText>
-						Phone:
-						<MudLink Color="Color.Primary" Underline="Underline.Hover" Href="tel:727-278-0986">+1 (727) 278-0986</MudLink>
-					</MudText>
-					<MudText>
-						Email:
-						<MudLink Color="Color.Secondary" Underline="Underline.Hover" Href="mailto:contact@conoverhomeinspections.com">contact@conoverhomeinspections.com</MudLink>
-					</MudText>
-				</MudStack>
 			</MudStack>
-			<MudText Align="Align.Center" Color="Color.Tertiary" Typo="Typo.caption">&#169; 2020 Conover Home Inspections</MudText>
+			<MudStack Spacing="1">
+				<MudText>
+					Phone:
+					<MudLink Typo="Typo.body2" Color="Color.Tertiary" Underline="Underline.Hover" Href="tel:727-278-0986">+1 (727) 278-0986</MudLink>
+				</MudText>
+				<MudText>
+					Email:
+					<MudLink Typo="Typo.body2" Color="Color.Tertiary" Underline="Underline.Hover" Href="mailto:contact@conoverhomeinspections.com">contact@conoverhomeinspections.com</MudLink>
+				</MudText>
+			</MudStack>
 		</MudStack>
-	</div>
+		<MudDivider DividerType="DividerType.Middle" Light="false" Class="mt-4 mb-0 py-4 mud-border-secondary" />
+		<MudText Align="Align.Center" Color="Color.Primary" Typo="Typo.subtitle1">&#169; 2024 Conover Home Inspections, LLC</MudText>
+		<MudText Align="Align.Center" Color="Color.Secondary" Typo="Typo.caption">In collaboration with</MudText>
+		<MudText Align="Align.Center" Color="Color.Secondary" Typo="Typo.subtitle2">&#169; FuchsFarbe Studios, LLC 2024</MudText>
+	</MudStack>
 </footer>
 
 @code {

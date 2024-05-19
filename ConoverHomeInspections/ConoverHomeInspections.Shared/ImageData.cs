@@ -10,5 +10,6 @@ namespace ConoverHomeInspections.Shared
         public string ImgName { get; set; }
         public string ImgUrl { get; set; }
         public string ImgAlt { get; set; }
+        public int Order { get; set; } = 0;
     }
 }

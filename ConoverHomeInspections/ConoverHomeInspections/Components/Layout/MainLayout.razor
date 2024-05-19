@@ -1,11 +1,13 @@
 ﻿@using ConoverHomeInspections.Client.Components
+@using MudBlazor.Utilities
 @inherits LayoutComponentBase
+
 <MudThemeProvider IsDarkMode="true" Theme="@_theme" />
 
 <MudLayout>
 	<NavMenu />
 	<div style="min-height: 90vh;" class="d-flex flex-grow-1">
-		<MudContainer MaxWidth="MaxWidth.Large" Class="mud-theme-dark mud-border-primary border-x px-6">
+		<MudContainer MaxWidth="MaxWidth.Large" Class="mud-theme-dark mud-border-primary border-x px-0">
 			@Body
 		</MudContainer>
 	</div>
@@ -13,5 +15,63 @@
 </MudLayout>
 
 @code {
-	private MudTheme _theme = new MudTheme();
+	private MudTheme _theme = new MudTheme
+	                          {
+		                          PaletteDark = new PaletteDark
+		                                        {
+			                                        Primary = new MudColor("#F3BA04"),
+			                                        Secondary = new MudColor("#F58300"),
+			                                        Tertiary = new MudColor("#D4522D"),
+			                                        HoverOpacity = 25,
+			                                        //GrayDefault = null,
+			                                        Black = new MudColor("#1D1B22"),
+			                                        // Info = null,
+			                                        // Success = null,
+			                                        // Warning = null,
+			                                        // Error = null,
+			                                        Dark = new MudColor("#1D1B22"),
+			                                        // TextPrimary = null,
+			                                        // TextSecondary = null,
+			                                        // TextDisabled = null,
+			                                        // ActionDefault = null,
+			                                        // ActionDisabled = null,
+			                                        // ActionDisabledBackground = null,
+			                                        // Background = null,
+			                                        // BackgroundGrey = null,
+			                                        Surface = new MudColor("#3D3E4A"),
+			                                        // DrawerBackground = null,
+			                                        // DrawerText = null,
+			                                        // DrawerIcon = null,
+			                                        // AppbarBackground = null,
+			                                        // AppbarText = null,
+			                                        // LinesDefault = null,
+			                                        // LinesInputs = null,
+			                                        // TableLines = null,
+			                                        // TableStriped = null,
+			                                        // Divider = null,
+			                                        // DividerLight = null,
+			                                        // ChipDefault = null,
+			                                        // ChipDefaultHover = null
+		                                        },
+		                          Typography = new Typography
+		                                       {
+			                                       // Default = null,
+			                                       // H1 = null,
+			                                       // H2 = null,
+			                                       // H3 = null,
+			                                       // H4 = null,
+			                                       // H5 = null,
+			                                       // H6 = null,
+			                                       // Subtitle1 = null,
+			                                       // Subtitle2 = null,
+			                                       // Body1 = null,
+			                                       // Body2 = null,
+			                                       // Button = null,
+			                                       // Caption = null,
+			                                       // Overline = null
+		                                       },
+		                          // LayoutProperties = null,
+		                          // ZIndex = null,
+		                          // PseudoCss = null
+	                          };
 }

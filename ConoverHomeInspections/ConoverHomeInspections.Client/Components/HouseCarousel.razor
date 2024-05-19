@@ -1,33 +1,47 @@
 @rendermode InteractiveAuto
 
-@if (_houseImages.Any())
-{
-	<MudBreakpointProvider>
-		<MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="false">
-			<MudCarousel Class="mud-width-full" Style="height:600px;" AutoCycle="true" ShowArrows="false" ShowBullets="false" EnableSwipeGesture="false" TData="object">
+<MudBreakpointProvider>
+	<MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="false">
+		<MudCarousel Class="mud-width-full" Style="height: 95vh;" AutoCycle="true" AutoCycleTime="@(TimeSpan.FromSeconds(10))" ShowArrows="false" ShowBullets="false" EnableSwipeGesture="false" TData="object">
+			@if (_houseImages.Any())
+			{
 				@foreach (var image in _houseImages)
 				{
 					<MudCarouselItem Color="Color.Primary" Transition="@Transition.Slide">
-						<MudImage Class="d-flex" Height="600" Style="width: 100%;" Alt="@image.ImgAlt" Src="@image.ImgUrl" ObjectFit="ObjectFit.Cover" ObjectPosition="ObjectPosition.Center" />
-						@* <div class="d-flex" style="@($"height: 100%; background-image: url('{image.ImgUrl}') !important; background-repeat: no-repeat; background-attachment: fixed; background-position: center;")" /> *@
+						<MudImage Class="mud-height-full kenburns-bottom" Style="width: 100%;" Alt="@image.ImgAlt" Src="@image.ImgUrl" ObjectFit="ObjectFit.Cover" Elevation="0" ObjectPosition="ObjectPosition.Center" />
 					</MudCarouselItem>
 				}
-			</MudCarousel>
-		</MudHidden>
-		<MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+			}
+			else
+			{
+				<MudCarouselItem Color="Color.Primary" Transition="@Transition.Slide">
+					<MudImage Class="mud-height-full kenburns-bottom" Style="width: 100%;" Alt="A rustic house in Quarryville, PA. It's covered by the shade of a tree, the sky is gray, and the grass is green. There is a brown, wooden, patio leading up to the front door set in the center of the house's face." Src="images/quarryville_house.jpg" ObjectFit="ObjectFit.Cover" Elevation="0" ObjectPosition="ObjectPosition.Center" />
+				</MudCarouselItem>
+			}
+		</MudCarousel>
+	</MudHidden>
 
-			<MudCarousel Class="mud-width-full" Style="height:400px;" AutoCycle="true" ShowArrows="false" ShowBullets="false" EnableSwipeGesture="false" TData="object">
+	<MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+		<MudCarousel Class="mud-width-full" Style="height:600px;" AutoCycle="true" ShowArrows="false" ShowBullets="false" EnableSwipeGesture="false" TData="object">
+			@if (_houseImages.Any())
+			{
 				@foreach (var image in _houseImages)
 				{
 					<MudCarouselItem Color="Color.Primary" Transition="@Transition.Slide">
-						<MudImage Class="d-flex" Height="400" Style="width: 100%;" Alt="@image.ImgAlt" Src="@image.ImgUrl" ObjectFit="ObjectFit.Cover" ObjectPosition="ObjectPosition.Center" />
+						<MudImage Class="kenburns-bottom" Height="600" Style="width: 100%;" Alt="@image.ImgAlt" Src="@image.ImgUrl" ObjectFit="ObjectFit.Cover" ObjectPosition="ObjectPosition.Center" />
 						@* <div class="d-flex" style="@($"height: 100%; background-image: url('{image.ImgUrl}') !important; background-repeat: no-repeat; background-attachment: fixed; background-position: center;")" /> *@
 					</MudCarouselItem>
 				}
-			</MudCarousel>
-		</MudHidden>
-	</MudBreakpointProvider>
-}
+			}
+			else
+			{
+				<MudCarouselItem Color="Color.Primary" Transition="@Transition.Slide">
+					<MudImage Class="kenburns-bottom" Height="600" Style="width: 100%;" Alt="A rustic house in Quarryville, PA. It's covered by the shade of a tree, the sky is gray, and the grass is green. There is a brown, wooden, patio leading up to the front door set in the center of the house's face." Src="images/quarryville_house.jpg" ObjectFit="ObjectFit.Cover" Elevation="0" ObjectPosition="ObjectPosition.Center" />
+				</MudCarouselItem>
+			}
+		</MudCarousel>
+	</MudHidden>
+</MudBreakpointProvider>
 
 @code{
 }
