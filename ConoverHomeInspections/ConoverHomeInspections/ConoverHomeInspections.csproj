@@ -18,10 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\images\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze.zip" />
       <_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze\DEMONBREEZELOO.png" />
       <_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze\Devil Breeze Bold.ttf" />

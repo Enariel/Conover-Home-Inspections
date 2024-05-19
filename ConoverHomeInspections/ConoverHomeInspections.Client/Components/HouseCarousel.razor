@@ -1,0 +1,33 @@
+@using ConoverHomeInspections.Shared
+@rendermode InteractiveAuto
+@if (_houseImages.Any())
+{
+	<MudBreakpointProvider>
+		<MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="false">
+			<MudCarousel Class="mud-width-full" Style="height:600px;" AutoCycle="true" ShowArrows="false" ShowBullets="false" EnableSwipeGesture="false" TData="object">
+				@foreach (var image in _houseImages)
+				{
+					<MudCarouselItem Color="Color.Primary" Transition="@Transition.Slide">
+						<MudImage Class="d-flex" Height="600" Style="width: 100%;" Alt="@image.ImgAlt" Src="@image.ImgUrl" ObjectFit="ObjectFit.Cover" ObjectPosition="ObjectPosition.Center" />
+						@* <div class="d-flex" style="@($"height: 100%; background-image: url('{image.ImgUrl}') !important; background-repeat: no-repeat; background-attachment: fixed; background-position: center;")" /> *@
+					</MudCarouselItem>
+				}
+			</MudCarousel>
+		</MudHidden>
+		<MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+
+			<MudCarousel Class="mud-width-full" Style="height:400px;" AutoCycle="true" ShowArrows="false" ShowBullets="false" EnableSwipeGesture="false" TData="object">
+				@foreach (var image in _houseImages)
+				{
+					<MudCarouselItem Color="Color.Primary" Transition="@Transition.Slide">
+						<MudImage Class="d-flex" Height="400" Style="width: 100%;" Alt="@image.ImgAlt" Src="@image.ImgUrl" ObjectFit="ObjectFit.Cover" ObjectPosition="ObjectPosition.Center" />
+						@* <div class="d-flex" style="@($"height: 100%; background-image: url('{image.ImgUrl}') !important; background-repeat: no-repeat; background-attachment: fixed; background-position: center;")" /> *@
+					</MudCarouselItem>
+				}
+			</MudCarousel>
+		</MudHidden>
+	</MudBreakpointProvider>
+}
+
+@code{
+}

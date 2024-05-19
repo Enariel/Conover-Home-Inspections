@@ -17,4 +17,33 @@
       <ProjectReference Include="..\ConoverHomeInspections.Shared\ConoverHomeInspections.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze.zip" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze\DEMONBREEZELOO.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze\Devil Breeze Bold.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze\Devil Breeze Book.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze\Devil Breeze Demi.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze\Devil Breeze Light.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze\Devil Breeze Medium.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze\rights.rtf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Protest_Strike.zip" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Protest_Strike\OFL.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Protest_Strike\ProtestStrike-Regular.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers.zip" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\OFL.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\README.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\static\Teachers-Bold.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\static\Teachers-BoldItalic.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\static\Teachers-ExtraBold.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\static\Teachers-ExtraBoldItalic.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\static\Teachers-Italic.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\static\Teachers-Medium.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\static\Teachers-MediumItalic.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\static\Teachers-Regular.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\static\Teachers-SemiBold.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\static\Teachers-SemiBoldItalic.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\Teachers-Italic-VariableFont_wght.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\Teachers-VariableFont_wght.ttf" />
+    </ItemGroup>
+
 </Project>
