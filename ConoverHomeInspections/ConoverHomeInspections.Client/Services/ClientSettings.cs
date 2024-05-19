@@ -4,6 +4,8 @@
 // Oliver Conover
 // Modified: 19-05-2024
 using ConoverHomeInspections.Shared;
+using MudBlazor;
+using MudBlazor.Utilities;
 
 namespace ConoverHomeInspections.Client.Services
 {
@@ -77,13 +79,71 @@ namespace ConoverHomeInspections.Client.Services
                                                              ImgUrl = "images/house-11.jpg",
                                                              ImgAlt = "Picture of a house."
                                                          },
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 12",
-                                                             ImgUrl = "images/quarryville_house.jpg",
-                                                             ImgAlt = "A rustic house in Quarryville, PA. It's covered by the shade of a tree, the sky is gray, and the grass is green. There is a brown, wooden, patio leading up to the front door set in the center of the house's face."
-                                                         },
                                                      };
+
+        public static MudTheme GetSiteTheme()
+        {
+            var theme = new MudTheme
+                        {
+                            PaletteDark = new PaletteDark
+                                          {
+                                              Primary = new MudColor("#F3BA04"),
+                                              Secondary = new MudColor("#F69D03"),
+                                              Tertiary = new MudColor("#F8192C"),
+                                              HoverOpacity = 50,
+                                              GrayDefault = "#898686",
+                                              Black = new MudColor("#191919"),
+                                              // Info = null,
+                                              // Success = null,
+                                              // Warning = null,
+                                              // Error = null,
+                                              Dark = new MudColor("#1D1B22"),
+                                              // TextPrimary = null,
+                                              // TextSecondary = null,
+                                              // TextDisabled = null,
+                                              // ActionDefault = null,
+                                              // ActionDisabled = null,
+                                              // ActionDisabledBackground = null,
+                                              // Background = null,
+                                              // BackgroundGrey = null,
+                                              Surface = new MudColor("#494949"),
+                                              // DrawerBackground = null,
+                                              // DrawerText = null,
+                                              // DrawerIcon = null,
+                                              // AppbarBackground = null,
+                                              // AppbarText = null,
+                                              // LinesDefault = null,
+                                              // LinesInputs = null,
+                                              // TableLines = null,
+                                              // TableStriped = null,
+                                              // Divider = null,
+                                              // DividerLight = null,
+                                              // ChipDefault = null,
+                                              // ChipDefaultHover = null
+                                          },
+                            Typography = new Typography
+                                         {
+                                             // Default = null,
+                                             // H1 = null,
+                                             // H2 = null,
+                                             // H3 = null,
+                                             // H4 = null,
+                                             // H5 = null,
+                                             // H6 = null,
+                                             // Subtitle1 = null,
+                                             // Subtitle2 = null,
+                                             // Body1 = null,
+                                             // Body2 = null,
+                                             // Button = null,
+                                             // Caption = null,
+                                             // Overline = null
+                                         },
+                            // LayoutProperties = null,
+                            // ZIndex = null,
+                            // PseudoCss = null
+                        };
+            return theme;
+        }
 
         public static ImageData GetRandomHouseImage()
         {
