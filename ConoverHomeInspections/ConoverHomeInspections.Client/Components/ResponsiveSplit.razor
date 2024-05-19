@@ -1,0 +1,42 @@
+@rendermode InteractiveAuto
+
+<MudBreakpointProvider>
+
+	<MudPaper Elevation="0" Width="100%" Square="true" Class="py-6 mud-theme-dark">
+		<MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+			<MudStack Spacing="0" Row="true" AlignItems="AlignItems.Stretch" Justify="Justify.Center" Style="height: auto;" Class="">
+				<MudPaper Elevation="0" Square="true" Outlined="false" Height="100%" Width="100%" Class="px-4 py-2 my-auto mud-theme-dark">
+					@LeftContent
+				</MudPaper>
+				<MudPaper Elevation="0" Square="true" Outlined="false" Height="100%" Width="100%" Class="px-4 py-2 my-auto mud-theme-dark">
+					@RightContent
+				</MudPaper>
+			</MudStack>
+		</MudHidden>
+
+		<MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="false">
+			<MudStack Spacing="0" Row="false" Justify="Justify.Center" Style="width: 100%;" Class="border-y-1 border-solid mud-border-primary">
+				<MudPaper Elevation="0" Square="true" Outlined="false" Width="100%" Class="py-2 px-4 mud-theme-dark">
+					@LeftContent
+				</MudPaper>
+				<MudPaper Elevation="0" Square="true" Outlined="false" Width="100%" Class="py-2 px-4 mud-theme-dark">
+					@RightContent
+				</MudPaper>
+			</MudStack>
+		</MudHidden>
+	</MudPaper>
+
+	@if (HasBottomDivider)
+	{
+		<MudPaper Elevation="0" Width="100%" Square="true" Class="py-4 mud-theme-dark">
+			<MudDivider Light="false" DividerType="DividerType.Middle" Class="my-2 mud-border-primary" />
+		</MudPaper>
+	}
+
+</MudBreakpointProvider>
+
+@code {
+	[Parameter] public RenderFragment LeftContent { get; set; }
+	[Parameter] public RenderFragment RightContent { get; set; }
+	[Parameter] public bool HasBottomDivider { get; set; } = false;
+}

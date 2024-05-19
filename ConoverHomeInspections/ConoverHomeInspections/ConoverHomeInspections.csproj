@@ -44,6 +44,10 @@
       <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\static\Teachers-SemiBoldItalic.ttf" />
       <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\Teachers-Italic-VariableFont_wght.ttf" />
       <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\Teachers-VariableFont_wght.ttf" />
+      <_ContentIncludedByDefault Remove="Layout\Footer.razor" />
+      <_ContentIncludedByDefault Remove="Layout\HomeLayout.razor" />
+      <_ContentIncludedByDefault Remove="Layout\MainLayout.razor" />
+      <_ContentIncludedByDefault Remove="Layout\NavMenu.razor" />
     </ItemGroup>
 
 </Project>

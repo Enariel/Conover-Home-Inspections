@@ -1,0 +1,48 @@
+@using ConoverHomeInspections.Client.Components
+@page "/About"
+@rendermode InteractiveAuto
+<PageTitle>About</PageTitle>
+<MainHeader Title="About" />
+
+<ResponsiveSplit HasBottomDivider="true">
+
+	<LeftContent>
+		<div class="d-flex justify-center flex-grow-1">
+			<MudImage Src="images/brian.jpg" Alt="Image of Brian Conover" Elevation="0" ObjectFit="ObjectFit.Fill" ObjectPosition="ObjectPosition.Center" Fluid="true" />
+		</div>
+	</LeftContent>
+
+	<RightContent>
+		<SectionHeader Title="Brian Conover" />
+		<MudText Typo="Typo.h3" Align="Align.Left" GutterBottom="true">FL License HI17143</MudText>
+		<MudText Typo="Typo.body1" Align="Align.Left" GutterBottom="true">
+			My name is Brian Conover of <MudText Inline="true" Color="Color.Secondary">Conover Home Inspections</MudText>™️. We are a trusted and reliable partner for homebuyers, providing comprehensive and thorough inspections to ensure a confident purchase.
+		</MudText>
+		<MudText Typo="Typo.body1" Align="Align.Left" GutterBottom="true">
+			I am dedicated to delivering exceptional service, empowering clients. I am licensed and Insured for all of your home inspection needs for the state of Florida.
+		</MudText>
+	</RightContent>
+
+</ResponsiveSplit>
+
+<ResponsiveSplit>
+	<LeftContent>
+			<SectionHeader Title="How it started..." />
+			<MudText Typo="Typo.body1" Align="Align.Left" GutterBottom="true">
+				My professional career started in 1992 where I worked building docks, seawalls and installing boat lifts. I changed course and went to technical school to become an Auto Service Technician. Working as a technician, I became an ASE certified master tech with 17 years of experience. My experience as an Auto Technician gave me a keen eye for detail, which paved the way for me becoming a Service Advisor. Here, I learned strong customer service skills and built trustworthy relationships with my clients over 5 years.
+			</MudText>
+			<MudText Typo="Typo.body1" Align="Align.Left" GutterBottom="true">
+				Eventually, my brother wanted me to help with his business as a contractor, and I decided to join him. For 7 years we worked side-by-side renovating, updating, and remodeling homes -- old and new. This entailed hard work such as: demolition; laying, cutting, and grouting tiles; expanding, rewiring, or repairing electrical receptacles; replacing or repairing moldy, damaged, or toxic drywall and/or wooden framing; etc. These skills instilled, in me, the <em>importance</em> of proper technique, understanding of the materials, and attention to detail necessary to create long-lasting, beautiful, and safe home spaces.
+			</MudText>
+			<MudText Typo="Typo.body1" Align="Align.Left" GutterBottom="true">
+				These experiences have prepared me for my current role as a <MudText Inline="true" Color="Color.Primary">Licensed Home Inspector</MudText> in Florida. I look forward to working with you and gaining your trust so that you can make educated decisions when purchasing your new home.
+			</MudText>
+	</LeftContent>
+
+	<RightContent>
+		<MudImage Src="images/mum_and_dad.jpg" Alt="Image of Brian Conover and his wife JoEllen Conover." Elevation="0" ObjectFit="ObjectFit.Contain" ObjectPosition="ObjectPosition.Center" Fluid="true" />
+	</RightContent>
+</ResponsiveSplit>
+
+@code {
+}

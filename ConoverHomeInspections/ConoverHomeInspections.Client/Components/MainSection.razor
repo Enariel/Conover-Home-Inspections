@@ -1,0 +1,15 @@
+<MudPaper Elevation="0" Width="100%" Square="true" Class="@($"py-6 mud-theme-{ThemeColor?.ToLower()}")" Style="min-height: 100px; height: auto;">
+	@ChildContent
+</MudPaper>
+@if (HasBottomDivider)
+{
+	<MudPaper Elevation="0" Width="100%" Square="true" Class="@($"py-4 mud-theme-{ThemeColor?.ToLower()}")">
+		<MudDivider Light="false" DividerType="DividerType.Middle" Class="my-2 mud-border-primary" />
+	</MudPaper>
+}
+
+@code {
+	[Parameter] public string ThemeColor { get; set; } = "dark";
+	[Parameter] public bool HasBottomDivider { get; set; } = false;
+	[Parameter] public RenderFragment ChildContent { get; set; }
+}

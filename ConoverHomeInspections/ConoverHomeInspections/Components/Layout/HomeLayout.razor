@@ -1,4 +1,3 @@
-@using ConoverHomeInspections.Shared
 @using ConoverHomeInspections.Client.Components
 @inherits LayoutComponentBase
 <MudThemeProvider IsDarkMode="true" Theme="@_theme" />
@@ -6,10 +5,8 @@
 <MudLayout>
 	<NavMenu />
 	<HouseCarousel />
-	<MudMainContent Class="border-b-1 mud-border-primary">
-		<MudContainer Fixed="true" MaxWidth="MaxWidth.Large">
-			@Body
-		</MudContainer>
+	<MudMainContent>
+		@Body
 	</MudMainContent>
 	<Footer />
 </MudLayout>
