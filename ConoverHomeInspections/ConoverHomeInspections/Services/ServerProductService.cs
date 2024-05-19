@@ -3,9 +3,14 @@
 //  2024
 // Oliver Conover
 // Modified: 16-05-2024
+using AutoMapper;
 using ConoverHomeInspections.Data;
 using ConoverHomeInspections.Shared;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ConoverHomeInspections.Services
 {
@@ -17,66 +22,56 @@ namespace ConoverHomeInspections.Services
     /// </remarks>
     public class ServerProductService : IProductService
     {
-        /// <inheritdoc />
-        public async Task<SiteGroup[]> GetSiteGroupsAsync()
+        private readonly IMapper _map;
+        private readonly ConfigDbContext _ctx;
+        private readonly ILogger<IProductService> _logger;
+
+        public ServerProductService(ILogger<ServerProductService> logger, ConfigDbContext ctx, IMapper map)
         {
-            await using var ctx = new ConfigDbContext();
-            var groups = await ctx.Groups
-                                  .Include(x=>x.Services
-                                               .OrderBy(s=>s.Order))
-                                  .OrderBy(g=>g.Order)
-                                  .Select(x=>x)
-                                  .ToArrayAsync();
+            _logger = logger;
+            _ctx = ctx;
+            _map = map;
+        }
+
+        /// <inheritdoc />
+        public async Task<List<ServiceGroupDTO>> GetGroupsAsync()
+        {
+            var groups = await _ctx.Groups
+                                   .OrderBy(x => x.Order)
+                                   .Select(x => _map.Map<ServiceGroupDTO>(x))
+                                   .ToListAsync();
             return groups;
         }
 
         /// <inheritdoc />
-        public async Task<SiteService[]> GetSiteServicesAsync()
+        public async Task<List<ServiceDTO>> GetServicesAsync()
         {
-            await using var ctx = new ConfigDbContext();
-            var services = await ctx.Services
-                                    .Include(x=>x.Details
-                                                 .OrderBy(d=>d.Order))
-                                    .OrderBy(s=>s.Order)
-                                    .ToArrayAsync();
+            var services = await _ctx.Services
+                                     .OrderBy(x => x.Order)
+                                     .Select(x => _map.Map<ServiceDTO>(x))
+                                     .ToListAsync();
             return services;
         }
 
         /// <inheritdoc />
-        public async Task<SiteService[]> GetServicesByGroupIdAsync(int groupId)
+        public Task<List<ServiceDTO>> GetGroupServicesAsync(int groupId)
         {
-            await using var ctx = new ConfigDbContext();
-            var services = await ctx.Services
-                                    .Include(x=>x.Details
-                                                 .OrderBy(d=>d.Order))
-                                    .Where(s=>s.GroupId == groupId)
-                                    .OrderBy(s=>s.Order)
-                                    .ToArrayAsync();
-            if (services.Length == 0)
-                services = await ctx.Services
-                                    .Include(x=>x.Details
-                                                 .OrderBy(d=>d.Order))
-                                    .Where(s=>s.GroupId == ctx.Services.Select(x=>x.GroupId).Max())
-                                    .OrderBy(s=>s.Order)
-                                    .ToArrayAsync();
+            var services = _ctx.Services
+                               .Where(x => x.GroupId == groupId)
+                               .OrderBy(x => x.Order)
+                               .Select(x => _map.Map<ServiceDTO>(x))
+                               .ToListAsync();
             return services;
         }
 
         /// <inheritdoc />
-        public async Task<SiteService> GetServiceById(int serviceId)
+        public async Task<ServiceDTO> GetServiceById(int serviceId)
         {
-            await using var ctx = new ConfigDbContext();
-            var service = await ctx.Services
-                                   .Include(x => x.Details
-                                                  .OrderBy(d => d.Order))
-                                   .Where(s => s.ServiceId == serviceId)
-                                   .FirstOrDefaultAsync()
-                          ?? await ctx.Services
-                                      .Include(x => x.Details
-                                                     .OrderBy(d => d.Order))
-                                      .Where(x=>x.ServiceId == ctx.Services.Select(x=>x.ServiceId).Max())
-                                      .FirstOrDefaultAsync();
-            return service!;
+            var service = await _ctx.Services
+                                    .Where(x => x.ServiceId == serviceId)
+                                    .Select(x => _map.Map<ServiceDTO>(x))
+                                    .FirstOrDefaultAsync();
+            return service;
         }
     }
 }

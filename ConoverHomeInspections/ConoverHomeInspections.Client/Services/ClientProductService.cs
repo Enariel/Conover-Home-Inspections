@@ -26,58 +26,31 @@ namespace ConoverHomeInspections.Client.Services
         }
 
         /// <inheritdoc />
-        public async Task<SiteGroup[]> GetSiteGroupsAsync()
+        public async Task<List<ServiceGroupDTO>> GetGroupsAsync()
         {
-            SiteGroup[] groups = await _client.GetFromJsonAsync<SiteGroup[]>("api/v1/Services/Groups") ?? Array.Empty<SiteGroup>();
-            return groups;
+            var response = await _client.GetFromJsonAsync<List<ServiceGroupDTO>>("api/v1/Services/Groups");
+            return response;
         }
 
         /// <inheritdoc />
-        public async Task<SiteService[]> GetSiteServicesAsync()
+        public async Task<List<ServiceDTO>> GetServicesAsync()
         {
-            try
-            {
-                var services = await _client.GetFromJsonAsync<SiteService[]>("api/v1/Services");
-                _logger.LogInformation("Successfully got services...");
-                return services!;
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Failed to get services...");
-                return null!;
-            }
+            var response = await _client.GetFromJsonAsync<List<ServiceDTO>>("api/v1/Services");
+            return response;
         }
 
         /// <inheritdoc />
-        public async Task<SiteService[]> GetServicesByGroupIdAsync(int groupId)
+        public async Task<List<ServiceDTO>> GetGroupServicesAsync(int groupId)
         {
-            try
-            {
-                var services = await _client.GetFromJsonAsync<SiteService[]>("api/v1/Services/ServiceGroup/" + groupId);
-                _logger.LogInformation("Successfully got service...");
-                return services!;
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Failed to get service...");
-                return null!;
-            }
+            var response = await _client.GetFromJsonAsync<List<ServiceDTO>>($"api/v1/Services/ServiceGroup/{groupId}");
+            return response;
         }
 
         /// <inheritdoc />
-        public async Task<SiteService> GetServiceById(int serviceId)
+        public async Task<ServiceDTO> GetServiceById(int serviceId)
         {
-            try
-            {
-                var service = await _client.GetFromJsonAsync<SiteService>("api/v1/Services/Service/" + serviceId);
-                _logger.LogInformation("Successfully got service...");
-                return service!;
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Failed to get service...");
-                return null;
-            }
+            var response = await _client.GetFromJsonAsync<ServiceDTO>($"api/v1/Services/{serviceId}");
+            return response;
         }
     }
 } 

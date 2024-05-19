@@ -2,18 +2,34 @@
 @page "/Services"
 <PageTitle>Services</PageTitle>
 <MainHeader Title="Services" />
-<MudGrid Spacing="2" Justify="Justify.SpaceEvenly">
+
+<MudGrid Spacing="2" Justify="Justify.SpaceBetween">
 	<MudItem md="6" sm="12">
 		<SectionHeader Title="Inspection Services" />
 	</MudItem>
 	<MudItem md="6" sm="12">
-		@if (_productGroups != null)
+		@if (_productGroups == null || !_productGroups.Any())
 		{
-			<GroupAccordion Groups="@_productGroups" />
+			<MudText Typo="Typo.caption">Loading...</MudText>
+		}
+		else
+		{
+			<MudExpansionPanels Dense="false" Elevation="0" Square="true" DisableBorders="true" Class="border-b-1">
+				@foreach (var group in _productGroups)
+				{
+					<MudExpansionPanel>
+						<TitleContent>
+							<MudText Typo="Typo.h6">@((MarkupString)group?.GroupName)</MudText>
+						</TitleContent>
+						<ChildContent>
+							<MudText>@((MarkupString)group?.Description)</MudText>
+						</ChildContent>
+					</MudExpansionPanel>
+				}
+			</MudExpansionPanels>
 		}
 	</MudItem>
 </MudGrid>
 
 @code{
-	
 }

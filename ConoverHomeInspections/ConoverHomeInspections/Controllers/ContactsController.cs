@@ -5,6 +5,8 @@
 // Modified: 16-05-2024
 using ConoverHomeInspections.Shared;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace ConoverHomeInspections.Controllers
 {

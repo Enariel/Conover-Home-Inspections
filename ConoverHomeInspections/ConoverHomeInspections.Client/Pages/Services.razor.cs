@@ -1,38 +1,36 @@
 using ConoverHomeInspections.Shared;
 using Microsoft.AspNetCore.Components;
+using System.Text.Json;
 
 namespace ConoverHomeInspections.Client.Pages
 {
+    /// <summary>
+    /// A component that displays the services offered by the company.
+    /// </summary>
     [StreamRendering]
     public partial class Services : ComponentBase, IDisposable
     {
-        [Inject] public PersistentComponentState PersistentComponentState { get; set; }
-        [Inject] public IProductService ProductService { get; set; }
-
-        private SiteGroup[]? _productGroups;
-        //private SiteService[]? _services;
+        private List<ServiceGroupDTO> _productGroups;
         private PersistingComponentStateSubscription? _subscription;
+
+        [Inject] private ILogger<Services> Logger { get; set; }
+        [Inject] private PersistentComponentState PersistentComponentState { get; set; }
+        [Inject] private IProductService ProductService { get; set; }
 
         /// <inheritdoc />
         protected override async Task OnInitializedAsync()
         {
             _subscription = PersistentComponentState.RegisterOnPersisting(PersistData);
-            // if (!PersistentComponentState.TryTakeFromJson<SiteService[]>(nameof(_services), out _services))
-            //     _services = await ProductService.GetSiteServicesAsync();
-            if (!PersistentComponentState.TryTakeFromJson<SiteGroup[]>(nameof(_productGroups), out _productGroups))
-                _productGroups = await ProductService.GetSiteGroupsAsync();
+            if (!PersistentComponentState.TryTakeFromJson<List<ServiceGroupDTO>>(nameof(_productGroups), out _productGroups))
+                _productGroups = await ProductService.GetGroupsAsync();
         }
 
         private Task PersistData()
         {
-            //PersistentComponentState.PersistAsJson(nameof(_services), _services);
             PersistentComponentState.PersistAsJson(nameof(_productGroups), _productGroups);
             return Task.CompletedTask;
         }
 
-        void IDisposable.Dispose()
-        {
-            _subscription?.Dispose();
-        }
+        void IDisposable.Dispose() => _subscription?.Dispose();
     }
 }

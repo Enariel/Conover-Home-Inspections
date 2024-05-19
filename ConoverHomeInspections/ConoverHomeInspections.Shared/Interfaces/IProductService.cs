@@ -13,27 +13,27 @@ namespace ConoverHomeInspections.Shared
         /// <summary>
         /// Get all groups.
         /// </summary>
-        /// <returns> <see cref="Task{T}" /> of <see cref="SiteGroup" />. </returns>
-        public Task<SiteGroup[]> GetSiteGroupsAsync();
+        /// <returns> <see cref="Task{T}" /> with a <see cref="List{T}" /> of <see cref="ServiceGroupDTO" />. </returns>
+        public Task<List<ServiceGroupDTO>> GetGroupsAsync();
 
         /// <summary>
         /// Get all services.
         /// </summary>
-        /// <returns> <see cref="Task{T}" /> of <see cref="SiteService" />. </returns>
-        public Task<SiteService[]> GetSiteServicesAsync();
+        /// <returns> <see cref="Task{T}" /> of <see cref="List{T}" /> of <see cref="ServiceDTO" />. </returns>
+        public Task<List<ServiceDTO>> GetServicesAsync();
 
         /// <summary>
         /// Get all services in a group.
         /// </summary>
         /// <param name="groupId"> The id of the group to get services for. </param>
-        /// <returns> <see cref="Task{T}" /> of <see cref="SiteService" />. </returns>
-        public Task<SiteService[]> GetServicesByGroupIdAsync(int groupId);
+        /// <returns> <see cref="Task{T}" /> of <see cref="List{T}" /> of <see cref="ServiceDTO" />. </returns>
+        public Task<List<ServiceDTO>> GetGroupServicesAsync(int groupId);
 
         /// <summary>
         /// Get a service by its id.
         /// </summary>
         /// <param name="serviceId"> The id of the service to get. </param>
-        /// <returns> <see cref="Task{T}" /> of <see cref="SiteService" />. </returns>
-        public Task<SiteService> GetServiceById(int serviceId);
+        /// <returns> <see cref="Task{T}" /> of <see cref="ServiceDTO" />. </returns>
+        public Task<ServiceDTO> GetServiceById(int serviceId);
     }
 }
