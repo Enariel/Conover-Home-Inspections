@@ -1,17 +1,97 @@
 ﻿@page "/"
+@using ConoverHomeInspections.Shared
+@using YamlDotNet.Serialization
 
 <PageTitle>Home</PageTitle>
 
-@* <MudCarousel AutoCycle="true" AutoCycleTime="@(new TimeSpan(5000))" ShowArrows="false" ShowBullets="false" EnableSwipeGesture="false"> *@
-@* 	<MudCarouselItem Color="Color.Primary"> *@
-@* 		<MudImage Src="/images/quarryville_house.jpg" Height="700" Elevation="0" Alt="An image depicting a small, quaint house with rustic wooden steps leading up the front door. The house is covered in shade from a nearby tree, and the sun is obscured by clouds."></MudImage> *@
-@* 	</MudCarouselItem> *@
-@* *@
-@* 	<MudCarouselItem Color="Color.Secondary"> *@
-@* *@
-@* 	</MudCarouselItem> *@
-@* *@
-@* 	<MudCarouselItem Color="Color.Tertiary"> *@
-@* *@
-@* 	</MudCarouselItem> *@
-@* </MudCarousel> *@
+@if (_houseImages.Any())
+{
+	<MudCarousel Class="mud-width-full" Style="height:640px;" AutoCycle="true" AutoCycleTime="@(new TimeSpan(5000))" ShowArrows="false" ShowBullets="false" EnableSwipeGesture="false" TData="object">
+		@foreach (var image in _houseImages)
+		{
+			<MudCarouselItem Color="Color.Primary" Transition="@Transition.Slide">
+				<div class="d-flex" style="height: 100%;">
+					<MudImage ObjectFit="ObjectFit.Cover" ObjectPosition="ObjectPosition.Center" Src="@image?.ImgUrl" Height="640" Elevation="0" Alt="@image?.ImgAlt" />
+				</div>
+			</MudCarouselItem>
+		}
+	</MudCarousel>
+}
+
+@code{
+	private List<ImageData> _houseImages = new List<ImageData>
+	                                       {
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 1",
+			                                       ImgUrl = "/images/house-1.jpg",
+			                                       ImgAlt = "Picture of a house."
+		                                       },
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 2",
+			                                       ImgUrl = "/images/house-2.jpg",
+			                                       ImgAlt = "Picture of a house."
+		                                       },
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 3",
+			                                       ImgUrl = "/images/house-3.jpg",
+			                                       ImgAlt = "Picture of a house."
+		                                       },
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 4",
+			                                       ImgUrl = "/images/house-4.jpg",
+			                                       ImgAlt = "Picture of a house."
+		                                       },
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 5",
+			                                       ImgUrl = "/images/house-5.jpg",
+			                                       ImgAlt = "Picture of a house."
+		                                       },
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 6",
+			                                       ImgUrl = "/images/house-6.jpg",
+			                                       ImgAlt = "Picture of a house."
+		                                       },
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 7",
+			                                       ImgUrl = "/images/house-7.jpg",
+			                                       ImgAlt = "Picture of a house."
+		                                       },
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 8",
+			                                       ImgUrl = "/images/house-8.jpg",
+			                                       ImgAlt = "Picture of a house."
+		                                       },
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 9",
+			                                       ImgUrl = "/images/house-9.jpg",
+			                                       ImgAlt = "Picture of a house."
+		                                       },
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 10",
+			                                       ImgUrl = "/images/house-10.jpg",
+			                                       ImgAlt = "Picture of a house."
+		                                       },
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 11",
+			                                       ImgUrl = "/images/house-11.jpg",
+			                                       ImgAlt = "Picture of a house."
+		                                       },
+		                                       new ImageData()
+		                                       {
+			                                       ImgName = "House 12",
+			                                       ImgUrl = "/images/quarryville_house.jpg",
+			                                       ImgAlt = "A rustic house in Quarryville, PA. It's covered by the shade of a tree, the sky is gray, and the grass is green. There is a brown, wooden, patio leading up to the front door set in the center of the house's face."
+		                                       },
+	                                       };
+}

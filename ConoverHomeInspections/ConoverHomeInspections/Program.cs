@@ -1,10 +1,14 @@
+using ConoverHomeInspections;
 using ConoverHomeInspections.Client.Pages;
 using ConoverHomeInspections.Components;
 using ConoverHomeInspections.Data;
 using ConoverHomeInspections.Services;
 using ConoverHomeInspections.Shared;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using MudBlazor.Services;
 using System.Text.Json.Serialization;
 
@@ -16,13 +20,27 @@ builder.Services.AddRazorComponents()
        .AddInteractiveWebAssemblyComponents();
 builder.Services.AddControllersWithViews()
        .ConfigureApiBehaviorOptions(options => { options.InvalidModelStateResponseFactory = context => new BadRequestObjectResult(context.ModelState); })
-       .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+       .AddJsonOptions(x =>
+       {
+           x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+           x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+           x.JsonSerializerOptions.WriteIndented = true;
+       });
 builder.Services.AddDbContext<ConfigDbContext>();
-builder.Services.AddSingleton<IProductService, ServerProductService>();
+builder.Services.AddScoped<IProductService, ServerProductService>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddMudServices();
 builder.Services.AddEndpointsApiExplorer();
 // Add NSwag services
 builder.Services.AddOpenApiDocument();
+
+// Automapper mappings
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AllowNullCollections = true;
+    cfg.AllowNullDestinationValues = true;
+});
+builder.Services.AddAutoMapper(typeof(ServiceProfile));
 
 var app = builder.Build();
 

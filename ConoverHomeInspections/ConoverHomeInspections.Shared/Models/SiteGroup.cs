@@ -3,6 +3,8 @@
 //  2024
 // Oliver Conover
 // Modified: 16-05-2024
+using System.Text.Json.Serialization;
+
 namespace ConoverHomeInspections.Shared
 {
     public class SiteGroup

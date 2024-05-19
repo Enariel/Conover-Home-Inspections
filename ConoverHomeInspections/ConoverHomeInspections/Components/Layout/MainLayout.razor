@@ -1,20 +1,16 @@
 ﻿@inherits LayoutComponentBase
-<MudThemeProvider IsDarkMode="true" Theme="@_theme"/>
+<MudThemeProvider IsDarkMode="true" Theme="@_theme" />
 
 <MudLayout>
 	<NavMenu />
 	<MudMainContent>
-		@Body
-		<Footer/>
+			<MudContainer>
+				@Body
+			</MudContainer>
+		<Footer />
 	</MudMainContent>
 </MudLayout>
 
 @code {
-
 	private MudTheme _theme = new MudTheme();
-
-	protected override void OnInitialized()
-	{
-		base.OnInitialized();
-	}
 }
