@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace ConoverHomeInspections.Components.Pages
+namespace ConoverHomeInspections.Client.Pages
 {
     public partial class About : ComponentBase
     {

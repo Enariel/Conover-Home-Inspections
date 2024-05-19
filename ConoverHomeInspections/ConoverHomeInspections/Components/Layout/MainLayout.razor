@@ -1,13 +1,14 @@
-﻿@inherits LayoutComponentBase
+﻿@using ConoverHomeInspections.Client.Components
+@inherits LayoutComponentBase
 <MudThemeProvider IsDarkMode="true" Theme="@_theme" />
 
 <MudLayout>
 	<NavMenu />
-	<MudMainContent Style="min-height: 85vh;">
+	<div style="min-height: 90vh;" class="d-flex flex-grow-1 pb-6">
+		<MudContainer MaxWidth="MaxWidth.Large" Class="mud-theme-dark mud-border-primary border-x px-6">
 			@Body
-		@* <MudContainer Fixed="true" MaxWidth="MaxWidth.Large"> *@
-		@* </MudContainer> *@
-	</MudMainContent>
+		</MudContainer>
+	</div>
 	<Footer />
 </MudLayout>
 

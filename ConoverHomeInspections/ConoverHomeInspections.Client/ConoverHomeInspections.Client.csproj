@@ -46,14 +46,4 @@
       <_ContentIncludedByDefault Remove="wwwroot\fonts\Teachers\Teachers-VariableFont_wght.ttf" />
     </ItemGroup>
 
-    <ItemGroup>
-      <AdditionalFiles Include="Layout\Footer.razor" />
-      <AdditionalFiles Include="Layout\MainLayout.razor" />
-      <AdditionalFiles Include="Layout\NavMenu.razor" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Layout\" />
-    </ItemGroup>
-
 </Project>
