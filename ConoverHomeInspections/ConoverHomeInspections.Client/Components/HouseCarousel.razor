@@ -9,6 +9,18 @@
 				{
 					<MudCarouselItem Color="Color.Primary" Transition="@Transition.Slide">
 						<MudImage Class="mud-height-full kenburns-bottom" Style="width: 100%;" Alt="@image.ImgAlt" Src="@image.ImgUrl" ObjectFit="ObjectFit.Cover" Elevation="0" ObjectPosition="ObjectPosition.Center" />
+						<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+							<MudStack>
+								<MudText Typo="Typo.h4" Color="Color.Primary" Align="Align.Center">Home Inspections</MudText>
+								<MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/Contact" ButtonType="ButtonType.Button" DisableElevation="true" FullWidth="true">Book Inspection</MudButton>
+							</MudStack>
+						</div>
+						<div style="position: absolute; bottom: 8px; left: 16px;">
+							<MudStack>
+								<MudDivider DividerType="DividerType.FullWidth" />
+								<MudText Typo="Typo.h5" Color="Color.Tertiary" Align="Align.Center">Foundations for a Confident Purchase</MudText>
+							</MudStack>
+						</div>
 					</MudCarouselItem>
 				}
 			}
