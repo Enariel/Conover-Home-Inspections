@@ -1,8 +1,17 @@
-@rendermode InteractiveWebAssembly
+@rendermode InteractiveAuto
 @page "/Contact"
+@using System.ComponentModel.DataAnnotations
 <PageTitle>Contact - Conover Home Inspections</PageTitle>
 <MainHeader Title="Contact" />
 
-@code {
+<EditForm Model="@_model" OnSubmit="@(async (e) => await OnContactSubmit(e))">
+	<MudPaper Elevation="0" Outlined="true" Square="true" Class="pa-4 mx-6">
+		<MudTextField @bind-Value="@_model.FirstName" For="@(() => _model.FirstName)" Label="First Name" Required="true" RequiredError="First name is required!" />
+		<MudTextField @bind-Value="@_model.LastName" For="@(() => _model.LastName)" Label="Last Name" Required="true" RequiredError="Last name is required!" />
+		<MudTextField @bind-Value="@_model.Email" For="@(() => _model.Email)" Label="Email" Required="true" RequiredError="Email is required!" Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })" />
+		<MudTextField @bind-Value="@_model.Phone" For="@(() => _model.Phone)" Label="Phone" />
+	</MudPaper>
+</EditForm>
 
+@code {
 }
