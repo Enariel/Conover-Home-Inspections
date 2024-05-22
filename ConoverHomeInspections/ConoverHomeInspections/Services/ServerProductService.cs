@@ -48,6 +48,7 @@ namespace ConoverHomeInspections.Services
         {
             var services = await _ctx.Services
                                      .OrderBy(x => x.Order)
+                                     .Include(x=>x.Details)
                                      .Select(x => _map.Map<ServiceDTO>(x))
                                      .ToListAsync();
             return services;

@@ -1,14 +1,9 @@
 using ConoverHomeInspections;
-using ConoverHomeInspections.Client.Pages;
 using ConoverHomeInspections.Components;
 using ConoverHomeInspections.Data;
 using ConoverHomeInspections.Services;
 using ConoverHomeInspections.Shared;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using MudBlazor.Services;
 using System.Text.Json.Serialization;
 

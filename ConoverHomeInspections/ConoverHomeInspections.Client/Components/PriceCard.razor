@@ -1,7 +1,7 @@
 @rendermode InteractiveAuto
 <MudCard Elevation="0" Square="true" Class="border-solid mud-border-secondary">
 	<MudCardHeader>
-		<MudText Color="Color.Tertiary" Typo="Typo.h6" GutterBottom="true" Align="Align.Center">@((MarkupString)Service?.ServiceName)</MudText>
+		<MudText Color="Color.Default" Typo="Typo.h6" GutterBottom="true" Align="Align.Center">@((MarkupString)Service?.ServiceName)</MudText>
 	</MudCardHeader>
 	<MudCardContent>
 		<MudStack Justify="Justify.Center" Spacing="2" AlignItems="AlignItems.Center">
@@ -25,15 +25,15 @@
 					<MudDivider Light="true" DividerType="DividerType.FullWidth" Class="my-2" />
 					@foreach (var detail in Service.Details)
 					{
-						@((MarkupString)@detail.Title)
-						@((MarkupString)@detail.Description)
+						<MudText GutterBottom="true">@((MarkupString)@detail.Title)</MudText>
+						<MudText GutterBottom="false">@((MarkupString)@detail.Description)</MudText>
 					}
 				}
 			</MudCollapse>
 		</MudStack>
 	</MudCardContent>
-	<MudCardActions>
-		<MudLink Color="Color.Secondary" Href="@($"/Contact?groupId={Service.GroupId}&serviceId={Service.ServiceId}")" Target="_blank" Underline="Underline.Hover">Schedule >></MudLink>
+	<MudCardActions Class="d-flex justify-center">
+		<MudButton Color="Color.Secondary" Variant="Variant.Text" Href="@($"/Contact?groupId={Service.GroupId}&serviceId={Service.ServiceId}")" Target="_blank" Size="Size.Large" Style="width: 50%;">Schedule >></MudButton>
 	</MudCardActions>
 </MudCard>
 
