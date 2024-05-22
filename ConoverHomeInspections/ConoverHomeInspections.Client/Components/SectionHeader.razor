@@ -1,4 +1,4 @@
-<MudText Align="Align.Center" Typo="Typo.h2" Color="Color.Secondary" GutterBottom="true">@Title</MudText>
+<MudText Align="Align.Center" Typo="Typo.h2" Color="Color.Secondary" GutterBottom="true">@((MarkupString)Title)</MudText>
 
 @code {
 	[Parameter] public string Title { get; set; } = "";

@@ -10,19 +10,24 @@
 	<RightContent>
 		@if (_productGroups == null || !_productGroups.Any())
 		{
-			<MudText Typo="Typo.caption">Loading...</MudText>
+			<MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Large" StrokeWidth="2" />
 		}
 		else
 		{
-			<MudExpansionPanels Dense="false" Elevation="0" Square="true" DisableBorders="true" Class="border-b-1">
+			<MudExpansionPanels Dense="false" Elevation="0" Square="true" DisableBorders="false" MultiExpansion="true">
 				@foreach (var group in _productGroups)
 				{
 					<MudExpansionPanel>
 						<TitleContent>
-							<MudText Typo="Typo.h6">@((MarkupString)group?.GroupName)</MudText>
+							<MudText Typo="Typo.h6" Color="Color.Tertiary">@((MarkupString)group?.GroupName)</MudText>
 						</TitleContent>
 						<ChildContent>
 							<MudText>@((MarkupString)group?.Description)</MudText>
+							<MudDivider  Light="true" DividerType="DividerType.FullWidth" Class="my-2"/>
+							<MudButtonGroup DisableElevation="true" OverrideStyles="true" Color="Color.Primary" Variant="Variant.Text">
+								<MudButton Variant="Variant.Outlined" Color="Color.Primary" ButtonType="ButtonType.Button" Size="Size.Large" IconColor="Color.Secondary" Style="border-radius: 0;" Href="@($"/Pricing#group-{@group?.GroupId}")" EndIcon="@Icons.TwoTone.MonetizationOn">Pricing</MudButton>
+								<MudButton Variant="Variant.Outlined" Color="Color.Primary" ButtonType="ButtonType.Button" Size="Size.Large" IconColor="Color.Secondary" Style="border-radius: 0;" Href="@($"/Contact?groupId={@group?.GroupId}")" EndIcon="@Icons.TwoTone.Schedule">Schedule</MudButton>
+							</MudButtonGroup>
 						</ChildContent>
 					</MudExpansionPanel>
 				}

@@ -1,4 +1,5 @@
 ﻿@using ConoverHomeInspections.Client.Components
+@using ConoverHomeInspections.Shared
 @using MudBlazor.Utilities
 @inherits LayoutComponentBase
 
@@ -20,8 +21,11 @@
 		                          PaletteDark = new PaletteDark
 		                                        {
 			                                        Primary = new MudColor("#F3BA04"),
+			                                        PrimaryContrastText = new MudColor("#FFFFFF"),
 			                                        Secondary = new MudColor("#F58300"),
+			                                        SecondaryContrastText = new MudColor("#FFFFFF"),
 			                                        Tertiary = new MudColor("#D4522D"),
+			                                        TertiaryContrastText = new MudColor("#FFFFFF"),
 			                                        HoverOpacity = 25,
 			                                        //GrayDefault = null,
 			                                        Black = new MudColor("#1D1B22"),
@@ -55,7 +59,14 @@
 		                                        },
 		                          Typography = new Typography
 		                                       {
-			                                       // Default = null,
+			                                       // Default = new Default
+			                                       //           {
+			                                       //            FontFamily = new string[]
+			                                       //                         {
+			                                       //                          "",
+			                                       //                          "",
+			                                       //                         },
+			                                       //           },
 			                                       // H1 = null,
 			                                       // H2 = null,
 			                                       // H3 = null,

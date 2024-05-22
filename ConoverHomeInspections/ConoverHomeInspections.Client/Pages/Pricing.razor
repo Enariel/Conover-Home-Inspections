@@ -1,5 +1,7 @@
 @page "/Pricing"
 @page "/Pricing/{GroupId:int?}"
+@using ConoverHomeInspections.Shared
+@rendermode InteractiveAuto
 <PageTitle>Pricing - Conover Home Inspections</PageTitle>
 <MainHeader Title="Pricing" />
 <!-- If group id is null, display groups to user -->
@@ -7,10 +9,35 @@
 <!-- If group id is NOT null, display cards of services and their prices to the user. -->
 
 <!-- Each service in the group -->
-<MudGrid>
-	<MudItem xl="3" lg="4" md="6" sm="12">
-	</MudItem>
-</MudGrid>
+@if (_groups != null && _groups.Any())
+{
+	@foreach (var group in _groups)
+	{
+		<div class="mt-4 mb-4" id="@($"group-{group.GroupId}")">
+			<SectionHeader Title="@group?.GroupName" />
+			@if (_services != null)
+			{
+				var groupServices = _services?.Where(x => x.GroupId == group.GroupId).ToList();
+				@if (groupServices.Any())
+				{
+					<MudGrid Spacing="1" Justify="Justify.Center" Class="px-4">
+						@foreach (var serv in groupServices)
+						{
+							<MudItem xs="12" sm="6" md="4">
+								<PriceCard Service="@serv" />
+							</MudItem>
+						}
+					</MudGrid>
+				}
+			}
+			<MudDivider DividerType="DividerType.Middle" Class="my-2 mud-border-tertiary" />
+		</div>
+	}
+}
+else
+{
+	<MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Large" StrokeWidth="2" />
+}
 
 @code {
 	[Parameter]
