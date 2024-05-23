@@ -31,8 +31,8 @@ namespace ConoverHomeInspections.Shared
         public int? GroupId { get; set; }
         public int? ServiceId { get; set; }
         public string Message { get; set; }
-        public AddressDTO MailingAddress { get; set; }
-        public AddressDTO InspectionPropertyAddress { get; set; }
+        public AddressDTO MailingAddress { get; set; } = new AddressDTO();
+        public AddressDTO InspectionPropertyAddress { get; set; } = new AddressDTO();
         public DateTime? InspectionDateWindowMin { get; set; }
         public DateTime? InspectionDateWindowMax { get; set; }
     }
