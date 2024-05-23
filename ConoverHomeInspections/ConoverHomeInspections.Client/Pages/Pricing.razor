@@ -11,36 +11,83 @@
 <!-- Each service in the group -->
 @if (_groups != null && _groups.Any())
 {
-	@foreach (var group in _groups)
+@foreach (var group in _groups)
+{
+var index = _groups.IndexOf(group);
+<div class="@($"mb-4 {(index % 2 == 0 ? "group-1" : "group-2")}")" id="@($"group-{group.GroupId}")">
+	<SectionHeader Title="@group?.GroupName" />
+	@if (_services != null)
 	{
-		<div class="mt-4 mb-4" id="@($"group-{group.GroupId}")">
-			<SectionHeader Title="@group?.GroupName" />
-			@if (_services != null)
-			{
-				var groupServices = _services?.Where(x => x.GroupId == group.GroupId).ToList();
-				@if (groupServices.Any())
-				{
-					<MudGrid Spacing="1" Justify="Justify.Center" Class="px-4">
-						@foreach (var serv in groupServices)
-						{
-							<MudItem xs="12" sm="6" md="4">
-								<PriceCard Service="@serv" />
-							</MudItem>
-						}
-					</MudGrid>
-				}
-			}
-			<MudDivider DividerType="DividerType.Middle" Class="my-2 mud-border-tertiary" />
-		</div>
+	var groupServices = _services?.Where(x => x.GroupId == group.GroupId).ToList();
+	@if (groupServices.Any())
+	{
+	<MudGrid Spacing="4" Justify="Justify.Center" Class="px-4">
+		@foreach (var serv in groupServices)
+		{
+		<MudItem xs="12" sm="6" md="4">
+			<PriceCard Service="@serv" />
+		</MudItem>
+		}
+	</MudGrid>
 	}
+	}
+</div>
+}
 }
 else
 {
-	<MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Large" StrokeWidth="2" />
+<MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Large" StrokeWidth="2" />
 }
+<style>
+
+	.group-1 {
+		background-color: var(--mud-palette-dark-lighten);
+	}
+
+	.group-2 {
+		background-color: var(--mud-palette-dark-hover);
+	}
+
+	/* HTML: <div class="ribbon">Your text content</div> */
+	/* HTML: <div class="ribbon">Your text content</div> */
+	.ribbon {
+		font-size: 28px;
+		font-weight: bold;
+		color: var(--mud-palette-white);
+	}
+
+	.ribbon {
+		--s: 1.8em; /* the ribbon size */
+		--d: .8em; /* the depth */
+		--c: .8em; /* the cutout part */
+
+		padding: 0 calc(var(--s) + .5em) var(--d);
+		line-height: 1.8;
+		background: conic-gradient(at left var(--s) bottom var(--d),
+		#0000 25%, #0008 0 37.5%, #0004 0) 0   /50% 100% no-repeat,
+		conic-gradient(at right var(--s) bottom var(--d),
+			#0004 62.5%, #0008 0 75%, #0000 0) 100%/50% 100% no-repeat;
+		clip-path: polygon(0 var(--d), var(--s) var(--d), var(--s) 0, calc(100% - var(--s)) 0, calc(100% - var(--s)) var(--d), 100% var(--d), calc(100% - var(--c)) calc(50% + var(--d) / 2), 100% 100%, calc(100% - var(--s) - var(--d)) 100%, calc(100% - var(--s) - var(--d)) calc(100% - var(--d)), calc(var(--s) + var(--d)) calc(100% - var(--d)), calc(var(--s) + var(--d)) 100%, 0 100%, var(--c) calc(50% + var(--d) / 2));
+		background-color: var(--mud-palette-primary); /* the main color */
+		width: fit-content;
+		margin-left: auto;
+		margin-right: auto;
+	}
+</style>
+@* <style> *@
+@* 	.top { *@
+@* 		background: linear-gradient(180deg, var(--mud-palette-dark) 0%, var(--mud-palette-primary) 100%); *@
+@* 		clip-path: polygon(0 0,100% 0,100% calc(100% - 50px),calc(50% + 71.41px) calc(100% - 50px),50% 100%,calc(50% - 71.41px) calc(100% - 50px),0 calc(100% - 50px)); *@
+@* 	} *@
+@* 	.bottom { *@
+@* 		background-color: var(--mud-palette-dark-lighten); *@
+@* 		clip-path: polygon(0 0,calc(50% - 3.15px - 71.41px) 0,50% calc(50px + 2.21px),calc(50% + 3.15px + 71.41px) 0,100% 0,100% 100%,0 100%); *@
+@* 		margin-top: -40px; *@
+@* 	} *@
+@* </style> *@
 
 @code {
-	[Parameter]
-	[SupplyParameterFromQuery(Name = nameof(GroupId))]
-	public int? GroupId { get; set; } = null!;
+[Parameter]
+[SupplyParameterFromQuery(Name = nameof(GroupId))]
+public int? GroupId { get; set; } = null!;
 }

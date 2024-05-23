@@ -15,6 +15,10 @@ namespace ConoverHomeInspections.Data
     {
         private string _connString = "";
         public ConfigDbContext() : base() {}
+        public ConfigDbContext(string conn) : base()
+        {
+            _connString = conn;
+        }
         public ConfigDbContext(DbContextOptions<ConfigDbContext> options) : base(options) {}
 
         public string ConnectionString
@@ -36,10 +40,10 @@ namespace ConoverHomeInspections.Data
         public virtual DbSet<SiteService> Services { get; set; }
         public virtual DbSet<ServiceDetail> Details { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite(GetConnectionString());
-        }
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //     optionsBuilder.UseSqlite(ConnectionString);
+        // }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -84,7 +88,7 @@ namespace ConoverHomeInspections.Data
                       .HasForeignKey(ws => ws.ServiceId)
                       .OnDelete(DeleteBehavior.SetNull);
                 entity.HasOne(sp => sp.Group)
-                      .WithMany(g=>g.Services)// if Group has a collection of ServiceProduct, define it here
+                      .WithMany(g => g.Services)// if Group has a collection of ServiceProduct, define it here
                       .HasForeignKey(sp => sp.GroupId)
                       .OnDelete(DeleteBehavior.SetNull);
                 entity.HasMany(e => e.Details)
@@ -120,7 +124,7 @@ namespace ConoverHomeInspections.Data
         {
             var workingDir = Environment.CurrentDirectory;
             var projectDirectory = Directory.GetParent(workingDir)!.FullName;
-            var configPath = Path.Combine(projectDirectory, "ConoverHomeInspections", "Data", "ConfigData.db");
+            var configPath = Path.Combine(projectDirectory, "ConoverHomeInspections", "wwwroot", "data", "ConfigData.db");
             Console.WriteLine($"Database path: {configPath}");
             var connString = $"Data Source={configPath}";
             return connString;

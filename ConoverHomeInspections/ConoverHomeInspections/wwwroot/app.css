@@ -1,3 +1,59 @@
+@font-face {
+    font-family: 'Devil Breeze';
+    src: local('Devil Breeze Medium'), local('DevilBreezeMedium'),
+    url('fonts/devil_breeze/DevilBreezeMedium.woff2') format('woff2'),
+    url('fonts/devil_breeze/DevilBreezeMedium.woff') format('woff'),
+    url('fonts/devil_breeze/DevilBreezeMedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Devil Breeze';
+    src: local('Devil Breeze Book'), local('DevilBreezeBook'),
+    url('fonts/devil_breeze/DevilBreezeBook.woff2') format('woff2'),
+    url('fonts/devil_breeze/DevilBreezeBook.woff') format('woff'),
+    url('fonts/devil_breeze/DevilBreezeBook.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Devil Breeze';
+    src: local('Devil Breeze Demi'), local('DevilBreezeDemi'),
+    url('fonts/devil_breeze/DevilBreezeDemi.woff2') format('woff2'),
+    url('fonts/devil_breeze/DevilBreezeDemi.woff') format('woff'),
+    url('fonts/devil_breeze/DevilBreezeDemi.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Devil Breeze';
+    src: local('Devil Breeze Bold'), local('DevilBreezeBold'),
+    url('fonts/devil_breeze/DevilBreezeBold.woff2') format('woff2'),
+    url('fonts/devil_breeze/DevilBreezeBold.woff') format('woff'),
+    url('fonts/devil_breeze/DevilBreezeBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Devil Breeze';
+    src: local('Devil Breeze Light'), local('DevilBreezeLight'),
+    url('fonts/devil_breeze/DevilBreezeLight.woff2') format('woff2'),
+    url('fonts/devil_breeze/DevilBreezeLight.woff') format('woff'),
+    url('fonts/devil_breeze/DevilBreezeLight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }

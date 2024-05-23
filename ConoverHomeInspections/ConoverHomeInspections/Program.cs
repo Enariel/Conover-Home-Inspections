@@ -4,6 +4,7 @@ using ConoverHomeInspections.Data;
 using ConoverHomeInspections.Services;
 using ConoverHomeInspections.Shared;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
 using System.Text.Json.Serialization;
 
@@ -21,7 +22,10 @@ builder.Services.AddControllersWithViews()
            x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
            x.JsonSerializerOptions.WriteIndented = true;
        });
-builder.Services.AddDbContext<ConfigDbContext>();
+builder.Services.AddDbContext<ConfigDbContext>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("ConfigConnection"));
+});
 builder.Services.AddScoped<IProductService, ServerProductService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMudServices();

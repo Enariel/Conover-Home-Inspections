@@ -1,41 +1,59 @@
 @rendermode InteractiveAuto
-<MudCard Elevation="0" Square="true" Class="border-solid mud-border-secondary">
+<MudCard Elevation="0" Square="true" Outlined="true">
 	<MudCardHeader>
-		<MudText Color="Color.Default" Typo="Typo.h6" GutterBottom="true" Align="Align.Center">@((MarkupString)Service?.ServiceName)</MudText>
+		<CardHeaderContent>
+			<MudText Color="Color.Secondary" Typo="Typo.h6" GutterBottom="true" Align="Align.Center">@((MarkupString)Service?.ServiceName)</MudText>
+			<MudDivider DividerType="DividerType.FullWidth" />
+		</CardHeaderContent>
 	</MudCardHeader>
 	<MudCardContent>
-		<MudStack Justify="Justify.Center" Spacing="2" AlignItems="AlignItems.Center">
-			<MudIcon Icon="@Icons.TwoTone.MonetizationOn" Color="Color.Success" Size="Size.Large" />
-			<MudText Typo="Typo.h6" Color="Color.Default" Align="Align.Center">
-				@($"{Service.Price:C2}")
-			</MudText>
-		</MudStack>
-		<MudDivider DividerType="DividerType.Middle" Light="true"/>
 		<MudStack Spacing="2">
-			<MudButton OnClick="@(() => OnExpandCollapseClick())">
-				@(_expanded
-					  ? "Less Details"
-					  : "See More")
-			</MudButton>
-			<MudDivider />
-			<MudCollapse Expanded="_expanded">
-				<MudText Typo="Typo.body1" Color="Color.Default" GutterBottom="true" Align="Align.Left">@((MarkupString)Service?.Description)</MudText>
-				@if (Service.Details.Any())
-				{
+			<div style="overflow-y: scroll; max-height: 200px;">
+				<MudText Typo="Typo.body1">@((MarkupString)Service?.Description)</MudText>
+			</div>
+
+			@if (Service.Details.Any())
+			{
+				<MudDivider DividerType="DividerType.Middle" />
+				<MudButton Class="detail-button" Color="Color.Tertiary" OnClick="@(() => OnExpandCollapseClick())">
+					@(_expanded
+						  ? "Hide Details"
+						  : "See More")
+				</MudButton>
+				<MudCollapse Expanded="_expanded" MaxHeight="250" Style="overflow-y: scroll;" Align="Align.Left">
 					<MudDivider Light="true" DividerType="DividerType.FullWidth" Class="my-2" />
 					@foreach (var detail in Service.Details)
 					{
-						<MudText GutterBottom="true">@((MarkupString)@detail.Title)</MudText>
-						<MudText GutterBottom="false">@((MarkupString)@detail.Description)</MudText>
+						<MudText GutterBottom="true" Typo="Typo.body2">@((MarkupString)@detail.Title)</MudText>
+						<MudText GutterBottom="false" Typo="Typo.body2">@((MarkupString)@detail.Description)</MudText>
 					}
-				}
-			</MudCollapse>
+				</MudCollapse>
+			}
+		</MudStack>
+		<MudStack Justify="Justify.Center" Spacing="2" AlignItems="AlignItems.Center" Class="mt-4">
+			<MudIcon Icon="@Icons.TwoTone.MonetizationOn" Color="Color.Success" Size="Size.Large" />
+			<MudText Typo="Typo.h5" Color="Color.Default" Align="Align.Center">
+				@($"{Service.Price:C2}")
+			</MudText>
+			<MudDivider DividerType="DividerType.Middle" />
 		</MudStack>
 	</MudCardContent>
 	<MudCardActions Class="d-flex justify-center">
-		<MudButton Color="Color.Secondary" Variant="Variant.Text" Href="@($"/Contact?groupId={Service.GroupId}&serviceId={Service.ServiceId}")" Target="_blank" Size="Size.Large" Style="width: 50%;">Schedule >></MudButton>
+		<MudButton Color="Color.Primary" Variant="Variant.Filled" DisableElevation="true" Href="@($"/Contact?groupId={Service.GroupId}&serviceId={Service.ServiceId}")" Target="_blank" Size="Size.Large" Style="width: 50%; border-radius: 0;">
+			<MudText Typo="Typo.button">Schedule Now</MudText>
+		</MudButton>
 	</MudCardActions>
 </MudCard>
+
+<style>
+	.detail-button{
+		border-radius: 0;
+	}
+	.detail-button:hover{
+		border-radius: 0;
+		color: #ffffff;
+	}
+</style>
 
 @code {
 }

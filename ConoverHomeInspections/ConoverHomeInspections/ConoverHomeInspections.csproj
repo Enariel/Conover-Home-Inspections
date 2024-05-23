@@ -53,6 +53,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="wwwroot\data\" />
       <Folder Include="wwwroot\mudblazor\" />
     </ItemGroup>
 
