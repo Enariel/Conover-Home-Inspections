@@ -1,5 +1,5 @@
-@rendermode InteractiveAuto
 @page "/Services"
+@rendermode @(new InteractiveWebAssemblyRenderMode(false))
 <PageTitle>Services - Conover Home Inspections</PageTitle>
 <MainHeader Title="Services" />
 
@@ -26,7 +26,7 @@
 							<MudDivider  Light="true" DividerType="DividerType.FullWidth" Class="my-2"/>
 							<div class="d-flex justify-end">
 								<MudButton Class="expansion-button" DisableElevation="true" Variant="Variant.Text" Color="Color.Primary" ButtonType="ButtonType.Button" Size="Size.Large" IconColor="Color.Secondary" Href="@($"/Pricing#group-{@group?.GroupId}")" EndIcon="@Icons.TwoTone.MonetizationOn">See Pricing</MudButton>
-								<MudButton Class="expansion-button" DisableElevation="true" Variant="Variant.Text" Color="Color.Primary" ButtonType="ButtonType.Button" Size="Size.Large" IconColor="Color.Secondary" Href="@($"/Contact?groupId={@group?.GroupId}")" EndIcon="@Icons.TwoTone.Schedule">Schedule a Consultation</MudButton>
+								<MudButton Class="expansion-button" DisableElevation="true" Variant="Variant.Text" Color="Color.Primary" ButtonType="ButtonType.Button" Size="Size.Large" IconColor="Color.Secondary" Href="@($"/Contact?GroupId={@group?.GroupId}")" EndIcon="@Icons.TwoTone.Schedule">Schedule a Consultation</MudButton>
 							</div>
 						</ChildContent>
 					</MudExpansionPanel>
@@ -35,6 +35,7 @@
 		}
 	</RightContent>
 </ResponsiveSplit>
+
 <style>
 	.expansion-button{
 		border-radius: 0;
@@ -44,5 +45,6 @@
 		color: #ffffff;
 	}
 </style>
+
 @code{
 }

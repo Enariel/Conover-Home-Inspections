@@ -3,6 +3,7 @@ using ConoverHomeInspections.Components;
 using ConoverHomeInspections.Data;
 using ConoverHomeInspections.Services;
 using ConoverHomeInspections.Shared;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
@@ -27,6 +28,25 @@ builder.Services.AddDbContext<ConfigDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ConfigConnection"));
 });
 builder.Services.AddScoped<IProductService, ServerProductService>();
+// builder.Services.AddCascadingValue(c =>
+// {
+//     // Get product service
+//     var productService = c.GetRequiredService<IProductService>();
+//     // Get the product groups
+//     var productGroups = productService.GetGroupsAsync().Result;
+//     var source = new CascadingValueSource<List<ServiceGroupDTO>>(productGroups, isFixed: true);
+//     return source;
+// });
+// builder.Services.AddCascadingValue(c =>
+// {
+//     // Get product service
+//     var productService = c.GetRequiredService<IProductService>();
+//     // Get the product groups
+//     var services = productService.GetServicesAsync().Result;
+//     var source = new CascadingValueSource<List<ServiceDTO>>(services, isFixed: true);
+//     return source;
+// });
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMudServices();
 builder.Services.AddEndpointsApiExplorer();

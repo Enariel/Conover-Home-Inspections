@@ -1,5 +1,7 @@
 ﻿@using ConoverHomeInspections.Components.Pages
-<Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly }">
+@using ConoverHomeInspections.Shared
+
+<Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(ConoverHomeInspections.Client._Imports).Assembly }">
 	<Found Context="routeData">
 		<RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
 		<FocusOnNavigate RouteData="routeData" Selector="h1" />
@@ -14,3 +16,13 @@
 		</LayoutView>
 	</NotFound>
 </Router>
+
+@code{
+	[Inject] private IProductService ProductService { get; set; }
+
+	/// <inheritdoc />
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+	}
+}

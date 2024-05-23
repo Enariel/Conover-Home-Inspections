@@ -33,13 +33,13 @@
 		<MudStack Justify="Justify.Center" Spacing="2" AlignItems="AlignItems.Center" Class="mt-4">
 			<MudIcon Icon="@Icons.TwoTone.MonetizationOn" Color="Color.Success" Size="Size.Large" />
 			<MudText Typo="Typo.h5" Color="Color.Default" Align="Align.Center">
-				@($"{Service.Price:C2}")
+				@($"{Service.Price:C}")
 			</MudText>
 			<MudDivider DividerType="DividerType.Middle" />
 		</MudStack>
 	</MudCardContent>
 	<MudCardActions Class="d-flex justify-center">
-		<MudButton Color="Color.Primary" Variant="Variant.Filled" DisableElevation="true" Href="@($"/Contact?groupId={Service.GroupId}&serviceId={Service.ServiceId}")" Target="_blank" Size="Size.Large" Style="width: 50%; border-radius: 0;">
+		<MudButton Color="Color.Primary" Variant="Variant.Filled" DisableElevation="true" Href="@($"/Contact?GroupId={Service.GroupId}&ServiceId={Service.ServiceId}")" Target="_blank" Size="Size.Large" Style="width: 50%; border-radius: 0;">
 			<MudText Typo="Typo.button">Schedule Now</MudText>
 		</MudButton>
 	</MudCardActions>

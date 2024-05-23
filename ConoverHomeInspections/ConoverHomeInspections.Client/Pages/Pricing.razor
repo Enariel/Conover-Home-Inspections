@@ -1,7 +1,6 @@
 @page "/Pricing"
 @page "/Pricing/{GroupId:int?}"
-@using ConoverHomeInspections.Shared
-@rendermode InteractiveAuto
+@rendermode @(new InteractiveWebAssemblyRenderMode(false))
 <PageTitle>Pricing - Conover Home Inspections</PageTitle>
 <MainHeader Title="Pricing" />
 <!-- If group id is null, display groups to user -->
@@ -11,32 +10,32 @@
 <!-- Each service in the group -->
 @if (_groups != null && _groups.Any())
 {
-@foreach (var group in _groups)
-{
-var index = _groups.IndexOf(group);
-<div class="@($"mb-4 {(index % 2 == 0 ? "group-1" : "group-2")}")" id="@($"group-{group.GroupId}")">
-	<SectionHeader Title="@group?.GroupName" />
-	@if (_services != null)
+	@foreach (var group in _groups)
 	{
-	var groupServices = _services?.Where(x => x.GroupId == group.GroupId).ToList();
-	@if (groupServices.Any())
-	{
-	<MudGrid Spacing="4" Justify="Justify.Center" Class="px-4">
-		@foreach (var serv in groupServices)
-		{
-		<MudItem xs="12" sm="6" md="4">
-			<PriceCard Service="@serv" />
-		</MudItem>
-		}
-	</MudGrid>
+		var index = _groups.IndexOf(group);
+		<div class="@($"mb-4 {(index % 2 == 0 ? "group-1" : "group-2")}")" id="@($"group-{group.GroupId}")">
+			<SectionHeader Title="@group?.GroupName" />
+			@if (_services != null)
+			{
+				var groupServices = _services?.Where(x => x.GroupId == group.GroupId).ToList();
+				@if (groupServices.Any())
+				{
+					<MudGrid Spacing="4" Justify="Justify.Center" Class="px-4">
+						@foreach (var serv in groupServices)
+						{
+							<MudItem xs="12" sm="6" md="4">
+								<PriceCard Service="@serv" />
+							</MudItem>
+						}
+					</MudGrid>
+				}
+			}
+		</div>
 	}
-	}
-</div>
-}
 }
 else
 {
-<MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Large" StrokeWidth="2" />
+	<MudProgressCircular Color="Color.Primary" Indeterminate="true" Size="Size.Large" StrokeWidth="2" />
 }
 <style>
 
@@ -87,7 +86,7 @@ else
 @* </style> *@
 
 @code {
-[Parameter]
-[SupplyParameterFromQuery(Name = nameof(GroupId))]
-public int? GroupId { get; set; } = null!;
+	[Parameter]
+	[SupplyParameterFromQuery(Name = nameof(GroupId))]
+	public int? GroupId { get; set; } = null!;
 }

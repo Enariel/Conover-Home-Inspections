@@ -5,7 +5,7 @@
 <MainHeader Title="Contact" />
 
 <EditForm Model="@_model" OnSubmit="@(async (e) => await OnContactSubmit(e))">
-	<MudCard>
+	<MudCard Elevation="0" Square="true" Class="my-4">
 		<MudCardHeader>
 			<CardHeaderContent>
 				<MudStack>
@@ -17,7 +17,7 @@
 			<MudGrid>
 				<!-- Personal Information -->
 				<MudItem xs="12">
-					<MudText Typo="@Typo.h5">Personal Information</MudText>
+					<MudText Typo="@Typo.h5" GutterBottom="false">Personal Information</MudText>
 				</MudItem>
 				<MudItem sm="12" md="6">
 					<MudTextField @bind-Value="@_model.FirstName" For="@(() => _model.FirstName)" Label="First Name" Required="true" RequiredError="First name is required!" />
@@ -35,37 +35,29 @@
 				<MudItem sm="12">
 					<MudGrid>
 						<MudItem xs="12">
-							<MudText Typo="@Typo.h6">Mailing Address</MudText>
+							<MudText Typo="@Typo.h6" GutterBottom="false">Mailing Address</MudText>
 						</MudItem>
-						<MudItem xs="12" sm="6">
+						<MudItem xs="12" sm="6" md="8">
 							<MudTextField @bind-Value="@_model.MailingAddress.Street" For="@(() => _model.MailingAddress.Street)" Label="Street" MaxLength="255" />
 						</MudItem>
-						<MudItem xs="12" sm="3">
+						<MudItem xs="12" sm="6" md="4">
 							<MudTextField @bind-Value="@_model.MailingAddress.Street2" For="@(() => _model.MailingAddress.Street2)" Label="Street Ext." MaxLength="128" />
 						</MudItem>
-						<MudItem xs="12" sm="3">
+						<MudItem xs="12" sm="8">
 							<MudTextField @bind-Value="@_model.MailingAddress.City" For="@(() => _model.MailingAddress.City)" Label="City" MaxLength="128" />
 						</MudItem>
-						<MudItem sm="12" md="6">
-							<MudSelect T="string" Label="State" AnchorOrigin="Origin.BottomCenter" Variant="Variant.Outlined">
-								@foreach (var key in _stateDict.Keys.ToList())
-								{
-									<MudSelectItem Value="@(_stateDict[key])">@key</MudSelectItem>
-								}
-							</MudSelect>
+						<MudItem xs="12" sm="4" md="2">
+							<MudTextField @bind-Value="@_model.MailingAddress.State" For="@(() => _model.MailingAddress.State)" Label="State" MaxLength="2" />
 						</MudItem>
-						<MudItem xs="12" sm="6" md="4">
+						<MudItem xs="12" sm="8" md="2">
 							<MudNumericField @bind-Value="@_model.MailingAddress.ZipCode" For="@(() => _model.MailingAddress.ZipCode)" Label="Zip" MaxLength="6" />
-						</MudItem>
-						<MudItem xs="12" sm="6" md="2">
-							<MudNumericField @bind-Value="@_model.MailingAddress.Zip4" For="@(() => _model.MailingAddress.Zip4)" Label="Zip-4" MaxLength="4" />
 						</MudItem>
 					</MudGrid>
 				</MudItem>
 
 				<!-- Realtor Information -->
 				<MudItem xs="12">
-					<MudText Typo="@Typo.h5">Realtor Information</MudText>
+					<MudText Typo="@Typo.h5" GutterBottom="false">Realtor Information</MudText>
 				</MudItem>
 				<MudItem sm="12" md="6">
 					<MudTextField @bind-Value="@_model.RealtorFirstName" For="@(() => _model.RealtorFirstName)" Label="Realtor's First Name" />
@@ -84,10 +76,40 @@
 				<MudItem xs="12">
 					<MudText Typo="@Typo.h5">Inspection Information</MudText>
 				</MudItem>
+				<MudItem xs="12" md="6">
+					<MudDateRangePicker Color="Color.Primary" Square="true"  Label="Desired Inspection Date Range" PickerVariant="PickerVariant.Dialog" DateRange="@_dateRange" DateRangeChanged="@(async (e)=>await OnRangeChanged(e))" MinDate="@_minDate" MaxDate="@_maxDate" HelperText="@DateHelperText" />
+				</MudItem>
+				<MudItem xs="12">
+					<MudTextField @bind-Value="@_model.Message" For="@(() => _model.Message)" Label="Message" MaxLength="1000" Lines="3" FullWidth="true" Placeholder="Enter a custom message..." />
+				</MudItem>
+				<MudItem sm="12">
+					<MudGrid>
+						<MudItem xs="12">
+							<MudText Typo="@Typo.h6" GutterBottom="false">Property Address</MudText>
+							<MudText Typo="@Typo.body1" GutterBottom="false">This is the address of the property you wish to be inspected.</MudText>
+						</MudItem>
+						<MudItem xs="12" sm="6" md="8">
+							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.Street" For="@(() => _model.InspectionPropertyAddress.Street)" Label="Street" MaxLength="255" />
+						</MudItem>
+						<MudItem xs="12" sm="6" md="4">
+							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.Street2" For="@(() => _model.InspectionPropertyAddress.Street2)" Label="Street Ext." MaxLength="128" />
+						</MudItem>
+						<MudItem xs="12" sm="8">
+							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.City" For="@(() => _model.InspectionPropertyAddress.City)" Label="City" MaxLength="128" />
+						</MudItem>
+						<MudItem xs="12" sm="4" md="2">
+							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.State" For="@(() => _model.InspectionPropertyAddress.State)" Label="State" MaxLength="2" />
+						</MudItem>
+						<MudItem xs="12" sm="8" md="2">
+							<MudNumericField @bind-Value="@_model.InspectionPropertyAddress.ZipCode" For="@(() => _model.InspectionPropertyAddress.ZipCode)" Label="Zip" MaxLength="6" />
+						</MudItem>
+					</MudGrid>
+				</MudItem>
 			</MudGrid>
 		</MudCardContent>
-		<MudCardActions>
-			<MudButton DisableElevation="true" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="form-button">Submit</MudButton>
+
+		<MudCardActions Class="d-flex justify-end">
+			<MudButton DisableElevation="true" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="form-button ml-auto" Size="Size.Large" EndIcon="@Icons.TwoTone.Send">Submit</MudButton>
 		</MudCardActions>
 	</MudCard>
 </EditForm>
@@ -103,4 +125,6 @@
 </style>
 
 @code {
+	[Parameter, SupplyParameterFromQuery(Name = nameof(GroupId))] public int? GroupId { get; set; }
+	[Parameter, SupplyParameterFromQuery(Name = nameof(ServiceId))] public int? ServiceId { get; set; }
 }

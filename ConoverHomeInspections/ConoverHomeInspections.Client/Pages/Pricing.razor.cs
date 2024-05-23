@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Components;
 
 namespace ConoverHomeInspections.Client.Pages
 {
-    [StreamRendering]
     public partial class Pricing : ComponentBase, IDisposable
     {
         private List<ServiceGroupDTO>? _groups;
