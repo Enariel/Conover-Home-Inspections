@@ -107,16 +107,16 @@ namespace ConoverHomeInspections.Client.Services
                                                        {
                                                            FontFamily = new string[]
                                                                         {
-                                                                            "Urbanist",
-                                                                            "sans-serif",
+                                                                            "Forum",
+                                                                            "serif",
                                                                         },
                                                        },
                                              H1 = new H1
                                                   {
                                                       FontFamily = new string[]
                                                                    {
-                                                                       "Play",
-                                                                       "sans-serif"
+                                                                       "Cinzel",
+                                                                       "serif"
                                                                    },
                                                       FontWeight = 400,
                                                   },
@@ -124,8 +124,8 @@ namespace ConoverHomeInspections.Client.Services
                                                   {
                                                       FontFamily = new string[]
                                                                    {
-                                                                       "Play",
-                                                                       "sans-serif"
+                                                                       "Cinzel",
+                                                                       "serif"
                                                                    },
                                                       FontWeight = 375,
                                                   },
@@ -133,8 +133,8 @@ namespace ConoverHomeInspections.Client.Services
                                                   {
                                                       FontFamily = new string[]
                                                                    {
-                                                                       "Play",
-                                                                       "sans-serif"
+                                                                       "Cinzel",
+                                                                       "serif"
                                                                    },
                                                       FontWeight = 350,
                                                   },
@@ -142,8 +142,8 @@ namespace ConoverHomeInspections.Client.Services
                                                   {
                                                       FontFamily = new string[]
                                                                    {
-                                                                       "Play",
-                                                                       "sans-serif"
+                                                                       "Cinzel",
+                                                                       "serif"
                                                                    },
                                                       FontWeight = 325,
                                                   },
@@ -151,8 +151,8 @@ namespace ConoverHomeInspections.Client.Services
                                                   {
                                                       FontFamily = new string[]
                                                                    {
-                                                                       "Play",
-                                                                       "sans-serif"
+                                                                       "Cinzel",
+                                                                       "serif"
                                                                    },
                                                       FontWeight = 200,
                                                   },
@@ -160,8 +160,8 @@ namespace ConoverHomeInspections.Client.Services
                                                   {
                                                       FontFamily = new string[]
                                                                    {
-                                                                       "Play",
-                                                                       "sans-serif"
+                                                                       "Cinzel",
+                                                                       "serif"
                                                                    },
                                                       FontWeight = 200,
                                                   },
@@ -169,56 +169,56 @@ namespace ConoverHomeInspections.Client.Services
                                                          {
                                                              FontFamily = new string[]
                                                                           {
-                                                                              "Urbanist",
-                                                                              "sans-serif",
+                                                                              "Forum",
+                                                                              "serif",
                                                                           },
                                                          },
                                              Subtitle2 = new Subtitle2()
                                                          {
                                                              FontFamily = new string[]
                                                                           {
-                                                                              "Urbanist",
-                                                                              "sans-serif",
+                                                                              "Forum",
+                                                                              "serif",
                                                                           },
                                                          },
                                              Body1 = new Body1()
                                                      {
                                                          FontFamily = new string[]
                                                                       {
-                                                                          "Urbanist",
-                                                                          "sans-serif",
+                                                                          "Forum",
+                                                                          "serif",
                                                                       },
                                                      },
                                              Body2 = new Body2()
                                                      {
                                                          FontFamily = new string[]
                                                                       {
-                                                                          "Urbanist",
-                                                                          "sans-serif",
+                                                                          "Forum",
+                                                                          "serif",
                                                                       },
                                                      },
                                              Button = new Button()
                                                       {
                                                           FontFamily = new string[]
                                                                        {
-                                                                           "Urbanist",
-                                                                           "sans-serif",
+                                                                           "Forum",
+                                                                           "serif",
                                                                        },
                                                       },
                                              Caption = new Caption()
                                                        {
                                                            FontFamily = new string[]
                                                                         {
-                                                                            "Urbanist",
-                                                                            "sans-serif",
+                                                                            "Forum",
+                                                                            "serif",
                                                                         },
                                                        },
                                              Overline = new Overline()
                                                         {
                                                             FontFamily = new string[]
                                                                          {
-                                                                             "Urbanist",
-                                                                             "sans-serif",
+                                                                             "Forum",
+                                                                             "serif",
                                                                          },
                                                         },
                                          },
