@@ -13,11 +13,7 @@ namespace ConoverHomeInspections.Data
     public class ConfigDbContext : DbContext
     {
         private string _connString = "";
-        public ConfigDbContext() : base() {}
-        public ConfigDbContext(string conn) : base()
-        {
-            _connString = conn;
-        }
+
         public ConfigDbContext(DbContextOptions<ConfigDbContext> options) : base(options) {}
 
         public string ConnectionString

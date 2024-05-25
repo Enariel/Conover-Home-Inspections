@@ -23,29 +23,11 @@ builder.Services.AddControllersWithViews()
            x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
            x.JsonSerializerOptions.WriteIndented = true;
        });
-builder.Services.AddDbContext<ConfigDbContext>(options =>
+builder.Services.AddDbContextFactory<ConfigDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("ConfigConnection"));
 });
 builder.Services.AddScoped<IProductService, ServerProductService>();
-// builder.Services.AddCascadingValue(c =>
-// {
-//     // Get product service
-//     var productService = c.GetRequiredService<IProductService>();
-//     // Get the product groups
-//     var productGroups = productService.GetGroupsAsync().Result;
-//     var source = new CascadingValueSource<List<ServiceGroupDTO>>(productGroups, isFixed: true);
-//     return source;
-// });
-// builder.Services.AddCascadingValue(c =>
-// {
-//     // Get product service
-//     var productService = c.GetRequiredService<IProductService>();
-//     // Get the product groups
-//     var services = productService.GetServicesAsync().Result;
-//     var source = new CascadingValueSource<List<ServiceDTO>>(services, isFixed: true);
-//     return source;
-// });
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMudServices();

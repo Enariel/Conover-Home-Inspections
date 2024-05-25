@@ -23,10 +23,10 @@ namespace ConoverHomeInspections.Services
     public class ServerProductService : IProductService
     {
         private readonly IMapper _map;
-        private readonly ConfigDbContext _ctx;
+        private readonly IDbContextFactory<ConfigDbContext> _ctx;
         private readonly ILogger<IProductService> _logger;
 
-        public ServerProductService(ILogger<ServerProductService> logger, ConfigDbContext ctx, IMapper map)
+        public ServerProductService(ILogger<ServerProductService> logger, IDbContextFactory<ConfigDbContext> ctx, IMapper map)
         {
             _logger = logger;
             _ctx = ctx;
@@ -36,7 +36,8 @@ namespace ConoverHomeInspections.Services
         /// <inheritdoc />
         public async Task<List<ServiceGroupDTO>> GetGroupsAsync()
         {
-            var groups = await _ctx.Groups
+            await using var ctx = await _ctx.CreateDbContextAsync();
+            var groups = await ctx.Groups
                                    .OrderBy(x => x.Order)
                                    .Select(x => _map.Map<ServiceGroupDTO>(x))
                                    .ToListAsync();
@@ -46,7 +47,8 @@ namespace ConoverHomeInspections.Services
         /// <inheritdoc />
         public async Task<List<ServiceDTO>> GetServicesAsync()
         {
-            var services = await _ctx.Services
+            await using var ctx = await _ctx.CreateDbContextAsync();
+            var services = await ctx.Services
                                      .OrderBy(x => x.Order)
                                      .Include(x=>x.Details)
                                      .Select(x => _map.Map<ServiceDTO>(x))
@@ -55,9 +57,10 @@ namespace ConoverHomeInspections.Services
         }
 
         /// <inheritdoc />
-        public Task<List<ServiceDTO>> GetGroupServicesAsync(int groupId)
+        public async Task<List<ServiceDTO>> GetGroupServicesAsync(int groupId)
         {
-            var services = _ctx.Services
+            await using var ctx = await _ctx.CreateDbContextAsync();
+            var services = await ctx.Services
                                .Where(x => x.GroupId == groupId)
                                .OrderBy(x => x.Order)
                                .Select(x => _map.Map<ServiceDTO>(x))
@@ -68,7 +71,8 @@ namespace ConoverHomeInspections.Services
         /// <inheritdoc />
         public async Task<ServiceDTO> GetServiceById(int serviceId)
         {
-            var service = await _ctx.Services
+            await using var ctx = await _ctx.CreateDbContextAsync();
+            var service = await ctx.Services
                                     .Where(x => x.ServiceId == serviceId)
                                     .Select(x => _map.Map<ServiceDTO>(x))
                                     .FirstOrDefaultAsync();
