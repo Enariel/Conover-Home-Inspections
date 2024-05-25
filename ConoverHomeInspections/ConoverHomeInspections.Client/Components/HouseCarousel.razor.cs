@@ -8,7 +8,7 @@ namespace ConoverHomeInspections.Client.Components
     public partial class HouseCarousel : ComponentBase
     {
         private Random _random = new Random();
-        private List<ImageData> _houseImages = ClientSettings.HouseImgList;
+        private List<ImageData> _houseImages = AppSettings.HouseImgList;
 
         /// <inheritdoc />
         protected override void OnInitialized()

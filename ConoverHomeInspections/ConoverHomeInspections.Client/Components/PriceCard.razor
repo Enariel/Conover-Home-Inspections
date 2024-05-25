@@ -1,3 +1,4 @@
+@using ConoverHomeInspections.Shared
 @rendermode InteractiveAuto
 <MudCard Elevation="0" Square="true" Outlined="true">
 	<MudCardHeader>
@@ -56,4 +57,5 @@
 </style>
 
 @code {
+	[Parameter] public ServiceDTO Service { get; set; }
 }

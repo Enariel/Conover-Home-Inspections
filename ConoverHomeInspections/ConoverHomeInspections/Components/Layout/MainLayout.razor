@@ -35,7 +35,7 @@
 @code {
 	private List<ServiceGroupDTO>? _groups;
 	private List<ServiceDTO>? _services;
-	private MudTheme _theme = ClientSettings.GetSiteTheme();
+	private MudTheme _theme = AppSettings.GetSiteTheme();
 	private string _currentUri;
 	[Inject] private ILogger<MainLayout> Logger { get; set; }
 	[Inject] private IProductService ProductService { get; set; }

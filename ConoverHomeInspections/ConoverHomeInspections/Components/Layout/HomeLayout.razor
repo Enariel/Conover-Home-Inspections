@@ -1,5 +1,6 @@
 @using ConoverHomeInspections.Client.Components
 @using ConoverHomeInspections.Client.Services
+@using ConoverHomeInspections.Shared
 @using MudBlazor.Utilities
 @inherits LayoutComponentBase
 <MudThemeProvider IsDarkMode="true" Theme="@_theme" />
@@ -14,5 +15,5 @@
 </MudLayout>
 
 @code{
-	private MudTheme _theme = ClientSettings.GetSiteTheme();
+	private MudTheme _theme = AppSettings.GetSiteTheme();
 }

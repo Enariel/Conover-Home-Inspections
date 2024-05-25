@@ -3,84 +3,90 @@
 //  2024
 // Oliver Conover
 // Modified: 19-05-2024
-using ConoverHomeInspections.Shared;
 using MudBlazor;
 using MudBlazor.Utilities;
 
-namespace ConoverHomeInspections.Client.Services
+namespace ConoverHomeInspections.Shared
 {
-    public static class ClientSettings
+    public static class AppSettings
     {
-        public static List<ImageData> HouseImgList = new List<ImageData>
-                                                     {
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 1",
-                                                             ImgUrl = "images/house-1.jpg",
-                                                             ImgAlt = "Picture of a house."
-                                                         },
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 2",
-                                                             ImgUrl = "images/house-2.jpg",
-                                                             ImgAlt = "Picture of a house."
-                                                         },
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 3",
-                                                             ImgUrl = "images/house-3.jpg",
-                                                             ImgAlt = "Picture of a house."
-                                                         },
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 4",
-                                                             ImgUrl = "images/house-4.jpg",
-                                                             ImgAlt = "Picture of a house."
-                                                         },
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 5",
-                                                             ImgUrl = "images/house-5.jpg",
-                                                             ImgAlt = "Picture of a house."
-                                                         },
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 6",
-                                                             ImgUrl = "images/house-6.jpg",
-                                                             ImgAlt = "Picture of a house."
-                                                         },
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 7",
-                                                             ImgUrl = "images/house-7.jpg",
-                                                             ImgAlt = "Picture of a house."
-                                                         },
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 8",
-                                                             ImgUrl = "images/house-8.jpg",
-                                                             ImgAlt = "Picture of a house."
-                                                         },
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 9",
-                                                             ImgUrl = "images/house-9.jpg",
-                                                             ImgAlt = "Picture of a house."
-                                                         },
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 10",
-                                                             ImgUrl = "images/house-10.jpg",
-                                                             ImgAlt = "Picture of a house."
-                                                         },
-                                                         new ImageData()
-                                                         {
-                                                             ImgName = "House 11",
-                                                             ImgUrl = "images/house-11.jpg",
-                                                             ImgAlt = "Picture of a house."
-                                                         },
-                                                     };
+        /// <summary>
+        /// Gets a list of images to be used in the carousel.
+        /// </summary>
+        public static readonly List<ImageData> HouseImgList = new List<ImageData>
+                                                              {
+                                                                  new ImageData()
+                                                                  {
+                                                                      ImgName = "House 1",
+                                                                      ImgUrl = "images/house-1.jpg",
+                                                                      ImgAlt = "Picture of a house."
+                                                                  },
+                                                                  new ImageData()
+                                                                  {
+                                                                      ImgName = "House 2",
+                                                                      ImgUrl = "images/house-2.jpg",
+                                                                      ImgAlt = "Picture of a house."
+                                                                  },
+                                                                  new ImageData()
+                                                                  {
+                                                                      ImgName = "House 3",
+                                                                      ImgUrl = "images/house-3.jpg",
+                                                                      ImgAlt = "Picture of a house."
+                                                                  },
+                                                                  new ImageData()
+                                                                  {
+                                                                      ImgName = "House 4",
+                                                                      ImgUrl = "images/house-4.jpg",
+                                                                      ImgAlt = "Picture of a house."
+                                                                  },
+                                                                  new ImageData()
+                                                                  {
+                                                                      ImgName = "House 5",
+                                                                      ImgUrl = "images/house-5.jpg",
+                                                                      ImgAlt = "Picture of a house."
+                                                                  },
+                                                                  new ImageData()
+                                                                  {
+                                                                      ImgName = "House 6",
+                                                                      ImgUrl = "images/house-6.jpg",
+                                                                      ImgAlt = "Picture of a house."
+                                                                  },
+                                                                  new ImageData()
+                                                                  {
+                                                                      ImgName = "House 7",
+                                                                      ImgUrl = "images/house-7.jpg",
+                                                                      ImgAlt = "Picture of a house."
+                                                                  },
+                                                                  new ImageData()
+                                                                  {
+                                                                      ImgName = "House 8",
+                                                                      ImgUrl = "images/house-8.jpg",
+                                                                      ImgAlt = "Picture of a house."
+                                                                  },
+                                                                  new ImageData()
+                                                                  {
+                                                                      ImgName = "House 9",
+                                                                      ImgUrl = "images/house-9.jpg",
+                                                                      ImgAlt = "Picture of a house."
+                                                                  },
+                                                                  new ImageData()
+                                                                  {
+                                                                      ImgName = "House 10",
+                                                                      ImgUrl = "images/house-10.jpg",
+                                                                      ImgAlt = "Picture of a house."
+                                                                  },
+                                                                  new ImageData()
+                                                                  {
+                                                                      ImgName = "House 11",
+                                                                      ImgUrl = "images/house-11.jpg",
+                                                                      ImgAlt = "Picture of a house."
+                                                                  },
+                                                              };
 
+        /// <summary>
+        /// Gets the site theming information.
+        /// </summary>
+        /// <returns><see cref="MudTheme"/></returns>
         public static MudTheme GetSiteTheme()
         {
             var theme = new MudTheme
@@ -119,6 +125,7 @@ namespace ConoverHomeInspections.Client.Services
                                                                        "serif"
                                                                    },
                                                       FontWeight = 400,
+                                                      FontSize = "56px"
                                                   },
                                              H2 = new H2()
                                                   {
@@ -128,6 +135,7 @@ namespace ConoverHomeInspections.Client.Services
                                                                        "serif"
                                                                    },
                                                       FontWeight = 375,
+                                                      FontSize = "44px"
                                                   },
                                              H3 = new H3()
                                                   {
@@ -137,6 +145,7 @@ namespace ConoverHomeInspections.Client.Services
                                                                        "serif"
                                                                    },
                                                       FontWeight = 350,
+                                                      FontSize = "42px"
                                                   },
                                              H4 = new H4()
                                                   {
@@ -229,11 +238,35 @@ namespace ConoverHomeInspections.Client.Services
             return theme;
         }
 
-        public static ImageData GetRandomHouseImage()
-        {
-            Random random = new Random();
-            return HouseImgList[random.Next(HouseImgList.Count)];
-        }
+        public static readonly List<SiteNav> SiteNavigationList = new List<SiteNav>()
+                                                         {
+                                                             new SiteNav
+                                                             {
+                                                                 Icon = Icons.TwoTone.HomeRepairService,
+                                                                 Title = "Services",
+                                                             },
+
+                                                             new SiteNav
+                                                             {
+                                                                 Icon = Icons.TwoTone.AttachMoney,
+                                                                 Title = "Pricing",
+                                                             },
+                                                             new SiteNav
+                                                             {
+                                                                 Icon = Icons.TwoTone.Email,
+                                                                 Title = "Contact",
+                                                             },
+                                                             new SiteNav
+                                                             {
+                                                                 Icon = Icons.TwoTone.Info,
+                                                                 Title = "About",
+                                                             },
+                                                             new SiteNav
+                                                             {
+                                                                 Icon = Icons.TwoTone.Policy,
+                                                                 Title = "Policy",
+                                                             },
+                                                         };
     }
 
 }

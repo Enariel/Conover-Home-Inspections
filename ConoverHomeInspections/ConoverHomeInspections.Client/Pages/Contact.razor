@@ -4,7 +4,7 @@
 <PageTitle>Contact - Conover Home Inspections</PageTitle>
 <MainHeader Title="Contact" />
 
-<EditForm Model="@_model" OnSubmit="@(async (e) => await OnContactSubmit(e))" OnInvalidSubmit="@(async (e) => await OnContactInvalidSubmitAsync(e))">
+<EditForm Model="@_model" OnValidSubmit="@(async (e) => await OnValidFormSubmit(e))" OnInvalidSubmit="@(async (e) => await OnInvalidFormSubmitAsync(e))">
 	<DataAnnotationsValidator />
 	<MudCard Elevation="0" Square="true" Class="my-4">
 		<MudCardHeader>

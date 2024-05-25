@@ -124,7 +124,7 @@ namespace ConoverHomeInspections.Client.Pages
 			await Task.CompletedTask;
 		}
 
-		private async Task OnContactSubmit(EditContext editContext)
+		private async Task OnValidFormSubmit(EditContext editContext)
         {
             _isSubmitting = true;
             _isSuccess = false;
@@ -144,7 +144,7 @@ namespace ConoverHomeInspections.Client.Pages
         }
 
 
-        public async Task OnContactInvalidSubmitAsync(EditContext ctx)
+        public async Task OnInvalidFormSubmitAsync(EditContext ctx)
         {
             await Task.CompletedTask;
         }
