@@ -4,9 +4,8 @@
 <PageTitle>Contact - Conover Home Inspections</PageTitle>
 <MainHeader Title="Contact" />
 
-<EditForm Model="@_model" OnSubmit="@(async (e) => await OnContactSubmit(e))">
+<EditForm Model="@_model" OnSubmit="@(async (e) => await OnContactSubmit(e))" OnInvalidSubmit="@(async (e) => await OnContactInvalidSubmitAsync(e))">
 	<DataAnnotationsValidator />
-	<ValidationSummary />
 	<MudCard Elevation="0" Square="true" Class="my-4">
 		<MudCardHeader>
 			<CardHeaderContent>
@@ -17,6 +16,12 @@
 		</MudCardHeader>
 		<MudCardContent>
 			<MudGrid>
+				<MudItem xs="12">
+					<MudText Align="Align.Center" Color="Color.Warning" GutterBottom="true" Typo="Typo.caption">
+						<ValidationSummary />
+					</MudText>
+				</MudItem>
+
 				<!-- Personal Information -->
 				<MudItem xs="12">
 					<MudText Typo="@Typo.h5" GutterBottom="false">Personal Information</MudText>
@@ -111,7 +116,7 @@
 		</MudCardContent>
 
 		<MudCardActions Class="d-flex justify-end">
-			<MudButton Disabled="@(_isSubmitting)" DisableElevation="true" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="form-button ml-auto" Size="Size.Large" EndIcon="@Icons.TwoTone.Send">Submit</MudButton>
+			<MudButton Disabled="@(_isSubmitting)" DisableElevation="true" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="form-button ml-auto" Size="Size.Large" EndIcon="@Icons.Material.Rounded.Send">Submit</MudButton>
 		</MudCardActions>
 	</MudCard>
 </EditForm>

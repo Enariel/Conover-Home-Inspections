@@ -5,7 +5,6 @@
 // Modified: 16-05-2024
 using ConoverHomeInspections.Shared;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IO;
 
@@ -25,7 +24,7 @@ namespace ConoverHomeInspections.Data
         {
             get
             {
-                if (_connString.IsNullOrEmpty())
+                if (string.IsNullOrEmpty(_connString))
                     _connString = GetConnectionString();
                 return _connString;
             }

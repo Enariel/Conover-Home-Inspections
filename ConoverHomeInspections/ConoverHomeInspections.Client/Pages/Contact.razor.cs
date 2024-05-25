@@ -115,7 +115,16 @@ namespace ConoverHomeInspections.Client.Pages
             return Task.CompletedTask;
         }
 
-        private async Task OnContactSubmit(EditContext editContext)
+        // Update the model with the new date information
+		private async Task OnRangeChanged(DateRange dateRange)
+		{
+			_dateRange = dateRange;
+			_model.InspectionDateRange.Start = _dateRange.Start ?? DateTime.Now;
+			_model.InspectionDateRange.End = _dateRange.End ?? DateTime.Now.AddDays(1);
+			await Task.CompletedTask;
+		}
+
+		private async Task OnContactSubmit(EditContext editContext)
         {
             _isSubmitting = true;
             _isSuccess = false;
@@ -125,6 +134,8 @@ namespace ConoverHomeInspections.Client.Pages
                 _errors = editContext.GetValidationMessages().ToArray();
                 foreach (var error in _errors)
                     Logger.LogError($"Validation Error: {error}");
+                _isSubmitting = false;
+                StateHasChanged();
                 return;
             }
             _isSuccess = true;
@@ -132,15 +143,13 @@ namespace ConoverHomeInspections.Client.Pages
             await Task.CompletedTask;
         }
 
-        private async Task OnRangeChanged(DateRange dateRange)
+
+        public async Task OnContactInvalidSubmitAsync(EditContext ctx)
         {
-            _dateRange = dateRange;
-            _model.InspectionDateRange.Start = _dateRange.Start ?? DateTime.Now;
-            _model.InspectionDateRange.End = _dateRange.End ?? DateTime.Now.AddDays(1);
             await Task.CompletedTask;
         }
 
-        /// <inheritdoc />
-        public void Dispose() => _subscription?.Dispose();
+		/// <inheritdoc />
+		public void Dispose() => _subscription?.Dispose();
     }
 }
