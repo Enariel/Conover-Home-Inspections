@@ -235,4 +235,5 @@ namespace ConoverHomeInspections.Client.Services
             return HouseImgList[random.Next(HouseImgList.Count)];
         }
     }
+
 }

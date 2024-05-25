@@ -39,14 +39,35 @@ namespace ConoverHomeInspections.Data
         public virtual DbSet<SiteGroup> Groups { get; set; }
         public virtual DbSet<SiteService> Services { get; set; }
         public virtual DbSet<ServiceDetail> Details { get; set; }
-
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // {
-        //     optionsBuilder.UseSqlite(ConnectionString);
-        // }
+        public virtual DbSet<ConfigurationSetting> SiteSettings { get; set; }
+        public virtual DbSet<MailTemplate> EmailTemplates { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ConfigurationSetting>(entity =>
+            {
+                entity.ToTable("SiteSettings");
+                entity.HasKey(s => s.SettingId);
+                entity.Property(s => s.SettingId)
+                      .ValueGeneratedOnAdd();
+                entity.Property(t => t.Name)
+                      .HasMaxLength(100);
+                entity.Property(t => t.For)
+                      .HasMaxLength(100);
+                entity.Property(s => s.Field)
+                      .ValueGeneratedOnAdd();
+            });
+
+            modelBuilder.Entity<MailTemplate>(entity =>
+            {
+                entity.ToTable("EmailTemplates");
+                entity.HasKey(t => t.TemplateName);
+                entity.Property(t => t.TemplateName)
+                      .HasMaxLength(100);
+                entity.Property(t => t.Subject)
+                      .HasMaxLength(255);
+            });
+
             modelBuilder.Entity<AssignmentTask>(entity =>
             {
                 entity.ToTable("Tasks");
