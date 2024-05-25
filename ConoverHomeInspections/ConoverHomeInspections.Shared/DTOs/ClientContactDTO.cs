@@ -53,21 +53,27 @@ namespace ConoverHomeInspections.Shared
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"-------------------------------------------");
             sb.AppendLine($"Client:"
                           + $"\n{FirstName} {LastName}");
             sb.AppendLine($"Email - {EmailAddress} | Phone - {PhoneNumber}");
-            sb.AppendLine($"{MailingAddress.ToString()}");
+            sb.AppendLine($"Address:"
+                          + $"\n\t{MailingAddress.ToString()}");
+            sb.AppendLine("Client Message:");
+            sb.AppendLine($"{Message}");
+            sb.AppendLine($"-------------------------------------------");
             sb.AppendLine($"Realtor:"
                           + $"\n{RealtorFirstName} {RealtorLastName}");
             sb.AppendLine($"Phone - {PhoneNumber} | Email - {EmailAddress}");
-            sb.AppendLine("Client Message:");
-            sb.AppendLine($"{Message}");
+            sb.AppendLine($"-------------------------------------------");
             sb.AppendLine($"Inspection Info:");
             sb.AppendLine($"Service Requested | g-{GroupId} s-{ServiceId}");
             sb.AppendLine("Date Range | "
-                          + $"{InspectionDateRange.Start.ToLongDateString()} thru"
+                          + $"{InspectionDateRange.Start.ToLongDateString()} thru "
                           + $"{InspectionDateRange.End.ToLongDateString()}");
-            sb.AppendLine($"{InspectionPropertyAddress.ToString()}");
+            sb.AppendLine($"Inspection Property:"
+                          + $"\n\t {InspectionPropertyAddress.ToString()}");
+            sb.AppendLine($"-------------------------------------------");
             return sb.ToString();
         }
     }

@@ -24,10 +24,6 @@ namespace ConoverHomeInspections.Controllers
         [HttpPost("Contact")]
         public async Task<IActionResult> GetServicesAsync([FromBody] ClientContactDTO contact)
         {
-            // TODO: Validate contact form
-            
-            //TODO: Email dad the contact form with options to reply to the client, or accept the booking as it is.
-
             try
             {
                 await _contactService.ProcessContactFormAsync(contact);

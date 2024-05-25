@@ -19,10 +19,17 @@ namespace ConoverHomeInspections
             CreateMap<ServiceDetail, ServiceDetailDTO>();
             CreateMap<ServiceDetailDTO, ServiceDetail>();
             CreateMap<ClientContactDTO, ClientContact>()
+                .ForMember(dest => dest.FirstName, o => o.MapFrom(src => src.FirstName.ToUpperInvariant()))
+                .ForMember(dest => dest.LastName, o => o.MapFrom(src => src.LastName.ToUpperInvariant()))
+                .ForMember(dest => dest.EmailAddress, o => o.MapFrom(src => src.EmailAddress.ToUpperInvariant()))
+                .ForMember(dest => dest.RealtorFirstName, o => o.MapFrom(src => src.RealtorFirstName.ToUpperInvariant()))
+                .ForMember(dest => dest.RealtorLastName, o => o.MapFrom(src => src.RealtorLastName.ToUpperInvariant()))
+                .ForMember(dest => dest.RealtorEmail, o => o.MapFrom(src => src.RealtorEmail.ToUpperInvariant()))
+                .ForMember(dest => dest.MiddleInitial, o => o.MapFrom(src => src.MiddleInitial.ToUpperInvariant().FirstOrDefault()))
+                .ForMember(dest => dest.MailingAddress, o => o.MapFrom(src => src.MailingAddress.ToString()))
                 .ForMember(dest => dest.PreferredStart, o => o.MapFrom(src => src.InspectionDateRange.Start))
                 .ForMember(dest => dest.PreferredEnd, o => o.MapFrom(src => src.InspectionDateRange.End))
-                .ForMember(dest => dest.MiddleInitial, o => o.MapFrom(src => src.MiddleInitial.FirstOrDefault()))
-                .ForMember(dest => dest.MailingAddress, o => o.MapFrom(src => src.MailingAddress.ToString()))
+                .ForMember(dest => dest.Notes, o => o.MapFrom(src => src.Message))
                 .ForMember(dest => dest.InspectionAddress, o => o.MapFrom(src => src.InspectionPropertyAddress.ToString()));
             // CreateMap<ClientContact, ClientContactDTO>()
             //     .ForMember(dest => dest.InspectionDateRange.Start, o => o.MapFrom(src => src.PreferredStart))

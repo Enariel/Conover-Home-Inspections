@@ -14,33 +14,33 @@ namespace ConoverHomeInspections.Services
     public class ServerContactService : IContactService
     {
         private readonly ILogger<IContactService> _logger;
-        private readonly IProductService _productService;
         private readonly IDbContextFactory<ConfigDbContext> _ctx;
         private readonly IMapper _mapper;
 
-        public ServerContactService(ILogger<ServerContactService> logger, IDbContextFactory<ConfigDbContext> ctx, IMapper mapper, IProductService productService)
+        public ServerContactService(ILogger<ServerContactService> logger, IDbContextFactory<ConfigDbContext> ctx, IMapper mapper)
         {
             _logger = logger;
             _ctx = ctx;
             _mapper = mapper;
-            _productService = productService;
         }
 
         /// <inheritdoc />
-        public async Task ProcessContactFormAsync(ClientContactDTO contactInfo)
+        public async Task ProcessContactFormAsync(ClientContactDTO contactInfo, CancellationToken token = default)
         {
             // Create new contact entry
+            _logger.LogInformation($"Creating contact... ");
             var newContact = _mapper.Map(contactInfo, new ClientContact());
             newContact.CreatedOn = DateTime.Now;
-            _logger.LogInformation($"Creating contact: "
-                                   + $"\n{newContact.ToString()}");
+
             try
             {
-                await using (var dbContext = await _ctx.CreateDbContextAsync())
+                await using (var dbContext = await _ctx.CreateDbContextAsync(token))
                 {
                     dbContext.ClientContacts.Add(newContact);
-                    await dbContext.SaveChangesAsync();
+                    await dbContext.SaveChangesAsync(token);
                 }
+                _logger.LogInformation($"Contact form processed successfully!"
+                                       + $"\n{newContact.ToString()}");
             }
             catch (DbException ex)
             {

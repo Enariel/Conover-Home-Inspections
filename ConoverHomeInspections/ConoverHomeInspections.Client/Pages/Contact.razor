@@ -10,7 +10,7 @@
 		<MudCardHeader>
 			<CardHeaderContent>
 				<MudStack>
-					<MudText Color="Color.Primary" Typo="@Typo.h4" Align="Align.Center">Book your inspection now</MudText>
+					<MudText Color="Color.Primary" Typo="@Typo.h4" Align="Align.Center">Book your inspection now!</MudText>
 				</MudStack>
 			</CardHeaderContent>
 		</MudCardHeader>
@@ -27,16 +27,16 @@
 					<MudText Typo="@Typo.h5" GutterBottom="false">Personal Information</MudText>
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField @bind-Value="@_model.FirstName" For="@(() => _model.FirstName)" Label="First Name" Required="true" RequiredError="First name is required!" />
+					<MudTextField FullWidth="true" @bind-Value="@_model.FirstName" For="@(() => _model.FirstName)" Label="First Name" Required="true" RequiredError="First name is required!" />
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField @bind-Value="@_model.LastName" For="@(() => _model.LastName)" Label="Last Name" Required="true" RequiredError="Last name is required!" />
+					<MudTextField FullWidth="true" @bind-Value="@_model.LastName" For="@(() => _model.LastName)" Label="Last Name" Required="true" RequiredError="Last name is required!" />
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField @bind-Value="@_model.EmailAddress" For="@(() => _model.EmailAddress)" Label="Email Address" Required="true" RequiredError="Email is required!" Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })" />
+					<MudTextField FullWidth="true" @bind-Value="@_model.EmailAddress" For="@(() => _model.EmailAddress)" Label="Email Address" Required="true" RequiredError="Email is required!" Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })" InputMode="InputMode.tel" />
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField @bind-Value="@_model.PhoneNumber" For="@(() => _model.PhoneNumber)" Label="Phone Number" />
+					<MudTextField FullWidth="true" @bind-Value="@_model.PhoneNumber" For="@(() => _model.PhoneNumber)" Label="Phone Number" InputMode="InputMode.tel" />
 				</MudItem>
 
 				<MudItem sm="12">
@@ -67,16 +67,16 @@
 					<MudText Typo="@Typo.h5" GutterBottom="false">Realtor Information</MudText>
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField @bind-Value="@_model.RealtorFirstName" For="@(() => _model.RealtorFirstName)" Label="Realtor's First Name" />
+					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorFirstName" For="@(() => _model.RealtorFirstName)" Label="Realtor's First Name" />
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField @bind-Value="@_model.RealtorLastName" For="@(() => _model.RealtorLastName)" Label="Realtor's Last Name" />
+					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorLastName" For="@(() => _model.RealtorLastName)" Label="Realtor's Last Name" />
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField @bind-Value="@_model.RealtorEmail" For="@(() => _model.RealtorEmail)" Label="Realtor's Email Address" />
+					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorEmail" For="@(() => _model.RealtorEmail)" Label="Realtor's Email" />
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField @bind-Value="@_model.RealtorPhone" For="@(() => _model.RealtorPhone)" Label="Realtor's Phone" />
+					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorPhone" For="@(() => _model.RealtorPhone)" Label="Realtor's Phone" MaxLength="10" InputMode="InputMode.tel" />
 				</MudItem>
 
 				<!-- Inspection Information -->

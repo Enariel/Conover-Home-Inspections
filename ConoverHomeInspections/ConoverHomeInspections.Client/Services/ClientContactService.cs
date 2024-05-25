@@ -4,6 +4,8 @@
 // Oliver Conover
 // Modified: 23-05-2024
 using ConoverHomeInspections.Shared;
+using MudBlazor;
+using System.Net.Http.Json;
 
 namespace ConoverHomeInspections.Client.Services
 {
@@ -12,18 +14,28 @@ namespace ConoverHomeInspections.Client.Services
     {
         private readonly ILogger<IContactService> _logger;
         private readonly HttpClient _client;
+        private readonly ISnackbar _bar;
 
-        public ClientContactService(ILogger<ClientContactService> logger, HttpClient client)
+        public ClientContactService(ILogger<ClientContactService> logger, HttpClient client, ISnackbar bar)
         {
             _logger = logger;
             _client = client;
+            _bar = bar;
         }
 
-        public async Task ProcessContactFormAsync(ClientContactDTO contactInfo)
+        public async Task ProcessContactFormAsync(ClientContactDTO contactInfo, CancellationToken token = default)
         {
             try
             {
                 _logger.LogInformation($"Processing contact form: {contactInfo.ToString()}");
+                var request = await _client.PostAsJsonAsync("api/v1/Contacts/Contact", contactInfo, token);
+                if (!request.IsSuccessStatusCode)
+                {
+                    var requestData = await request.Content.ReadAsStringAsync(token);
+                    _logger.LogError("Error processing request: "
+                                     + $"\n{requestData}");
+                }
+
                 await Task.Delay(200);
             }
             catch (HttpRequestException ex)
