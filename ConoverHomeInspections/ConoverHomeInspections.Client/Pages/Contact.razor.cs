@@ -85,6 +85,7 @@ namespace ConoverHomeInspections.Client.Pages
 
         [Inject] private ILogger<Contact> Logger { get; set; }
         [Inject] private IProductService ProductService { get; set; }
+        [Inject] private IContactService ContactService { get; set; }
         [Inject] private PersistentComponentState PersistentComponentState { get; set; }
 
         /// <inheritdoc />
@@ -124,28 +125,23 @@ namespace ConoverHomeInspections.Client.Pages
 			await Task.CompletedTask;
 		}
 
-		private async Task OnValidFormSubmit(EditContext editContext)
+		private async Task OnValidFormSubmit(EditContext ctx)
         {
             _isSubmitting = true;
             _isSuccess = false;
             await Task.Delay(1000);
-            if (!editContext.Validate())
-            {
-                _errors = editContext.GetValidationMessages().ToArray();
-                foreach (var error in _errors)
-                    Logger.LogError($"Validation Error: {error}");
-                _isSubmitting = false;
-                StateHasChanged();
-                return;
-            }
             _isSuccess = true;
             _isSubmitting = false;
             await Task.CompletedTask;
         }
 
-
         public async Task OnInvalidFormSubmitAsync(EditContext ctx)
         {
+            _isSubmitting = true;
+            _isSuccess = false;
+            await Task.Delay(1000);
+            _isSuccess = true;
+            _isSubmitting = false;
             await Task.CompletedTask;
         }
 

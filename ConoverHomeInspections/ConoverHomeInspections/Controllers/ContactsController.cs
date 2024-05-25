@@ -15,15 +15,24 @@ namespace ConoverHomeInspections.Controllers
     public class ContactsController : ControllerBase
     {
         private readonly ILogger<ContactsController> _logger;
+        private readonly IContactService _contactService;
+
+        public ContactsController(IContactService contactService, ILogger<ContactsController> logger)
+        {
+            _contactService = contactService;
+            _logger = logger;
+        }
 
         [HttpPost("Contact")]
-        public async Task<IActionResult> GetServicesAsync([FromBody] ClientContact contact)
+        public async Task<IActionResult> GetServicesAsync([FromBody] ClientContactDTO contact)
         {
             // TODO: Validate contact form
             
             //TODO: Email dad the contact form with options to reply to the client, or accept the booking as it is.
-            
-            return Ok(ModelState);
+
+            var s = contact.ToString();
+            _logger.LogInformation(s);
+            return Ok(s);
         }
     }
 }

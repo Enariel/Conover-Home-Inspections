@@ -28,14 +28,11 @@ builder.Services.AddDbContextFactory<ConfigDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ConfigConnection"));
 });
 builder.Services.AddScoped<IProductService, ServerProductService>();
-
+builder.Services.AddScoped<IContactService, ServerContactService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMudServices();
 builder.Services.AddEndpointsApiExplorer();
-// Add NSwag services
 builder.Services.AddOpenApiDocument();
-
-// Automapper mappings
 builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AllowNullCollections = true;

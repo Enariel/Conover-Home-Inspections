@@ -7,6 +7,6 @@ namespace ConoverHomeInspections.Shared
 {
     public interface IContactService
     {
-        
+        public Task SendContactFormAsync(ClientContactDTO contactInfo);
     }
 }
