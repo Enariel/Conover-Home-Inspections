@@ -5,6 +5,8 @@
 <MainHeader Title="Contact" />
 
 <EditForm Model="@_model" OnSubmit="@(async (e) => await OnContactSubmit(e))">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
 	<MudCard Elevation="0" Square="true" Class="my-4">
 		<MudCardHeader>
 			<CardHeaderContent>
@@ -77,7 +79,7 @@
 					<MudText Typo="@Typo.h5">Inspection Information</MudText>
 				</MudItem>
 				<MudItem xs="12" md="6">
-					<MudDateRangePicker Color="Color.Primary" Square="true"  Label="Desired Inspection Date Range" PickerVariant="PickerVariant.Dialog" DateRange="@_dateRange" DateRangeChanged="@(async (e)=>await OnRangeChanged(e))" MinDate="@_minDate" MaxDate="@_maxDate" HelperText="@DateHelperText" />
+					<MudDateRangePicker Color="Color.Primary" Square="true" Label="Desired Inspection Date Range" PickerVariant="PickerVariant.Dialog" DateRange="@_dateRange" DateRangeChanged="@(async (e) => await OnRangeChanged(e))" MinDate="@_minDate" MaxDate="@_maxDate" HelperText="@DateHelperText" />
 				</MudItem>
 				<MudItem xs="12">
 					<MudTextField @bind-Value="@_model.Message" For="@(() => _model.Message)" Label="Message" MaxLength="1000" Lines="3" FullWidth="true" Placeholder="Enter a custom message..." />
@@ -109,7 +111,7 @@
 		</MudCardContent>
 
 		<MudCardActions Class="d-flex justify-end">
-			<MudButton DisableElevation="true" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="form-button ml-auto" Size="Size.Large" EndIcon="@Icons.TwoTone.Send">Submit</MudButton>
+			<MudButton Disabled="@(_isSubmitting)" DisableElevation="true" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="form-button ml-auto" Size="Size.Large" EndIcon="@Icons.TwoTone.Send">Submit</MudButton>
 		</MudCardActions>
 	</MudCard>
 </EditForm>

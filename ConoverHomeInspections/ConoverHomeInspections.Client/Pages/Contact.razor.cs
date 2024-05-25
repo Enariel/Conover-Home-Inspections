@@ -117,6 +117,18 @@ namespace ConoverHomeInspections.Client.Pages
 
         private async Task OnContactSubmit(EditContext editContext)
         {
+            _isSubmitting = true;
+            _isSuccess = false;
+            await Task.Delay(1000);
+            if (!editContext.Validate())
+            {
+                _errors = editContext.GetValidationMessages().ToArray();
+                foreach (var error in _errors)
+                    Logger.LogError($"Validation Error: {error}");
+                return;
+            }
+            _isSuccess = true;
+            _isSubmitting = false;
             await Task.CompletedTask;
         }
 
