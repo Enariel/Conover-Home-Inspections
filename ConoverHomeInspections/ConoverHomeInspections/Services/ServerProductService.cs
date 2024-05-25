@@ -22,15 +22,15 @@ namespace ConoverHomeInspections.Services
     /// </remarks>
     public class ServerProductService : IProductService
     {
-        private readonly IMapper _map;
+        private readonly IMapper _mapper;
         private readonly IDbContextFactory<ConfigDbContext> _ctx;
         private readonly ILogger<IProductService> _logger;
 
-        public ServerProductService(ILogger<ServerProductService> logger, IDbContextFactory<ConfigDbContext> ctx, IMapper map)
+        public ServerProductService(ILogger<ServerProductService> logger, IDbContextFactory<ConfigDbContext> ctx, IMapper mapper)
         {
             _logger = logger;
             _ctx = ctx;
-            _map = map;
+            _mapper = mapper;
         }
 
         /// <inheritdoc />
@@ -38,9 +38,9 @@ namespace ConoverHomeInspections.Services
         {
             await using var ctx = await _ctx.CreateDbContextAsync();
             var groups = await ctx.Groups
-                                   .OrderBy(x => x.Order)
-                                   .Select(x => _map.Map<ServiceGroupDTO>(x))
-                                   .ToListAsync();
+                                  .OrderBy(x => x.Order)
+                                  .Select(x => _mapper.Map<ServiceGroupDTO>(x))
+                                  .ToListAsync();
             return groups;
         }
 
@@ -49,10 +49,10 @@ namespace ConoverHomeInspections.Services
         {
             await using var ctx = await _ctx.CreateDbContextAsync();
             var services = await ctx.Services
-                                     .OrderBy(x => x.Order)
-                                     .Include(x=>x.Details)
-                                     .Select(x => _map.Map<ServiceDTO>(x))
-                                     .ToListAsync();
+                                    .OrderBy(x => x.Order)
+                                    .Include(x => x.Details)
+                                    .Select(x => _mapper.Map<ServiceDTO>(x))
+                                    .ToListAsync();
             return services;
         }
 
@@ -61,10 +61,10 @@ namespace ConoverHomeInspections.Services
         {
             await using var ctx = await _ctx.CreateDbContextAsync();
             var services = await ctx.Services
-                               .Where(x => x.GroupId == groupId)
-                               .OrderBy(x => x.Order)
-                               .Select(x => _map.Map<ServiceDTO>(x))
-                               .ToListAsync();
+                                    .Where(x => x.GroupId == groupId)
+                                    .OrderBy(x => x.Order)
+                                    .Select(x => _mapper.Map<ServiceDTO>(x))
+                                    .ToListAsync();
             return services;
         }
 
@@ -73,9 +73,9 @@ namespace ConoverHomeInspections.Services
         {
             await using var ctx = await _ctx.CreateDbContextAsync();
             var service = await ctx.Services
-                                    .Where(x => x.ServiceId == serviceId)
-                                    .Select(x => _map.Map<ServiceDTO>(x))
-                                    .FirstOrDefaultAsync();
+                                   .Where(x => x.ServiceId == serviceId)
+                                   .Select(x => _mapper.Map<ServiceDTO>(x))
+                                   .FirstOrDefaultAsync();
             return service;
         }
     }

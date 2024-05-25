@@ -7,14 +7,34 @@ using ConoverHomeInspections.Shared;
 
 namespace ConoverHomeInspections.Client.Services
 {
-    /// <summary>
-    /// A service designed to control the flow of client contacting the business.
-    /// </summary>
-    public class ClientContactService: IContactService
+    /// <inheritdoc />
+    public class ClientContactService : IContactService
     {
-        public async Task SendContactFormAsync(ClientContactDTO contactInfo)
+        private readonly ILogger<IContactService> _logger;
+        private readonly HttpClient _client;
+
+        public ClientContactService(ILogger<ClientContactService> logger, HttpClient client)
         {
-            await Task.CompletedTask;
+            _logger = logger;
+            _client = client;
+        }
+
+        public async Task ProcessContactFormAsync(ClientContactDTO contactInfo)
+        {
+            try
+            {
+                _logger.LogInformation($"Processing contact form: {contactInfo.ToString()}");
+                await Task.Delay(200);
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogError($"Error processing contact form: {ex.Message}");
+            }
+            finally
+            {
+                _logger.LogWarning("Finished processing contact form...");
+                await Task.CompletedTask;
+            }
         }
     }
 }

@@ -6,14 +6,8 @@ using DateRange=MudBlazor.DateRange;
 
 namespace ConoverHomeInspections.Client.Pages
 {
-    [StreamRendering]
-    public partial class Contact : ComponentBase, IDisposable
+    public partial class Contact : ComponentBase
     {
-        private List<ServiceGroupDTO>? _groups;
-        private List<ServiceDTO>? _services;
-        private ServiceGroupDTO? _selectedGroup;
-        private ServiceDTO? _selectedService;
-        private PersistingComponentStateSubscription? _subscription;
         private ClientContactDTO _model = new ClientContactDTO();
         private DateRange _dateRange = new DateRange();
         private DateTime _minDate = DateTime.Now.Date;
@@ -79,41 +73,21 @@ namespace ConoverHomeInspections.Client.Pages
                                                             , { "Wisconsin", "WI" }
                                                             , { "Wyoming", "WY" }
                                                         };
-        private string[] _errors = Array.Empty<string>();
         private bool _isSuccess = false;
         private bool _isSubmitting = false;
 
         [Inject] private ILogger<Contact> Logger { get; set; }
-        [Inject] private IProductService ProductService { get; set; }
         [Inject] private IContactService ContactService { get; set; }
         [Inject] private PersistentComponentState PersistentComponentState { get; set; }
 
         /// <inheritdoc />
-        protected override async Task OnInitializedAsync()
-        {
-            _subscription = PersistentComponentState.RegisterOnPersisting(PersistData);
-            if (!PersistentComponentState.TryTakeFromJson<List<ServiceGroupDTO>>(nameof(_groups), out _groups))
-                _groups = await ProductService.GetGroupsAsync();
-            if (!PersistentComponentState.TryTakeFromJson<List<ServiceDTO>>(nameof(_services), out _services))
-                _services = await ProductService.GetServicesAsync();
-            await base.OnInitializedAsync();
-        }
-
-        /// <inheritdoc />
         protected override async Task OnParametersSetAsync()
         {
-            await base.OnParametersSetAsync();
             if (GroupId.HasValue)
-                _selectedGroup = _groups?.FirstOrDefault(g => g.GroupId == GroupId);
+                _model.GroupId = GroupId;
             if (ServiceId.HasValue)
-                _selectedService = _services?.FirstOrDefault(s => s.ServiceId == ServiceId);
-        }
-
-        private Task PersistData()
-        {
-            PersistentComponentState.PersistAsJson(nameof(_groups), _groups);
-            PersistentComponentState.PersistAsJson(nameof(_services), _services);
-            return Task.CompletedTask;
+                _model.ServiceId = ServiceId;
+            await base.OnParametersSetAsync();
         }
 
         // Update the model with the new date information
@@ -145,7 +119,20 @@ namespace ConoverHomeInspections.Client.Pages
             await Task.CompletedTask;
         }
 
-		/// <inheritdoc />
-		public void Dispose() => _subscription?.Dispose();
+        public async Task OnFormSubmitAsync(EditContext ctx)
+        {
+            _isSubmitting = true;
+            _isSuccess = false;
+
+            // Pass data annotation validations
+
+            // Then pass custom validations
+                // Address validations
+                // Realtor validations
+            await Task.Delay(1000);
+            _isSuccess = true;
+            _isSubmitting = false;
+            await Task.CompletedTask;
+        }
     }
 }

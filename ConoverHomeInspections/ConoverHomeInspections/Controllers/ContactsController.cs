@@ -5,8 +5,6 @@
 // Modified: 16-05-2024
 using ConoverHomeInspections.Shared;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 
 namespace ConoverHomeInspections.Controllers
 {
@@ -30,9 +28,20 @@ namespace ConoverHomeInspections.Controllers
             
             //TODO: Email dad the contact form with options to reply to the client, or accept the booking as it is.
 
-            var s = contact.ToString();
-            _logger.LogInformation(s);
-            return Ok(s);
+            try
+            {
+                await _contactService.ProcessContactFormAsync(contact);
+                return Ok(contact.ToString());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Request Exception: "
+                                 + $"\n-----------------------------------------------------"
+                                 + $"\n{ex.Message}"
+                                 + $"\n-----------------------------------------------------"
+                                 + $"\n{ex.StackTrace}");
+                return BadRequest();
+            }
         }
     }
 }

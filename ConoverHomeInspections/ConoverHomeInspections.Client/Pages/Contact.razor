@@ -4,7 +4,7 @@
 <PageTitle>Contact - Conover Home Inspections</PageTitle>
 <MainHeader Title="Contact" />
 
-<EditForm Model="@_model" OnValidSubmit="@(async (e) => await OnValidFormSubmit(e))" OnInvalidSubmit="@(async (e) => await OnInvalidFormSubmitAsync(e))">
+<EditForm Model="@_model" OnSubmit="@(async (e) => await OnFormSubmitAsync(e))">
 	<DataAnnotationsValidator />
 	<MudCard Elevation="0" Square="true" Class="my-4">
 		<MudCardHeader>
@@ -33,10 +33,10 @@
 					<MudTextField @bind-Value="@_model.LastName" For="@(() => _model.LastName)" Label="Last Name" Required="true" RequiredError="Last name is required!" />
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField @bind-Value="@_model.Email" For="@(() => _model.Email)" Label="Email Address" Required="true" RequiredError="Email is required!" Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })" />
+					<MudTextField @bind-Value="@_model.EmailAddress" For="@(() => _model.EmailAddress)" Label="Email Address" Required="true" RequiredError="Email is required!" Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })" />
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField @bind-Value="@_model.Phone" For="@(() => _model.Phone)" Label="Phone Number" />
+					<MudTextField @bind-Value="@_model.PhoneNumber" For="@(() => _model.PhoneNumber)" Label="Phone Number" />
 				</MudItem>
 
 				<MudItem sm="12">

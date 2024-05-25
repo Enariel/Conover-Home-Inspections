@@ -36,9 +36,53 @@ namespace ConoverHomeInspections.Data
         public virtual DbSet<ServiceDetail> Details { get; set; }
         public virtual DbSet<ConfigurationSetting> SiteSettings { get; set; }
         public virtual DbSet<MailTemplate> EmailTemplates { get; set; }
+        public virtual DbSet<ClientContact> ClientContacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<ClientContact>(entity =>
+            {
+                entity.HasKey(e => e.ContactId);
+                entity.Property(e => e.ContactId)
+                      .ValueGeneratedOnAdd();
+                entity.Property(e => e.EmailAddress)
+                      .IsRequired()
+                      .HasMaxLength(255);
+                entity.Property(e => e.PhoneNumber)
+                      .IsRequired()
+                      .HasMaxLength(255);
+                entity.Property(e => e.FirstName)
+                      .IsRequired()
+                      .HasMaxLength(128);
+                entity.Property(e => e.LastName)
+                      .IsRequired()
+                      .HasMaxLength(128);
+                entity.Property(e => e.RealtorEmail)
+                      .IsRequired()
+                      .HasMaxLength(255);
+                entity.Property(e => e.RealtorFirstName)
+                      .IsRequired()
+                      .HasMaxLength(128);
+                entity.Property(e => e.RealtorLastName)
+                      .IsRequired()
+                      .HasMaxLength(128);
+                entity.Property(e => e.RealtorPhone)
+                      .IsRequired()
+                      .HasMaxLength(255);
+                entity.Property(e => e.CreatedOn)
+                      .IsRequired();
+                entity.HasOne(d => d.Service)
+                      .WithMany()
+                      .HasForeignKey(d => d.ServiceId)
+                      .HasConstraintName("FK_ClientContacts_Service");
+                entity.HasOne(d => d.Group)
+                      .WithMany()
+                      .HasForeignKey(d => d.GroupId)
+                      .HasConstraintName("FK_ClientContacts_Group");
+            });
+
+
             modelBuilder.Entity<ConfigurationSetting>(entity =>
             {
                 entity.ToTable("SiteSettings");

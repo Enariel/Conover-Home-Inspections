@@ -10,19 +10,28 @@ namespace ConoverHomeInspections.Shared
 {
     public class ClientContactDTO
     {
+        [MaxLength(20)]
+        public string? NamePrefix { get; set; }
+        [MaxLength(20)]
+        public string? NameSuffix { get; set; }
         [Required(ErrorMessage = "First name is required!")]
         [MaxLength(128)]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Last name is required!")]
         [MaxLength(128)]
         public string LastName { get; set; }
+        [MaxLength(2)]
+        public string? MiddleInitial { get; set; }
         [MaxLength(255)]
         [Required(ErrorMessage = "Email address is required for confirming inspection correspondences.")]
         [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
-        public string Email { get; set; }
+        public string EmailAddress { get; set; }
         [Phone(ErrorMessage = "Please enter a valid phone number.")]
         [MaxLength(10, ErrorMessage = "Phone number cannot be greater than 10 characters.")]
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool PrefersEmail { get; set; } = true;
+        public bool PrefersPhone { get; set; } = false;
+        public bool PrefersText { get; set; } = false;
         [MaxLength(128)]
         public string RealtorFirstName { get; set; }
         [MaxLength(128)]
@@ -46,11 +55,11 @@ namespace ConoverHomeInspections.Shared
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Client:"
                           + $"\n{FirstName} {LastName}");
-            sb.AppendLine($"Email - {Email} | Phone - {Phone}");
+            sb.AppendLine($"Email - {EmailAddress} | Phone - {PhoneNumber}");
             sb.AppendLine($"{MailingAddress.ToString()}");
             sb.AppendLine($"Realtor:"
                           + $"\n{RealtorFirstName} {RealtorLastName}");
-            sb.AppendLine($"Phone - {Phone} | Email - {Email}");
+            sb.AppendLine($"Phone - {PhoneNumber} | Email - {EmailAddress}");
             sb.AppendLine("Client Message:");
             sb.AppendLine($"{Message}");
             sb.AppendLine($"Inspection Info:");
