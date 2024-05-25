@@ -1,4 +1,5 @@
-﻿@inject NavigationManager Nav
+﻿@using ConoverHomeInspections.Shared
+@inject NavigationManager Nav
 @rendermode InteractiveAuto
 
 <MudBreakpointProvider>
@@ -11,26 +12,14 @@
 				</NavLink>
 			</div>
 			<MudSpacer />
-			<div class="h-100 mud-ripple align-content-center flex-shrink-1">
-				<NavLink Match="NavLinkMatch.All" href="/Services" class="flex-grow-1 justify-center mud-nav-link h-100 mud-link-underline-hover align-center" ActiveClass="mud-link mud-theme-primary">
-					<MudIcon Class="mr-1" Icon="@Icons.TwoTone.HomeRepairService" /><MudElement HtmlTag="div" Class="mud-nav-link-text">Services</MudElement>
-				</NavLink>
-			</div>
-			<div class="h-100 mud-ripple align-content-center flex-shrink-1">
-				<NavLink Match="NavLinkMatch.All" href="/Pricing" class="flex-grow-1 justify-center mud-nav-link h-100 mud-link-underline-hover align-center" ActiveClass="mud-link mud-theme-primary">
-					<MudIcon Class="mr-1" Icon="@Icons.TwoTone.AttachMoney" /><MudElement HtmlTag="div" Class="mud-nav-link-text">Pricing</MudElement>
-				</NavLink>
-			</div>
-			<div class="h-100 mud-ripple align-content-center flex-shrink-1">
-				<NavLink Match="NavLinkMatch.All" href="/Contact" class="flex-grow-1 justify-center mud-nav-link h-100 mud-link-underline-hover align-center" ActiveClass="mud-link mud-theme-primary">
-					<MudIcon Class="mr-1" Icon="@Icons.TwoTone.ContactPage" /><MudElement HtmlTag="div" Class="mud-nav-link-text">Contact</MudElement>
-				</NavLink>
-			</div>
-			<div class="h-100 mud-ripple align-content-center flex-shrink-1">
-				<NavLink Match="NavLinkMatch.All" href="/About" class="flex-grow-1 justify-center mud-nav-link h-100 mud-link-underline-hover align-center" ActiveClass="mud-link mud-theme-primary">
-					<MudIcon Class="mr-1" Icon="@Icons.TwoTone.QuestionMark" /><MudElement HtmlTag="div" Class="mud-nav-link-text">About</MudElement>
-				</NavLink>
-			</div>
+			@foreach (var nav in _navigations)
+			{
+				<div class="h-100 mud-ripple align-content-center flex-shrink-1">
+					<NavLink Match="NavLinkMatch.All" href="@nav.Navigation" class="flex-grow-1 justify-center mud-nav-link h-100 mud-link-underline-hover align-center" ActiveClass="mud-link mud-theme-primary">
+						<MudIcon Class="mr-1" Icon="@nav.Icon" /><MudElement HtmlTag="div" Class="mud-nav-link-text"><MudText Typo="Typo.button" Color="Color.Inherit">@nav.Title</MudText></MudElement>
+					</NavLink>
+				</div>
+			}
 		</MudAppBar>
 	</MudHidden>
 
@@ -43,27 +32,19 @@
 				</NavLink>
 			</div>
 			<MudSpacer />
-			<div class="h-100 mud-ripple align-content-center flex-shrink-1">
-				<NavLink Match="NavLinkMatch.All" href="/Services" class="flex-grow-1 justify-center mud-nav-link h-100 mud-link-underline-hover align-center" ActiveClass="mud-link mud-theme-primary">
-					<MudIcon Title="Services" Icon="@Icons.TwoTone.HomeRepairService" />
-				</NavLink>
-			</div>
-			<div class="h-100 mud-ripple align-content-center flex-shrink-1">
-				<NavLink Match="NavLinkMatch.All" href="/Pricing" class="flex-grow-1 justify-center mud-nav-link h-100 mud-link-underline-hover align-center" ActiveClass="mud-link mud-theme-primary">
-					<MudIcon Title="Pricing" Icon="@Icons.TwoTone.AttachMoney" />
-				</NavLink>
-			</div>
-			<div class="h-100 mud-ripple align-content-center flex-shrink-1">
-				<NavLink Match="NavLinkMatch.All" href="/Contact" class="flex-grow-1 justify-center mud-nav-link h-100 mud-link-underline-hover align-center" ActiveClass="mud-link mud-theme-primary">
-					<MudIcon Title="Contact" Icon="@Icons.TwoTone.ContactPage" />
-				</NavLink>
-			</div>
-			<div class="h-100 mud-ripple align-content-center flex-shrink-1">
-				<NavLink Match="NavLinkMatch.All" href="/About" class="flex-grow-1 justify-center mud-nav-link h-100 mud-link-underline-hover align-center" ActiveClass="mud-link mud-theme-primary">
-					<MudIcon Title="About" Icon="@Icons.TwoTone.QuestionMark" />
-				</NavLink>
-			</div>
+			@foreach (var nav in _navigations)
+			{
+				<div class="h-100 mud-ripple align-content-center flex-shrink-1">
+					<NavLink Match="NavLinkMatch.All" href="@nav.Navigation" class="flex-grow-1 justify-center mud-nav-link h-100 mud-link-underline-hover align-center" ActiveClass="mud-link mud-theme-primary">
+						<MudIcon Title="@nav.Title" Icon="@nav.Icon" />
+					</NavLink>
+				</div>
+			}
 		</MudAppBar>
 	</MudHidden>
 
 </MudBreakpointProvider>
+
+@code{
+	private List<SiteNav> _navigations = AppSettings.SiteNavigationList;
+}
