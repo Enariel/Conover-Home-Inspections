@@ -29,7 +29,7 @@
 					<MudTextField FullWidth="true" @bind-Value="@_model.LastName" For="@(() => _model.LastName)" Label="Last Name" Required="true" RequiredError="Last name is required!" />
 				</MudItem>
 				<MudItem sm="12" md="6" lg="3">
-					<MudTextField FullWidth="true" @bind-Value="@_model.EmailAddress" For="@(() => _model.EmailAddress)" Label="Email Address" Required="true" RequiredError="Email is required!" Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })" InputMode="InputMode.tel" />
+					<MudTextField FullWidth="true" @bind-Value="@_model.EmailAddress" For="@(() => _model.EmailAddress)" Label="Email Address" Required="true" RequiredError="Email is required!" Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })" InputMode="InputMode.email" />
 				</MudItem>
 				<MudItem sm="12" md="6" lg="3">
 					<MudTextField FullWidth="true" @bind-Value="@_model.PhoneNumber" For="@(() => _model.PhoneNumber)" Label="Phone Number" InputMode="InputMode.tel" Mask="@(new PatternMask("000 000 0000"))" />
