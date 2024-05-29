@@ -4,8 +4,6 @@
 // Oliver Conover
 // Modified: 25-05-2024
 using AutoMapper;
-using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
 using ConoverHomeInspections.Data;
 using ConoverHomeInspections.Shared;
 using Microsoft.EntityFrameworkCore;
@@ -20,14 +18,12 @@ namespace ConoverHomeInspections.Services
     {
         private readonly ILogger<IContactService> _logger;
         private readonly IDbContextFactory<ConfigDbContext> _ctx;
-        private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
         public ServerContactService(ILogger<ServerContactService> logger, IDbContextFactory<ConfigDbContext> ctx, IMapper mapper, IConfiguration configuration)
         {
             _logger = logger;
             _ctx = ctx;
-            _mapper = mapper;
             _configuration = configuration;
         }
 
@@ -36,7 +32,6 @@ namespace ConoverHomeInspections.Services
         {
             // Create new contact entry
             _logger.LogInformation($"Creating contact... ");
-            //var newContact = _mapper.Map(contactInfo, new ClientContact());
             var newContact = new ClientContact
                              {
                                  EmailAddress = contactInfo.EmailAddress.ToUpperInvariant(),
@@ -100,13 +95,18 @@ namespace ConoverHomeInspections.Services
             await Task.CompletedTask;
         }
 
-        private async Task SendEmailAsync(string to, string subject, string body)
+        private async Task SendEmailAsync(string to, string subject, string body, string cc)
         {
             var username = _configuration.GetSection("SMTPUsername").Value;
             var password = _configuration.GetSection("SMTPPassword").Value;
             MailAddress toEmail = new MailAddress(to);
             MailAddress fromEmail = new MailAddress("no-reply.conoverhomeinspections@outlook.com");
             MailMessage mail = new MailMessage(fromEmail, toEmail);
+            if (!string.IsNullOrEmpty(cc))
+            {
+                var ccEmail = new MailAddress(cc);
+                mail.CC.Add(ccEmail);
+            }
             mail.IsBodyHtml = true;
             mail.Subject = subject;
             mail.Body = body;
@@ -132,7 +132,7 @@ namespace ConoverHomeInspections.Services
             sb.AppendLine("<p>Brian Conover</p>");
             sb.AppendLine("<p>Conover Home Inspections</p>");
             var body = sb.ToString();
-            await SendEmailAsync(newContact.EmailAddress, "Conover Home Inspections - Confirmation", body);
+            await SendEmailAsync(newContact.EmailAddress, "Conover Home Inspections - Confirmation", body, null);
         }
 
         private async Task CreateConfirmationEmailAsync(ClientContact newContact)
@@ -195,7 +195,7 @@ namespace ConoverHomeInspections.Services
                 sb.AppendLine("</table>");
             }
             var body = sb.ToString();
-            await SendEmailAsync("conoverhomeinspections@outlook.com", "Conover Home Inspections - New Client Request", body);
+            await SendEmailAsync("conoverhomeinspections@outlook.com", "Conover Home Inspections - New Client Request", body, null);
         }
     }
 }
