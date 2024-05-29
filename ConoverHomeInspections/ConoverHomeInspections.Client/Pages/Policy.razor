@@ -7,6 +7,7 @@
 </HeadContent>
 <MainHeader Title="Policy" />
 <MainSection>
+	<MudContainer MaxWidth="MaxWidth.Medium">
 	@foreach (var setting in _settings)
 	{
 		<div class="mud-container">
@@ -14,6 +15,7 @@
 			<MudText Align="Align.Center">@setting?.Value</MudText>
 		</div>
 	}
+	</MudContainer>
 </MainSection>
 
 @code {
