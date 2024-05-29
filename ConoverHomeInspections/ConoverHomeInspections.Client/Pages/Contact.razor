@@ -39,6 +39,45 @@
 					<MudTextField FullWidth="true" @bind-Value="@_model.PhoneNumber" For="@(() => _model.PhoneNumber)" Label="Phone Number" InputMode="InputMode.tel" Mask="@(new PatternMask("000 000 0000"))" />
 				</MudItem>
 
+				<!-- Inspection Information -->
+				<MudItem xs="12">
+					<MudText Typo="@Typo.h5">Inspection Information</MudText>
+				</MudItem>
+				<MudItem xs="12" md="6">
+					<MudDateRangePicker Color="Color.Primary" Square="true" Label="Desired Inspection Date Range" PickerVariant="PickerVariant.Dialog" DateRange="@_dateRange" DateRangeChanged="@(async (e) => await OnRangeChanged(e))" MinDate="@_minDate" MaxDate="@_maxDate" HelperText="@DateHelperText" />
+				</MudItem>
+				<MudItem xs="12">
+					<MudTextField @bind-Value="@_model.Message" For="@(() => _model.Message)" Label="Message" MaxLength="1000" Lines="3" FullWidth="true" Placeholder="Enter a custom message..." />
+				</MudItem>
+				<MudItem sm="12">
+					<MudGrid>
+						<MudItem xs="12">
+							<MudText Typo="@Typo.h6" GutterBottom="false">
+								Property Address
+								<MudTooltip Inline="true" Text="This is the address of the property you anticipate needing the inspection.">
+									<MudIconButton Icon="@Icons.TwoTone.HelpOutline" Color="Color.Info" Size="Size.Small" />
+								</MudTooltip>
+							</MudText>
+							@* <MudText Typo="@Typo.body1" GutterBottom="false">This is the address of the property you wish to be inspected.</MudText> *@
+						</MudItem>
+						<MudItem xs="12" sm="6" md="8">
+							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.Street" For="@(() => _model.InspectionPropertyAddress.Street)" Label="Street" MaxLength="255" />
+						</MudItem>
+						<MudItem xs="12" sm="6" md="4">
+							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.Street2" For="@(() => _model.InspectionPropertyAddress.Street2)" Label="Street Ext." MaxLength="128" />
+						</MudItem>
+						<MudItem xs="12" sm="8">
+							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.City" For="@(() => _model.InspectionPropertyAddress.City)" Label="City" MaxLength="128" />
+						</MudItem>
+						<MudItem xs="12" sm="4" md="2">
+							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.State" For="@(() => _model.InspectionPropertyAddress.State)" Label="State" MaxLength="2" />
+						</MudItem>
+						<MudItem xs="12" sm="8" md="2">
+							<MudNumericField @bind-Value="@_model.InspectionPropertyAddress.ZipCode" For="@(() => _model.InspectionPropertyAddress.ZipCode)" Label="Zip" MaxLength="6" />
+						</MudItem>
+					</MudGrid>
+				</MudItem>
+
 				<MudItem sm="12">
 					<MudGrid>
 						<MudItem xs="12">
@@ -79,44 +118,7 @@
 					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorPhone" For="@(() => _model.RealtorPhone)" Label="Realtor's Phone" MaxLength="10" InputMode="InputMode.tel" Mask="@(new PatternMask("000 000 0000"))" />
 				</MudItem>
 
-				<!-- Inspection Information -->
-				<MudItem xs="12">
-					<MudText Typo="@Typo.h5">Inspection Information</MudText>
-				</MudItem>
-				<MudItem xs="12" md="6">
-					<MudDateRangePicker Color="Color.Primary" Square="true" Label="Desired Inspection Date Range" PickerVariant="PickerVariant.Dialog" DateRange="@_dateRange" DateRangeChanged="@(async (e) => await OnRangeChanged(e))" MinDate="@_minDate" MaxDate="@_maxDate" HelperText="@DateHelperText" />
-				</MudItem>
-				<MudItem xs="12">
-					<MudTextField @bind-Value="@_model.Message" For="@(() => _model.Message)" Label="Message" MaxLength="1000" Lines="3" FullWidth="true" Placeholder="Enter a custom message..." />
-				</MudItem>
-				<MudItem sm="12">
-					<MudGrid>
-						<MudItem xs="12">
-							<MudText Typo="@Typo.h6" GutterBottom="false">
-								Property Address
-								<MudTooltip Inline="true" Text="This is the address of the property you anticipate needing the inspection.">
-									<MudIconButton Icon="@Icons.TwoTone.HelpOutline" Color="Color.Info" Size="Size.Small" />
-								</MudTooltip>
-							</MudText>
-							@* <MudText Typo="@Typo.body1" GutterBottom="false">This is the address of the property you wish to be inspected.</MudText> *@
-						</MudItem>
-						<MudItem xs="12" sm="6" md="8">
-							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.Street" For="@(() => _model.InspectionPropertyAddress.Street)" Label="Street" MaxLength="255" />
-						</MudItem>
-						<MudItem xs="12" sm="6" md="4">
-							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.Street2" For="@(() => _model.InspectionPropertyAddress.Street2)" Label="Street Ext." MaxLength="128" />
-						</MudItem>
-						<MudItem xs="12" sm="8">
-							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.City" For="@(() => _model.InspectionPropertyAddress.City)" Label="City" MaxLength="128" />
-						</MudItem>
-						<MudItem xs="12" sm="4" md="2">
-							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.State" For="@(() => _model.InspectionPropertyAddress.State)" Label="State" MaxLength="2" />
-						</MudItem>
-						<MudItem xs="12" sm="8" md="2">
-							<MudNumericField @bind-Value="@_model.InspectionPropertyAddress.ZipCode" For="@(() => _model.InspectionPropertyAddress.ZipCode)" Label="Zip" MaxLength="6" />
-						</MudItem>
-					</MudGrid>
-				</MudItem>
+
 			</MudGrid>
 		</MudCardContent>
 
