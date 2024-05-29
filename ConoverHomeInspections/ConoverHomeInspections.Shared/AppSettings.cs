@@ -239,34 +239,34 @@ namespace ConoverHomeInspections.Shared
         }
 
         public static readonly List<SiteNav> SiteNavigationList = new List<SiteNav>()
-                                                         {
-                                                             new SiteNav
-                                                             {
-                                                                 Icon = Icons.TwoTone.HomeRepairService,
-                                                                 Title = "Services",
-                                                             },
+                                                                  {
+                                                                      new SiteNav
+                                                                      {
+                                                                          Icon = Icons.TwoTone.HomeRepairService,
+                                                                          Title = "Services",
+                                                                      },
 
-                                                             new SiteNav
-                                                             {
-                                                                 Icon = Icons.TwoTone.AttachMoney,
-                                                                 Title = "Pricing",
-                                                             },
-                                                             new SiteNav
-                                                             {
-                                                                 Icon = Icons.TwoTone.Email,
-                                                                 Title = "Contact",
-                                                             },
-                                                             new SiteNav
-                                                             {
-                                                                 Icon = Icons.TwoTone.Info,
-                                                                 Title = "About",
-                                                             },
-                                                             new SiteNav
-                                                             {
-                                                                 Icon = Icons.TwoTone.Policy,
-                                                                 Title = "Policy",
-                                                             },
-                                                         };
+                                                                      new SiteNav
+                                                                      {
+                                                                          Icon = Icons.TwoTone.AttachMoney,
+                                                                          Title = "Pricing",
+                                                                      },
+                                                                      new SiteNav
+                                                                      {
+                                                                          Icon = Icons.TwoTone.Email,
+                                                                          Title = "Contact",
+                                                                      },
+                                                                      new SiteNav
+                                                                      {
+                                                                          Icon = Icons.TwoTone.Policy,
+                                                                          Title = "Policy",
+                                                                      },
+                                                                      new SiteNav
+                                                                      {
+                                                                          Icon = Icons.TwoTone.Info,
+                                                                          Title = "About",
+                                                                      },
+                                                                  };
     }
 
 }

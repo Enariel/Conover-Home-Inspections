@@ -63,7 +63,6 @@ namespace ConoverHomeInspections.Client.Pages
                 _isSubmitting = false;
                 _isSuccess = false;
                 StateHasChanged();
-                Logger.LogWarning("Form did not pass data validations...");
                 return;
             }
 
@@ -73,9 +72,9 @@ namespace ConoverHomeInspections.Client.Pages
 
             Logger.LogInformation("Form being sent to server...");
             await ContactService.ProcessContactFormAsync(_model);
+
             _isSuccess = true;
             _isSubmitting = false;
-            await Task.CompletedTask;
         }
     }
 }

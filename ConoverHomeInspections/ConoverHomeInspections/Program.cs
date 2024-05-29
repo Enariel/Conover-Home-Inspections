@@ -12,12 +12,9 @@ using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 var vaultUri = new Uri(builder.Configuration.GetSection("Azure:VaultUri").Value);
-Console.WriteLine("Azure Value Uri: " + vaultUri.ToString());
 var creds = new DefaultAzureCredential();
-builder.Configuration.AddAzureKeyVault(vaultUri, creds);
-var senderEmail = builder.Configuration.GetSection("SMTPUsername").Value;
-Console.WriteLine($"Vault Username: {senderEmail}");
 // Add services to the container.
+builder.Configuration.AddAzureKeyVault(vaultUri, creds);
 builder.Services.AddRazorComponents()
        .AddInteractiveServerComponents()
        .AddInteractiveWebAssemblyComponents();

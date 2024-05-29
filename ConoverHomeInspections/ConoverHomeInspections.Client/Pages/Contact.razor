@@ -1,4 +1,4 @@
-@rendermode InteractiveAuto
+@rendermode InteractiveWebAssembly
 @page "/Contact"
 @using System.ComponentModel.DataAnnotations
 <PageTitle>Contact - Conover Home Inspections</PageTitle>
@@ -8,11 +8,7 @@
 	<DataAnnotationsValidator />
 	<MudCard Elevation="0" Square="true" Class="my-4">
 		<MudCardHeader>
-			<CardHeaderContent>
-				<MudStack>
-					<MudText Color="Color.Primary" Typo="@Typo.h4" Align="Align.Center">Book your inspection now!</MudText>
-				</MudStack>
-			</CardHeaderContent>
+			<MudText Color="Color.Primary" Typo="@Typo.h4" Align="Align.Center">Book your inspection now!</MudText>
 		</MudCardHeader>
 		<MudCardContent>
 			<MudGrid>
@@ -26,17 +22,42 @@
 				<MudItem xs="12">
 					<MudText Typo="@Typo.h5" GutterBottom="false">Personal Information</MudText>
 				</MudItem>
-				<MudItem sm="12" md="6">
+				<MudItem sm="12" md="6" lg="3">
 					<MudTextField FullWidth="true" @bind-Value="@_model.FirstName" For="@(() => _model.FirstName)" Label="First Name" Required="true" RequiredError="First name is required!" />
 				</MudItem>
-				<MudItem sm="12" md="6">
+				<MudItem sm="12" md="6" lg="3">
 					<MudTextField FullWidth="true" @bind-Value="@_model.LastName" For="@(() => _model.LastName)" Label="Last Name" Required="true" RequiredError="Last name is required!" />
 				</MudItem>
-				<MudItem sm="12" md="6">
+				<MudItem sm="12" md="6" lg="3">
 					<MudTextField FullWidth="true" @bind-Value="@_model.EmailAddress" For="@(() => _model.EmailAddress)" Label="Email Address" Required="true" RequiredError="Email is required!" Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })" InputMode="InputMode.tel" />
 				</MudItem>
-				<MudItem sm="12" md="6">
+				<MudItem sm="12" md="6" lg="3">
 					<MudTextField FullWidth="true" @bind-Value="@_model.PhoneNumber" For="@(() => _model.PhoneNumber)" Label="Phone Number" InputMode="InputMode.tel" Mask="@(new PatternMask("000 000 0000"))" />
+				</MudItem>
+				<MudItem xs="12" md="4"><MudCheckBox Label="Prefer email correspondences" @bind-Value="@_model.PrefersEmail" For="@(() => _model.PrefersEmail)"/></MudItem>
+				<MudItem xs="12" md="4"><MudCheckBox Label="Allow phone calls" @bind-Value="@_model.PrefersPhone" For="@(() => _model.PrefersPhone)"/></MudItem>
+				<MudItem xs="12" md="4"><MudCheckBox Label="Allow text correspondences" @bind-Value="@_model.PrefersText" For="@(() => _model.PrefersText)"/></MudItem>
+				<MudItem sm="12">
+					<MudGrid>
+						<MudItem xs="12">
+							<MudText Typo="@Typo.h6" GutterBottom="false">Mailing Address</MudText>
+						</MudItem>
+						<MudItem xs="12" sm="6" md="8" lg="4">
+							<MudTextField @bind-Value="@_model.MailingAddress.Street" For="@(() => _model.MailingAddress.Street)" Label="Street" MaxLength="255" />
+						</MudItem>
+						<MudItem xs="12" sm="6" md="4" lg="2">
+							<MudTextField @bind-Value="@_model.MailingAddress.Street2" For="@(() => _model.MailingAddress.Street2)" Label="Street Ext." MaxLength="128" />
+						</MudItem>
+						<MudItem xs="12" sm="8" lg="3">
+							<MudTextField @bind-Value="@_model.MailingAddress.City" For="@(() => _model.MailingAddress.City)" Label="City" MaxLength="128" />
+						</MudItem>
+						<MudItem xs="12" sm="4" md="2" lg="1">
+							<MudTextField @bind-Value="@_model.MailingAddress.State" For="@(() => _model.MailingAddress.State)" Label="State" MaxLength="2" />
+						</MudItem>
+						<MudItem xs="12" sm="8" md="2" lg="2">
+							<MudNumericField @bind-Value="@_model.MailingAddress.ZipCode" For="@(() => _model.MailingAddress.ZipCode)" Label="Zip" MaxLength="6" />
+						</MudItem>
+					</MudGrid>
 				</MudItem>
 
 				<!-- Inspection Information -->
@@ -44,9 +65,9 @@
 					<MudText Typo="@Typo.h5">Inspection Information</MudText>
 				</MudItem>
 				<MudItem xs="12" md="6">
-					<MudDateRangePicker Color="Color.Primary" Square="true" Label="Desired Inspection Date Range" PickerVariant="PickerVariant.Dialog" DateRange="@_dateRange" DateRangeChanged="@(async (e) => await OnRangeChanged(e))" MinDate="@_minDate" MaxDate="@_maxDate" HelperText="@DateHelperText" />
+					<MudDateRangePicker Required="true" RequiredError="Please select a desired date range for the inspection." Color="Color.Primary" Square="true" Label="Desired Inspection Date Range" PickerVariant="PickerVariant.Dialog" DateRange="@_dateRange" DateRangeChanged="@(async (e) => await OnRangeChanged(e))" MinDate="@_minDate" MaxDate="@_maxDate" HelperText="@DateHelperText" />
 				</MudItem>
-				<MudItem xs="12">
+				<MudItem xs="12" md="6">
 					<MudTextField @bind-Value="@_model.Message" For="@(() => _model.Message)" Label="Message" MaxLength="1000" Lines="3" FullWidth="true" Placeholder="Enter a custom message..." />
 				</MudItem>
 				<MudItem sm="12">
@@ -60,43 +81,20 @@
 							</MudText>
 							@* <MudText Typo="@Typo.body1" GutterBottom="false">This is the address of the property you wish to be inspected.</MudText> *@
 						</MudItem>
-						<MudItem xs="12" sm="6" md="8">
+						<MudItem xs="12" sm="6" md="8" lg="4">
 							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.Street" For="@(() => _model.InspectionPropertyAddress.Street)" Label="Street" MaxLength="255" />
 						</MudItem>
-						<MudItem xs="12" sm="6" md="4">
+						<MudItem xs="12" sm="6" md="4" lg="2">
 							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.Street2" For="@(() => _model.InspectionPropertyAddress.Street2)" Label="Street Ext." MaxLength="128" />
 						</MudItem>
-						<MudItem xs="12" sm="8">
+						<MudItem xs="12" sm="8" lg="3">
 							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.City" For="@(() => _model.InspectionPropertyAddress.City)" Label="City" MaxLength="128" />
 						</MudItem>
-						<MudItem xs="12" sm="4" md="2">
+						<MudItem xs="12" sm="4" md="2" lg="1">
 							<MudTextField @bind-Value="@_model.InspectionPropertyAddress.State" For="@(() => _model.InspectionPropertyAddress.State)" Label="State" MaxLength="2" />
 						</MudItem>
-						<MudItem xs="12" sm="8" md="2">
+						<MudItem xs="12" sm="8" md="2" lg="2">
 							<MudNumericField @bind-Value="@_model.InspectionPropertyAddress.ZipCode" For="@(() => _model.InspectionPropertyAddress.ZipCode)" Label="Zip" MaxLength="6" />
-						</MudItem>
-					</MudGrid>
-				</MudItem>
-
-				<MudItem sm="12">
-					<MudGrid>
-						<MudItem xs="12">
-							<MudText Typo="@Typo.h6" GutterBottom="false">Mailing Address</MudText>
-						</MudItem>
-						<MudItem xs="12" sm="6" md="8">
-							<MudTextField @bind-Value="@_model.MailingAddress.Street" For="@(() => _model.MailingAddress.Street)" Label="Street" MaxLength="255" />
-						</MudItem>
-						<MudItem xs="12" sm="6" md="4">
-							<MudTextField @bind-Value="@_model.MailingAddress.Street2" For="@(() => _model.MailingAddress.Street2)" Label="Street Ext." MaxLength="128" />
-						</MudItem>
-						<MudItem xs="12" sm="8">
-							<MudTextField @bind-Value="@_model.MailingAddress.City" For="@(() => _model.MailingAddress.City)" Label="City" MaxLength="128" />
-						</MudItem>
-						<MudItem xs="12" sm="4" md="2">
-							<MudTextField @bind-Value="@_model.MailingAddress.State" For="@(() => _model.MailingAddress.State)" Label="State" MaxLength="2" />
-						</MudItem>
-						<MudItem xs="12" sm="8" md="2">
-							<MudNumericField @bind-Value="@_model.MailingAddress.ZipCode" For="@(() => _model.MailingAddress.ZipCode)" Label="Zip" MaxLength="6" />
 						</MudItem>
 					</MudGrid>
 				</MudItem>
@@ -105,19 +103,18 @@
 				<MudItem xs="12">
 					<MudText Typo="@Typo.h5" GutterBottom="false">Realtor Information</MudText>
 				</MudItem>
-				<MudItem sm="12" md="6">
+				<MudItem sm="12" md="6" lg="3">
 					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorFirstName" For="@(() => _model.RealtorFirstName)" Label="Realtor's First Name" />
 				</MudItem>
-				<MudItem sm="12" md="6">
+				<MudItem sm="12" md="6" lg="3">
 					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorLastName" For="@(() => _model.RealtorLastName)" Label="Realtor's Last Name" />
 				</MudItem>
-				<MudItem sm="12" md="6">
+				<MudItem sm="12" md="6" lg="3">
 					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorEmail" For="@(() => _model.RealtorEmail)" Label="Realtor's Email" />
 				</MudItem>
-				<MudItem sm="12" md="6">
+				<MudItem sm="12" md="6" lg="3">
 					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorPhone" For="@(() => _model.RealtorPhone)" Label="Realtor's Phone" MaxLength="10" InputMode="InputMode.tel" Mask="@(new PatternMask("000 000 0000"))" />
 				</MudItem>
-
 
 			</MudGrid>
 		</MudCardContent>
