@@ -29,9 +29,32 @@ namespace ConoverHomeInspections.Services
         {
             // Create new contact entry
             _logger.LogInformation($"Creating contact... ");
-            var newContact = _mapper.Map(contactInfo, new ClientContact());
-            newContact.CreatedOn = DateTime.Now;
-
+            //var newContact = _mapper.Map(contactInfo, new ClientContact());
+            var newContact = new ClientContact
+                             {
+                                 EmailAddress = contactInfo.EmailAddress.ToUpperInvariant(),
+                                 FirstName = contactInfo.FirstName.ToUpperInvariant(),
+                                 LastName = contactInfo.LastName.ToUpperInvariant(),
+                                 NamePrefix = contactInfo.NamePrefix?.ToUpperInvariant(),
+                                 NameSuffix = contactInfo.NameSuffix?.ToUpperInvariant(),
+                                 MiddleInitial = contactInfo.MiddleInitial?.ToUpperInvariant(),
+                                 PhoneNumber = contactInfo.PhoneNumber?.Replace(" ", ""),
+                                 PrefersEmail = contactInfo.PrefersEmail,
+                                 PrefersPhone = contactInfo.PrefersPhone,
+                                 PrefersText = contactInfo.PrefersText,
+                                 RealtorFirstName = contactInfo.RealtorFirstName?.ToUpperInvariant(),
+                                 RealtorLastName = contactInfo.RealtorLastName?.ToUpperInvariant(),
+                                 RealtorEmail = contactInfo.RealtorEmail?.ToUpperInvariant(),
+                                 RealtorPhone = contactInfo.RealtorPhone?.Replace(" ", ""),
+                                 ServiceId = contactInfo.ServiceId,
+                                 GroupId = contactInfo.GroupId,
+                                 PreferredStart = contactInfo.InspectionDateRange.Start,
+                                 PreferredEnd = contactInfo.InspectionDateRange.End,
+                                 Notes = contactInfo.Message,
+                                 InspectionAddress = contactInfo.InspectionPropertyAddress?.ToString(),
+                                 MailingAddress = contactInfo.MailingAddress?.ToString(),
+                                 CreatedOn = DateTime.Now,
+                             };
             try
             {
                 await using (var dbContext = await _ctx.CreateDbContextAsync(token))

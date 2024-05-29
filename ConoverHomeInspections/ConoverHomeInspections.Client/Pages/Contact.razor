@@ -4,7 +4,7 @@
 <PageTitle>Contact - Conover Home Inspections</PageTitle>
 <MainHeader Title="Contact" />
 
-<EditForm Model="@_model" OnSubmit="@(async (e) => await OnFormSubmitAsync(e))">
+<EditForm Model="@_model" OnSubmit="@(async (e) => await OnFormSubmitAsync(e))" FormName="ContactForm">
 	<DataAnnotationsValidator />
 	<MudCard Elevation="0" Square="true" Class="my-4">
 		<MudCardHeader>
@@ -36,7 +36,7 @@
 					<MudTextField FullWidth="true" @bind-Value="@_model.EmailAddress" For="@(() => _model.EmailAddress)" Label="Email Address" Required="true" RequiredError="Email is required!" Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })" InputMode="InputMode.tel" />
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField FullWidth="true" @bind-Value="@_model.PhoneNumber" For="@(() => _model.PhoneNumber)" Label="Phone Number" InputMode="InputMode.tel" />
+					<MudTextField FullWidth="true" @bind-Value="@_model.PhoneNumber" For="@(() => _model.PhoneNumber)" Label="Phone Number" InputMode="InputMode.tel" Mask="@(new PatternMask("000 000 0000"))" />
 				</MudItem>
 
 				<MudItem sm="12">
@@ -76,7 +76,7 @@
 					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorEmail" For="@(() => _model.RealtorEmail)" Label="Realtor's Email" />
 				</MudItem>
 				<MudItem sm="12" md="6">
-					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorPhone" For="@(() => _model.RealtorPhone)" Label="Realtor's Phone" MaxLength="10" InputMode="InputMode.tel" />
+					<MudTextField FullWidth="true" @bind-Value="@_model.RealtorPhone" For="@(() => _model.RealtorPhone)" Label="Realtor's Phone" MaxLength="10" InputMode="InputMode.tel" Mask="@(new PatternMask("000 000 0000"))" />
 				</MudItem>
 
 				<!-- Inspection Information -->

@@ -48,8 +48,8 @@ namespace ConoverHomeInspections.Shared
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"{Street.ToUpperInvariant()} {Street2.ToUpperInvariant()}, ");
-            sb.AppendLine($"{City.ToUpperInvariant()} {State.ToUpperInvariant()}, ");
+            sb.AppendLine($"{Street?.ToUpperInvariant()} {Street2?.ToUpperInvariant()}, ");
+            sb.AppendLine($"{City?.ToUpperInvariant()} {State?.ToUpperInvariant()}, ");
             sb.Append($"{ZipCode}");
             return sb.ToString();
         }

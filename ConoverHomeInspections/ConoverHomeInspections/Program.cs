@@ -27,10 +27,10 @@ builder.Services.AddDbContextFactory<ConfigDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("ConfigConnection"));
 });
-builder.Services.AddScoped<IProductService, ServerProductService>();
-builder.Services.AddScoped<IContactService, ServerContactService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMudServices();
+builder.Services.AddScoped<IProductService, ServerProductService>();
+builder.Services.AddScoped<IContactService, ServerContactService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument();
 builder.Services.AddAutoMapper(cfg =>

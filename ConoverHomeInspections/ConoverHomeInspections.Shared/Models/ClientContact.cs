@@ -41,20 +41,20 @@ namespace ConoverHomeInspections.Shared
         {
             var sb = new StringBuilder();
             sb.AppendLine($"Id: {ContactId}");
-            var name = $"{(string.IsNullOrEmpty(NamePrefix) ? NamePrefix.ToUpperInvariant() + ", " : "")}{FirstName.ToUpperInvariant()}, {(string.IsNullOrEmpty(MiddleInitial) ? "" : MiddleInitial.ToUpperInvariant().FirstOrDefault() + ", ")}{LastName.ToUpperInvariant()} {(string.IsNullOrEmpty(NameSuffix) ? "" : ", " + NameSuffix.ToUpperInvariant())}";
-            sb.AppendLine($"Name: {name.ToUpperInvariant()}");
-            sb.AppendLine($"Email: {EmailAddress.ToUpperInvariant()} | Phone : {PhoneNumber}");
+            var name = $"{(string.IsNullOrEmpty(NamePrefix) ? NamePrefix?.ToUpperInvariant() + ", " : "")}{FirstName?.ToUpperInvariant()}, {(string.IsNullOrEmpty(MiddleInitial) ? "" : MiddleInitial?.ToUpperInvariant().FirstOrDefault() + ", ")}{LastName?.ToUpperInvariant()} {(string.IsNullOrEmpty(NameSuffix) ? "" : ", " + NameSuffix?.ToUpperInvariant())}";
+            sb.AppendLine($"Name: {name?.ToUpperInvariant()}");
+            sb.AppendLine($"Email: {EmailAddress?.ToUpperInvariant()} | Phone : {PhoneNumber}");
             sb.AppendLine($"Address: "
-                          + $"\n{MailingAddress.ToUpperInvariant()}");
+                          + $"\n{MailingAddress?.ToUpperInvariant()}");
             sb.AppendLine($"Preferences: Email - {PrefersEmail.ToString()} | Phone - {PrefersPhone.ToString()} | Text - {PrefersText.ToString()}");
-            sb.AppendLine($"Realtor: {RealtorFirstName.ToUpperInvariant()} {RealtorLastName.ToUpperInvariant()}"
-                          + $"\n, Email: {RealtorEmail.ToUpperInvariant()} | Phone: {RealtorPhone}");
+            sb.AppendLine($"Realtor: {RealtorFirstName?.ToUpperInvariant()} {RealtorLastName?.ToUpperInvariant()}"
+                          + $"\n, Email: {RealtorEmail?.ToUpperInvariant()} | Phone: {RealtorPhone}");
             if (ServiceId.HasValue)
                 sb.AppendLine($"ServiceId: {ServiceId}");
             if (GroupId.HasValue)
                 sb.AppendLine($"GroupId: {GroupId}");
             sb.AppendLine($"Property: "
-                          + $"\n{InspectionAddress.ToUpperInvariant()}");
+                          + $"\n{InspectionAddress?.ToUpperInvariant()}");
             sb.AppendLine($"Request Dates: {PreferredStart?.ToLongDateString()} thru {PreferredEnd?.ToLongDateString()}");
             if (!string.IsNullOrEmpty(Notes))
                 sb.AppendLine($"CLIENT MESSAGE:"
