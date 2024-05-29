@@ -1,7 +1,11 @@
 @rendermode InteractiveWebAssembly
 @page "/Contact"
 @using System.ComponentModel.DataAnnotations
-<PageTitle>Contact - Conover Home Inspections</PageTitle>
+<HeadContent>
+	<PageTitle>Contact - Conover Home Inspections</PageTitle>
+	<meta name="description" content="Get in touch with Conover Home Inspections for all your home inspection needs. Contact us to schedule an inspection or ask any questions.">
+	<meta name="keywords" content="contact Conover Home Inspections, schedule home inspection, home inspection questions, contact information">
+</HeadContent>
 <MainHeader Title="Contact" />
 
 <EditForm Model="@_model" OnSubmit="@(async (e) => await OnFormSubmitAsync(e))" FormName="ContactForm">
@@ -34,9 +38,15 @@
 				<MudItem sm="12" md="6" lg="3">
 					<MudTextField FullWidth="true" @bind-Value="@_model.PhoneNumber" For="@(() => _model.PhoneNumber)" Label="Phone Number" InputMode="InputMode.tel" Mask="@(new PatternMask("000 000 0000"))" />
 				</MudItem>
-				<MudItem xs="12" md="4"><MudCheckBox Label="Prefer email correspondences" @bind-Value="@_model.PrefersEmail" For="@(() => _model.PrefersEmail)"/></MudItem>
-				<MudItem xs="12" md="4"><MudCheckBox Label="Allow phone calls" @bind-Value="@_model.PrefersPhone" For="@(() => _model.PrefersPhone)"/></MudItem>
-				<MudItem xs="12" md="4"><MudCheckBox Label="Allow text correspondences" @bind-Value="@_model.PrefersText" For="@(() => _model.PrefersText)"/></MudItem>
+				<MudItem xs="12" md="4">
+					<MudCheckBox Label="Prefer email correspondences" @bind-Value="@_model.PrefersEmail" For="@(() => _model.PrefersEmail)" />
+				</MudItem>
+				<MudItem xs="12" md="4">
+					<MudCheckBox Label="Allow phone calls" @bind-Value="@_model.PrefersPhone" For="@(() => _model.PrefersPhone)" />
+				</MudItem>
+				<MudItem xs="12" md="4">
+					<MudCheckBox Label="Allow text correspondences" @bind-Value="@_model.PrefersText" For="@(() => _model.PrefersText)" />
+				</MudItem>
 				<MudItem sm="12">
 					<MudGrid>
 						<MudItem xs="12">

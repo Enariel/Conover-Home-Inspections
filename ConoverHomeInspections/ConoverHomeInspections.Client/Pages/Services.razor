@@ -1,6 +1,10 @@
 @page "/Services"
 @rendermode @(new InteractiveWebAssemblyRenderMode(false))
-<PageTitle>Services - Conover Home Inspections</PageTitle>
+<HeadContent>
+	<PageTitle>Services - Conover Home Inspections</PageTitle>
+	<meta name="description" content="Explore the wide range of home inspection services offered by Conover Home Inspections. From pre-purchase to maintenance inspections, we've got you covered.">
+	<meta name="keywords" content="home inspection services, pre-purchase inspection, maintenance inspection, property inspection, home inspection, home inspector, property inspection, real estate inspection, Tampa Bay home inspection, Pasco County home inspection, Hillsborough home inspection, Pinellas home inspection">
+</HeadContent>
 <MainHeader Title="Services" />
 
 <ResponsiveSplit>
@@ -23,7 +27,7 @@
 						</TitleContent>
 						<ChildContent>
 							<MudText>@((MarkupString)group?.Description)</MudText>
-							<MudDivider  Light="true" DividerType="DividerType.FullWidth" Class="my-2"/>
+							<MudDivider Light="true" DividerType="DividerType.FullWidth" Class="my-2" />
 							<div class="d-flex justify-end">
 								<MudButton Class="expansion-button" DisableElevation="true" Variant="Variant.Text" Color="Color.Primary" ButtonType="ButtonType.Button" Size="Size.Large" IconColor="Color.Secondary" Href="@($"/Pricing#group-{@group?.GroupId}")" EndIcon="@Icons.TwoTone.MonetizationOn">See Pricing</MudButton>
 								<MudButton Class="expansion-button" DisableElevation="true" Variant="Variant.Text" Color="Color.Primary" ButtonType="ButtonType.Button" Size="Size.Large" IconColor="Color.Secondary" Href="@($"/Contact?GroupId={@group?.GroupId}")" EndIcon="@Icons.TwoTone.Schedule">Schedule a Consultation</MudButton>
