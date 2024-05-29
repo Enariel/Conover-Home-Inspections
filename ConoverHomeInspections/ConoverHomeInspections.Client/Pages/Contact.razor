@@ -128,6 +128,7 @@
 	</MudCardContent>
 
 	<MudCardActions Class="d-flex justify-end">
+		<MudButton Disabled="@(_isSubmitting)" DisableElevation="true" ButtonType="ButtonType.Button" Variant="Variant.Outlined" Color="Color.Secondary" Class="form-button ml-auto" Size="Size.Large" EndIcon="@Icons.Material.Rounded.Send" OnClick="@(async () => await _form.ResetAsync())">Reset</MudButton>
 		<MudButton Disabled="@(_isSubmitting)" DisableElevation="true" ButtonType="ButtonType.Button" Variant="Variant.Outlined" Color="Color.Primary" Class="form-button ml-auto" Size="Size.Large" EndIcon="@Icons.Material.Rounded.Send" OnClick="@(async () => await OnFormSubmitAsync())">Submit</MudButton>
 	</MudCardActions>
 </MudCard>

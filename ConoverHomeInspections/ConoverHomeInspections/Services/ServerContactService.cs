@@ -66,33 +66,48 @@ namespace ConoverHomeInspections.Services
                 }
                 _logger.LogInformation($"Contact form processed successfully!"
                                        + $"\n{newContact.ToString()}");
-                try
-                {
 
-                    await CreateConfirmationEmailAsync(newContact);
-                    await CreateClientConfirmationEmailAsync(newContact);
-                    _logger.LogInformation($"Sent emails!"
-                                           + $"\n{newContact.ToString()}");
-                }
-                catch (Exception ex)
+                MailTemplate clientTemplate;// template for the client
+                MailTemplate detailTemplate;// template for dad
+                ClientContact clientData;// client data
+                await using (var dbContext = await _ctx.CreateDbContextAsync(token))
                 {
-                    _logger.LogError($"Email Exception: "
-                                     + $"\n-----------------------------------------------------"
-                                     + $"\n{ex.Message}"
-                                     + $"\n-----------------------------------------------------"
-                                     + $"\n{ex.StackTrace}\n"
-                                     + $"{ex.InnerException}");
+                    clientData = await dbContext.ClientContacts
+                                                .Include(x => x.Group)
+                                                .Include(x => x.Service)
+                                                .FirstOrDefaultAsync(x => x.ContactId == newContact.ContactId);
+                    clientTemplate = await dbContext.EmailTemplates.FirstOrDefaultAsync(x => x.TemplateName == "ClientConfirmation");
+                    detailTemplate = await dbContext.EmailTemplates.FirstOrDefaultAsync(x => x.TemplateName == "NewContact");
+
                 }
+                if (clientTemplate == null)
+                {
+                    _logger.LogWarning("Client Mail Template not found!");
+                    return;
+                }
+                if (detailTemplate == null)
+                {
+                    _logger.LogWarning("Detail Mail Template not found!");
+                }
+                if (clientData == null)
+                {
+                    _logger.LogWarning("Client data not found!");
+                    return;
+                }
+
+                await CreateClientEmailAsync(clientData, clientTemplate);
+                _logger.LogInformation("Send client confirmation email...");
+                await CreateDetailEmailAsync(clientData, detailTemplate);
+                _logger.LogInformation("Send detail contact email...");
             }
-            catch (DbException ex)
+            catch (Exception ex)
             {
-                _logger.LogError($"Db Exception: "
+                _logger.LogError($"Exception: "
                                  + $"\n-----------------------------------------------------"
                                  + $"\n{ex.Message}"
                                  + $"\n-----------------------------------------------------"
                                  + $"\n{ex.StackTrace}");
             }
-            await Task.CompletedTask;
         }
 
         private async Task SendEmailAsync(string to, string subject, string body, string cc)
@@ -110,92 +125,74 @@ namespace ConoverHomeInspections.Services
             mail.IsBodyHtml = true;
             mail.Subject = subject;
             mail.Body = body;
+
             SmtpClient smtpClient = new SmtpClient("smtp-mail.outlook.com");
             smtpClient.Port = 587;
             smtpClient.Credentials = new NetworkCredential(username.ToString(), password.ToString());
             smtpClient.EnableSsl = true;
+            _logger.LogWarning($"Sending email to: {to} | {cc}");
             await smtpClient.SendMailAsync(mail);
+            _logger.LogInformation($"Email sent.");
         }
 
-        private async Task CreateClientConfirmationEmailAsync(ClientContact newContact)
+        private async Task CreateClientEmailAsync(ClientContact newContact, MailTemplate clientTemplate)
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("<h3>Client Confirmation</h3>");
-            sb.AppendLine($"<p>Dear, {newContact.FirstName}</p>");
-            sb.AppendLine("<p>Thank you, for contacting Conover Home Inspections.</p>");
-            sb.AppendLine($"<p>"
-                          + $"You have requested for an inspection between the dates: {newContact.PreferredStart?.ToLongDateString()} and {newContact.PreferredEnd?.ToLongDateString()}. "
-                          + $"You will be contacted shortly in regards to your desired inspection. If you do not hear back within 3 business days, feel free to reach out directly. "
-                          + $"</p>");
-            sb.AppendLine("<br></br>");
-            sb.AppendLine("<p>Thank you,</p>");
-            sb.AppendLine("<p>Brian Conover</p>");
-            sb.AppendLine("<p>Conover Home Inspections</p>");
-            var body = sb.ToString();
-            await SendEmailAsync(newContact.EmailAddress, "Conover Home Inspections - Confirmation", body, null);
-        }
+            var body = clientTemplate.Body;
+            var replaceDict = new Dictionary<string, string>();
+            replaceDict.Add("{{CLIENTID}}", $"{newContact?.ContactId}");
+            replaceDict.Add("{{CLIENTNAME}}", $"{newContact.FirstName}");
+            replaceDict.Add("{{INSPECTIONADDRESS}}", $"{newContact.InspectionAddress}");
+            replaceDict.Add("{{INSPECTIONDATE}}", new StringBuilder().Append(newContact.PreferredStart?.ToLongDateString()).Append(" thru ").Append(newContact.PreferredEnd?.ToLongDateString()).ToString());
 
-        private async Task CreateConfirmationEmailAsync(ClientContact newContact)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("<style type=\"text/css\">.tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px; overflow:hidden;padding:10px 5px;word-break:normal;}.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}.tg .tg-0lax{text-align:left;vertical-align:top}</style>");
-            sb.AppendLine("<h3>New Client Contact Request</h3>");
-            sb.AppendLine("<h4>Client Information: </h4>");
-            sb.AppendLine("<table class=\"tg\">");
-            sb.AppendLine("<thead>"
-                          + "<tr>"
-                          + "<th class=\"tg-0lax\">Client Name</th>"
-                          + "<th class=\"tg-0lax\">Contact Email</th>"
-                          + "<th class=\"tg-0lax\">Contact Phone</th>"
-                          + "<th class=\"tg-0lax\">Mailing Address</th>"
-                          + "<th class=\"tg-0lax\">Notes</th>"
-                          + "</tr>"
-                          + "</thead>");
-            sb.AppendLine("<tbody>"
-                          + $"<td class=\"tg-0lax\">{newContact?.FirstName} {newContact?.LastName}</td>"
-                          + $"<td class=\"tg-0lax\">{newContact?.EmailAddress}</td>"
-                          + $"<td class=\"tg-0lax\">{newContact?.PhoneNumber}</td>"
-                          + $"<td class=\"tg-0lax\">{newContact?.MailingAddress}</td>"
-                          + $"<td class=\"tg-0lax\">{newContact?.Notes}</td>"
-                          + "</tbody>");
-            sb.AppendLine("</table>");
-            sb.AppendLine("<h4>Inspection Information: </h4>");
-            sb.AppendLine("<table class=\"tg\">");
-            sb.AppendLine("<thead>"
-                          + "<tr>"
-                          + "<th class=\"tg-0lax\">Inspection Type</th>"
-                          + "<th class=\"tg-0lax\">Requested Start</th>"
-                          + "<th class=\"tg-0lax\">Requested End</th>"
-                          + "<th class=\"tg-0lax\">Inspection Address</th>"
-                          + "</tr>"
-                          + "</thead>");
-            sb.AppendLine("<tbody>"
-                          + $"<td class=\"tg-0lax\">{newContact?.Service?.ServiceName ?? newContact?.Group?.GroupName ?? "N/A"}</td>"
-                          + $"<td class=\"tg-0lax\">{newContact?.PreferredStart?.ToLongDateString()}</td>"
-                          + $"<td class=\"tg-0lax\">{newContact?.PreferredEnd?.ToLongDateString()}</td>"
-                          + $"<td class=\"tg-0lax\">{newContact?.InspectionAddress}</td>"
-                          + "</tbody>");
-            sb.AppendLine("</table>");
-            if (!string.IsNullOrEmpty(newContact?.RealtorFirstName) || !string.IsNullOrEmpty(newContact?.RealtorLastName))
+            foreach (var key in replaceDict.Keys)
             {
-                sb.AppendLine("<h4>Realtor Information: </h4>");
-                sb.AppendLine("<table class=\"tg\">");
-                sb.AppendLine("<thead>"
-                              + "<tr>"
-                              + "<th class=\"tg-0lax\">Realtor Name</th>"
-                              + "<th class=\"tg-0lax\">Realtor Email</th>"
-                              + "<th class=\"tg-0lax\">Realtor Phone</th>"
-                              + "</tr>"
-                              + "</thead>");
-                sb.AppendLine("<tbody>"
-                              + $"<td class=\"tg-0lax\">{newContact?.RealtorFirstName} {newContact?.RealtorLastName}</td>"
-                              + $"<td class=\"tg-0lax\">{newContact?.RealtorEmail}</td>"
-                              + $"<td class=\"tg-0lax\">{newContact?.RealtorPhone}</td>"
-                              + "</tbody>");
-                sb.AppendLine("</table>");
+                var replace = body.Replace(key, replaceDict[key]);
+                body = replace;
             }
-            var body = sb.ToString();
-            await SendEmailAsync("conoverhomeinspections@outlook.com", "Conover Home Inspections - New Client Request", body, null);
+
+            _logger.LogInformation("Sending Client Information..."
+                                   + "\n\tBODY:"
+                                   + $"\n\t{body}");
+
+            await SendEmailAsync(newContact.EmailAddress, clientTemplate.Subject, body, null);
+        }
+
+        private async Task CreateDetailEmailAsync(ClientContact newContact, MailTemplate detailTemplate)
+        {
+            var body = detailTemplate.Body;
+            var replaceDict = new Dictionary<string, string>();
+            replaceDict.Add("{{CLIENTID}}", $"{newContact?.ContactId}");
+            replaceDict.Add("{{CLIENTNAME}}", $"{newContact.FirstName} {newContact.LastName}");
+            replaceDict.Add("{{CLIENTEMAIL}}", $"{newContact.EmailAddress}");
+            replaceDict.Add("{{CLIENTPHONE}}", $"{newContact?.PhoneNumber}");
+            replaceDict.Add("{{CLIENTADDRESS}}", $"{newContact?.MailingAddress}");
+            replaceDict.Add("{{ALLOWEMAIL}}", $"{(newContact.PrefersEmail ? "Yes" : "No")}");
+            replaceDict.Add("{{ALLOWPHONE}}", $"{(newContact.PrefersPhone ? "Yes" : "No")}");
+            replaceDict.Add("{{ALLOWTEXT}}", $"{(newContact.PrefersText ? "Yes" : "No")}");
+            replaceDict.Add("{{CLIENTNOTES}}", $"{newContact?.Notes}");
+            replaceDict.Add("{{GROUP}}", $"{(string.IsNullOrEmpty(newContact?.Group?.GroupName) ? "" : newContact?.Group?.GroupName)}");
+            replaceDict.Add("{{SERVICE}}", $"{(string.IsNullOrEmpty(newContact?.Service?.ServiceName) ? "" : newContact?.Service?.ServiceName)}");
+            replaceDict.Add("{{STARTDATE}}", $"{newContact.PreferredStart?.ToLongDateString()}");
+            replaceDict.Add("{{ENDDATE}}", $"{newContact.PreferredEnd?.ToLongDateString()}");
+            replaceDict.Add("{{PROPERTYADDRESS}}", $"{newContact.InspectionAddress}");
+            replaceDict.Add("{{COST}}", $"{newContact?.Service?.Price:C2}");
+            replaceDict.Add("{{TIME}}", $"{new TimeSpan(0, 0, newContact?.Service?.EstimatedCompletionTimeInMins ?? 0, 0).TotalHours:F2} hrs");
+            replaceDict.Add("{{REALTORFIRST}}", newContact.RealtorFirstName);
+            replaceDict.Add("{{REALTORLAST}}", newContact.RealtorLastName);
+            replaceDict.Add("{{REALTOREMAIL}}", newContact.RealtorEmail);
+            replaceDict.Add("{{REALTORPHONE}}", newContact.RealtorPhone);
+
+            foreach (var key in replaceDict.Keys)
+            {
+                var replace = body.Replace(key, replaceDict[key]);
+                body = replace;
+            }
+
+            _logger.LogInformation("Sending Detailed Client Information..."
+                                   + "\n\tBODY:"
+                                   + $"\n\t{body}");
+
+            await SendEmailAsync("conoverhomeinspections@outlook.com", detailTemplate.Subject, body, "fuchsfarbeart@outlook.com");
         }
     }
 }

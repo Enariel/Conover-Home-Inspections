@@ -10,9 +10,11 @@
 	<MudContainer MaxWidth="MaxWidth.Medium">
 	@foreach (var setting in _settings)
 	{
-		<div class="mud-container">
-			<MudText Typo="Typo.h6" Align="Align.Center">@setting?.For</MudText>
-			<MudText Align="Align.Center">@setting?.Value</MudText>
+		<div class="mud-container mb-2">
+			<MudDivider DividerType="DividerType.FullWidth" />
+			<MudText Typo="Typo.h6" Align="Align.Center" >@setting?.For</MudText>
+			<MudDivider DividerType="DividerType.FullWidth" Class="mud-theme-secondary mb-2" />
+			<MudText Align="Align.Left">@setting?.Value</MudText>
 		</div>
 	}
 	</MudContainer>

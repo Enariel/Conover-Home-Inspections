@@ -31,6 +31,13 @@ namespace ConoverHomeInspections.Client.Pages
         [Inject] private IContactService ContactService { get; set; }
 
         /// <inheritdoc />
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            await OnRangeChanged(_dateRange);
+        }
+
+        /// <inheritdoc />
         protected override async Task OnParametersSetAsync()
         {
             if (GroupId.HasValue)
