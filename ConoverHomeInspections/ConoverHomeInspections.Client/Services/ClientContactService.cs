@@ -36,11 +36,12 @@ namespace ConoverHomeInspections.Client.Services
                                      + $"\n{requestData}");
                 }
 
-                await Task.Delay(200);
+                _bar.Add("Success!", Severity.Success);
             }
             catch (HttpRequestException ex)
             {
                 _logger.LogError($"Error processing contact form: {ex.Message}");
+                _bar.Add("Error processing request", Severity.Error);
             }
             finally
             {

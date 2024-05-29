@@ -35,6 +35,14 @@ namespace ConoverHomeInspections.Client.Pages
             await base.OnParametersSetAsync();
         }
 
+        /// <inheritdoc />
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            _model.InspectionDateRange.Start = DateTime.Now;
+            _model.InspectionDateRange.End = DateTime.Now.AddDays(1);
+        }
+
         // Update the model with the new date information
         private async Task OnRangeChanged(DateRange dateRange)
         {
@@ -50,13 +58,12 @@ namespace ConoverHomeInspections.Client.Pages
             _isSuccess = false;
 
             // Pass data annotation validations
-
-            await Task.Delay(500);
             if (!ctx.Validate())
             {
                 _isSubmitting = false;
                 _isSuccess = false;
                 StateHasChanged();
+                Logger.LogWarning("Form did not pass data validations...");
                 return;
             }
 
@@ -64,9 +71,8 @@ namespace ConoverHomeInspections.Client.Pages
             // Address validations
             // Realtor validations
 
+            Logger.LogInformation("Form being sent to server...");
             await ContactService.ProcessContactFormAsync(_model);
-
-            await Task.Delay(1000);
             _isSuccess = true;
             _isSubmitting = false;
             await Task.CompletedTask;
