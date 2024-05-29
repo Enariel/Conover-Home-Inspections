@@ -1,13 +1,12 @@
 @page "/Pricing"
 @page "/Pricing/{GroupId:int?}"
-@rendermode @(new InteractiveWebAssemblyRenderMode(false))
-<PageTitle>Pricing - Conover Home Inspections</PageTitle>
+@rendermode InteractiveAuto
+<HeadContent>
+	<PageTitle>Pricing | Conover Home Inspections</PageTitle>
+	<meta name="description" content="Pricing for various services of Conover Home Inspections.">
+	<meta name="keywords" content="pricing, services, Conover Home Inspections services, Conover Home Inspections prices, Conover Home Inspections service pricing">
+</HeadContent>
 <MainHeader Title="Pricing" />
-<!-- If group id is null, display groups to user -->
-
-<!-- If group id is NOT null, display cards of services and their prices to the user. -->
-
-<!-- Each service in the group -->
 @if (_groups != null && _groups.Any())
 {
 	@foreach (var group in _groups)
