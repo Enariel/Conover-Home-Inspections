@@ -4,6 +4,8 @@
 // Oliver Conover
 // Modified: 25-05-2024
 using AutoMapper;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using ConoverHomeInspections.Data;
 using ConoverHomeInspections.Shared;
 using Microsoft.EntityFrameworkCore;
@@ -100,6 +102,8 @@ namespace ConoverHomeInspections.Services
 
         private async Task SendEmailAsync(string to, string subject, string body)
         {
+            var username = _configuration.GetSection("SMTPUsername").Value;
+            var password = _configuration.GetSection("SMTPPassword").Value;
             MailAddress toEmail = new MailAddress(to);
             MailAddress fromEmail = new MailAddress("no-reply.conoverhomeinspections@outlook.com");
             MailMessage mail = new MailMessage(fromEmail, toEmail);
@@ -108,7 +112,7 @@ namespace ConoverHomeInspections.Services
             mail.Body = body;
             SmtpClient smtpClient = new SmtpClient("smtp-mail.outlook.com");
             smtpClient.Port = 587;
-            smtpClient.Credentials = new NetworkCredential(_configuration["SMTP:Username"], _configuration["SMTP:Password"].ToString());
+            smtpClient.Credentials = new NetworkCredential(username.ToString(), password.ToString());
             smtpClient.EnableSsl = true;
             await smtpClient.SendMailAsync(mail);
         }
