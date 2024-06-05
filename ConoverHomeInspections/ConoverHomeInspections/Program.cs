@@ -8,20 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
 using System.Text.Json.Serialization;
 using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
-try
-{
-    var vaultUri = new Uri(builder.Configuration.GetSection("Azure:VaultUri").Value);
-    var creds = new DefaultAzureCredential();
+var vaultUri = new Uri(builder.Configuration.GetSection("Azure:VaultUri").Value);
+var creds = new DefaultAzureCredential();
 
 // Add services to the container.
-    builder.Configuration.AddAzureKeyVault(vaultUri, creds);
-}
-catch (Exception ex)
-{
-    Console.WriteLine(ex.Message);
-}
+builder.Configuration.AddAzureKeyVault(vaultUri, creds);
 builder.Services.AddRazorComponents()
        .AddInteractiveServerComponents()
        .AddInteractiveWebAssemblyComponents();
@@ -33,9 +27,16 @@ builder.Services.AddControllersWithViews()
            x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
            x.JsonSerializerOptions.WriteIndented = true;
        });
+
+const string secretName = "InspectionsConnectionString";
+var client = new SecretClient(vaultUri, creds);
+var secretValue = "";
+var connSecret = await client.GetSecretAsync(secretName, secretValue);
+secretValue = connSecret.Value.Value;
+
 builder.Services.AddDbContextFactory<ConfigDbContext>(options =>
 {
-    options.UseSqlite(builder.Configuration.GetConnectionString("ConfigConnection"));
+    options.UseSqlServer(secretValue);
 });
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMudServices();

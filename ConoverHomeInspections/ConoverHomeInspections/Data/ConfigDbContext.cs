@@ -93,8 +93,7 @@ namespace ConoverHomeInspections.Data
                       .HasMaxLength(100);
                 entity.Property(t => t.For)
                       .HasMaxLength(100);
-                entity.Property(s => s.Field)
-                      .ValueGeneratedOnAdd();
+                entity.Property(s => s.Field);
             });
 
             modelBuilder.Entity<MailTemplate>(entity =>
@@ -129,7 +128,8 @@ namespace ConoverHomeInspections.Data
 
                 entity.HasMany(wo => wo.RequestedServices)
                       .WithOne(ws => ws.Assignment)
-                      .HasForeignKey(ws => ws.AssignmentId);
+                      .HasForeignKey(ws => ws.AssignmentId)
+                      .OnDelete(DeleteBehavior.Cascade);
 
                 entity.OwnsOne(e => e.Location);
             });
