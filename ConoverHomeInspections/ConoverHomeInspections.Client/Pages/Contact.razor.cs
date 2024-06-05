@@ -13,8 +13,8 @@ namespace ConoverHomeInspections.Client.Pages
         private DateTime _maxDate = DateTime.Now.Date.AddMonths(1);
         private DateRange _dateRange = new DateRange
                                        {
-                                           Start = DateTime.Now,
-                                           End = DateTime.Now.AddDays(1)
+                                           Start = DateTime.Now.AddDays(1),
+                                           End = DateTime.Now.AddDays(2)
                                        };
         private string DateHelperText => $"{_dateRange.Start:M} to {_dateRange.End:M}";
         private Dictionary<string, string> _stateDict = new Dictionary<string, string>()
@@ -51,8 +51,8 @@ namespace ConoverHomeInspections.Client.Pages
         private async Task OnRangeChanged(DateRange dateRange)
         {
             _dateRange = dateRange;
-            _model.InspectionDateRange.Start = _dateRange.Start ?? DateTime.Now;
-            _model.InspectionDateRange.End = _dateRange.End ?? DateTime.Now.AddDays(1);
+            _model.InspectionDateRange.Start = _dateRange.Start ?? DateTime.Now.AddDays(1);
+            _model.InspectionDateRange.End = _dateRange.End ?? DateTime.Now.AddDays(2);
             await Task.CompletedTask;
         }
 

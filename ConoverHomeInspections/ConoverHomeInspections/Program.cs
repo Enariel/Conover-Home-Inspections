@@ -3,7 +3,6 @@ using ConoverHomeInspections.Components;
 using ConoverHomeInspections.Data;
 using ConoverHomeInspections.Services;
 using ConoverHomeInspections.Shared;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
@@ -11,10 +10,18 @@ using System.Text.Json.Serialization;
 using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
-var vaultUri = new Uri(builder.Configuration.GetSection("Azure:VaultUri").Value);
-var creds = new DefaultAzureCredential();
+try
+{
+    var vaultUri = new Uri(builder.Configuration.GetSection("Azure:VaultUri").Value);
+    var creds = new DefaultAzureCredential();
+
 // Add services to the container.
-builder.Configuration.AddAzureKeyVault(vaultUri, creds);
+    builder.Configuration.AddAzureKeyVault(vaultUri, creds);
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
 builder.Services.AddRazorComponents()
        .AddInteractiveServerComponents()
        .AddInteractiveWebAssemblyComponents();
