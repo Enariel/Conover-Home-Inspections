@@ -50,7 +50,6 @@ namespace ConoverHomeInspections.Data
                       .IsRequired()
                       .HasMaxLength(255);
                 entity.Property(e => e.PhoneNumber)
-                      .IsRequired()
                       .HasMaxLength(255);
                 entity.Property(e => e.FirstName)
                       .IsRequired()
@@ -59,16 +58,12 @@ namespace ConoverHomeInspections.Data
                       .IsRequired()
                       .HasMaxLength(128);
                 entity.Property(e => e.RealtorEmail)
-                      .IsRequired()
                       .HasMaxLength(255);
                 entity.Property(e => e.RealtorFirstName)
-                      .IsRequired()
                       .HasMaxLength(128);
                 entity.Property(e => e.RealtorLastName)
-                      .IsRequired()
                       .HasMaxLength(128);
                 entity.Property(e => e.RealtorPhone)
-                      .IsRequired()
                       .HasMaxLength(255);
                 entity.Property(e => e.CreatedOn)
                       .IsRequired();
