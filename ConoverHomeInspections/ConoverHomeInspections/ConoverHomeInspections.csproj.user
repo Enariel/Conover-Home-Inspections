@@ -2,6 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>https</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>Z:\Projects\FuchsFarbe\ConoverHomeInspections\ConoverHomeInspections\ConoverHomeInspections\Properties\PublishProfiles\conover-home-inspections-app - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\fuchs\Source\Repos\Enariel\Conover-Home-Inspections\ConoverHomeInspections\ConoverHomeInspections\Properties\PublishProfiles\ConoverHomeInspections - Zip Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

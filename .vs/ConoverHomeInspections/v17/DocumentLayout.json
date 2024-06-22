@@ -1,36 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{147E28A1-59DA-4591-A175-C52C26B0E51A}|ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.csproj|z:\\projects\\fuchsfarbe\\conoverhomeinspections\\conoverhomeinspections\\conoverhomeinspections\\conoverhomeinspections.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{147E28A1-59DA-4591-A175-C52C26B0E51A}|ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.csproj|solutionrelative:conoverhomeinspections\\conoverhomeinspections\\conoverhomeinspections.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1FE391-E00E-4BD1-8496-A92E8B2A7896}|ConoverHomeInspections\\ConoverHomeInspections.Client\\ConoverHomeInspections.Client.csproj|z:\\projects\\fuchsfarbe\\conoverhomeinspections\\conoverhomeinspections\\conoverhomeinspections.client\\pages\\contact.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD1FE391-E00E-4BD1-8496-A92E8B2A7896}|ConoverHomeInspections\\ConoverHomeInspections.Client\\ConoverHomeInspections.Client.csproj|solutionrelative:conoverhomeinspections\\conoverhomeinspections.client\\pages\\contact.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1FE391-E00E-4BD1-8496-A92E8B2A7896}|ConoverHomeInspections\\ConoverHomeInspections.Client\\ConoverHomeInspections.Client.csproj|z:\\projects\\fuchsfarbe\\conoverhomeinspections\\conoverhomeinspections\\conoverhomeinspections.client\\pages\\contact.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AD1FE391-E00E-4BD1-8496-A92E8B2A7896}|ConoverHomeInspections\\ConoverHomeInspections.Client\\ConoverHomeInspections.Client.csproj|solutionrelative:conoverhomeinspections\\conoverhomeinspections.client\\pages\\contact.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{147E28A1-59DA-4591-A175-C52C26B0E51A}|ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.csproj|z:\\projects\\fuchsfarbe\\conoverhomeinspections\\conoverhomeinspections\\conoverhomeinspections\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{147E28A1-59DA-4591-A175-C52C26B0E51A}|ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.csproj|solutionrelative:conoverhomeinspections\\conoverhomeinspections\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{147E28A1-59DA-4591-A175-C52C26B0E51A}|ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.csproj|z:\\projects\\fuchsfarbe\\conoverhomeinspections\\conoverhomeinspections\\conoverhomeinspections\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{147E28A1-59DA-4591-A175-C52C26B0E51A}|ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.csproj|solutionrelative:conoverhomeinspections\\conoverhomeinspections\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD1FE391-E00E-4BD1-8496-A92E8B2A7896}|ConoverHomeInspections\\ConoverHomeInspections.Client\\ConoverHomeInspections.Client.csproj|z:\\projects\\fuchsfarbe\\conoverhomeinspections\\conoverhomeinspections\\conoverhomeinspections.client\\conoverhomeinspections.client.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{AD1FE391-E00E-4BD1-8496-A92E8B2A7896}|ConoverHomeInspections\\ConoverHomeInspections.Client\\ConoverHomeInspections.Client.csproj|solutionrelative:conoverhomeinspections\\conoverhomeinspections.client\\conoverhomeinspections.client.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AF54D2B6-93C9-4E14-A468-F1D9E218D6B0}|ConoverHomeInspections\\ConoverHomeInspections.Shared\\ConoverHomeInspections.Shared.csproj|z:\\projects\\fuchsfarbe\\conoverhomeinspections\\conoverhomeinspections\\conoverhomeinspections.shared\\conoverhomeinspections.shared.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{AF54D2B6-93C9-4E14-A468-F1D9E218D6B0}|ConoverHomeInspections\\ConoverHomeInspections.Shared\\ConoverHomeInspections.Shared.csproj|solutionrelative:conoverhomeinspections\\conoverhomeinspections.shared\\conoverhomeinspections.shared.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\fuchs\\source\\repos\\Enariel\\Conover-Home-Inspections\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -38,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -79,97 +50,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ConoverHomeInspections",
-              "DocumentMoniker": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.csproj",
-              "RelativeDocumentMoniker": "ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.csproj",
-              "ToolTip": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.csproj",
-              "RelativeToolTip": "ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.csproj",
-              "ViewState": "AQIAAAMAAAAAAAAAAADwvwQAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-29T09:46:07.918Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Contact.razor.cs",
-              "DocumentMoniker": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.Client\\Pages\\Contact.razor.cs",
-              "RelativeDocumentMoniker": "ConoverHomeInspections\\ConoverHomeInspections.Client\\Pages\\Contact.razor.cs",
-              "ToolTip": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.Client\\Pages\\Contact.razor.cs",
-              "RelativeToolTip": "ConoverHomeInspections\\ConoverHomeInspections.Client\\Pages\\Contact.razor.cs",
-              "ViewState": "AQIAADkAAAAAAAAAAAA0wEEAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T09:42:20.792Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Contact.razor",
-              "DocumentMoniker": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.Client\\Pages\\Contact.razor",
-              "RelativeDocumentMoniker": "ConoverHomeInspections\\ConoverHomeInspections.Client\\Pages\\Contact.razor",
-              "ToolTip": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.Client\\Pages\\Contact.razor",
-              "RelativeToolTip": "ConoverHomeInspections\\ConoverHomeInspections.Client\\Pages\\Contact.razor",
-              "ViewState": "AQIAAFoAAAAAAAAAAADwv2UAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-29T09:42:13.793Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ServicesController.cs",
-              "DocumentMoniker": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections\\Controllers\\ServicesController.cs",
-              "RelativeDocumentMoniker": "ConoverHomeInspections\\ConoverHomeInspections\\Controllers\\ServicesController.cs",
-              "ToolTip": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections\\Controllers\\ServicesController.cs",
-              "RelativeToolTip": "ConoverHomeInspections\\ConoverHomeInspections\\Controllers\\ServicesController.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAiwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T09:41:27.023Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ConoverHomeInspections.Shared.csproj",
-              "DocumentMoniker": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.Shared\\ConoverHomeInspections.Shared.csproj",
-              "RelativeDocumentMoniker": "ConoverHomeInspections\\ConoverHomeInspections.Shared\\ConoverHomeInspections.Shared.csproj",
-              "ToolTip": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.Shared\\ConoverHomeInspections.Shared.csproj",
-              "RelativeToolTip": "ConoverHomeInspections\\ConoverHomeInspections.Shared\\ConoverHomeInspections.Shared.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAADwvwYAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-29T09:00:51.421Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ConoverHomeInspections.Client.csproj",
-              "DocumentMoniker": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.Client\\ConoverHomeInspections.Client.csproj",
-              "RelativeDocumentMoniker": "ConoverHomeInspections\\ConoverHomeInspections.Client\\ConoverHomeInspections.Client.csproj",
-              "ToolTip": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections.Client\\ConoverHomeInspections.Client.csproj",
-              "RelativeToolTip": "ConoverHomeInspections\\ConoverHomeInspections.Client\\ConoverHomeInspections.Client.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAADwvwgAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-29T09:00:45.745Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections\\Program.cs",
-              "RelativeDocumentMoniker": "ConoverHomeInspections\\ConoverHomeInspections\\Program.cs",
-              "ToolTip": "Z:\\Projects\\FuchsFarbe\\ConoverHomeInspections\\ConoverHomeInspections\\ConoverHomeInspections\\Program.cs",
-              "RelativeToolTip": "ConoverHomeInspections\\ConoverHomeInspections\\Program.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAAC0AAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T08:27:00.76Z",
-              "EditorCaption": ""
             }
           ]
         }

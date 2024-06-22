@@ -5,6 +5,14 @@
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/Inspections-Vault",
       "type": "secrets.keyVault",
       "connectionId": "VaultUri"
+    },
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ServiceLinker/locations/westus/connectors/ConnectionStringsConfigConnection_AF65057230",
+      "secretStore": null,
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/inspections-server/databases/InspectionsDb",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:ConfigConnection",
+      "dynamicId": null
     }
   }
 }

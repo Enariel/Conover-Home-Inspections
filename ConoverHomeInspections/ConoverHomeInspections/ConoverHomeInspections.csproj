@@ -28,6 +28,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Update="wwwroot\robots.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="wwwroot\sitemap.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+
+	<ItemGroup>
 		<_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze.zip" />
 		<_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze\DEMONBREEZELOO.png" />
 		<_ContentIncludedByDefault Remove="wwwroot\fonts\devil_breeze\Devil Breeze Bold.ttf" />
@@ -60,6 +70,26 @@
 		<_ContentIncludedByDefault Remove="Layout\NavMenu.razor" />
 		<_ContentIncludedByDefault Remove="wwwroot\bootstrap\bootstrap.min.css" />
 		<_ContentIncludedByDefault Remove="wwwroot\bootstrap\bootstrap.min.css.map" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\JPG\logo-graphic-white-web.jpg" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\JPG\logo-h-color-web.jpg" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\JPG\logo-v-color-web.jpg" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\JPG\logo-white-web.jpg" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-graphic-white-2x.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-graphic-white-half.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-graphic-white.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-h-color-2x.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-h-color-half.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-h-color.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-v-color-2x.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-v-color-half.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-v-color.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-white-2x.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-white-half.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\PNG\logo-white.png" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\SVG\logo-graphic-white-svg.svg" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\SVG\logo-h-color-svg.svg" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\SVG\logo-v-color-svg.svg" />
+		<_ContentIncludedByDefault Remove="wwwroot\images\logos\SVG\logo-white-svg.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
