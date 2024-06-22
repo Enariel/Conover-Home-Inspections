@@ -1,23 +1,27 @@
 <footer class="d-flex justify-center flex-grow-1 mud-theme-dark ma-0 pb-2">
-	<MudStack Spacing="2" Justify="Justify.SpaceBetween" Class="w-100 px-4">
-		<MudDivider DividerType="DividerType.Middle" Light="false" Class="mb-4 mt-0 py-4 mud-border-secondary" />
-		<MudStack Row="false" Justify="Justify.SpaceEvenly" AlignItems="AlignItems.Start" Spacing="0">
-			<MudStack Spacing="1">
-				<MudText>
-					Phone:
-					<MudLink Typo="Typo.body2" Color="Color.Tertiary" Underline="Underline.Hover" Href="tel:727-278-0986">+1 (727) 278-0986</MudLink>
-				</MudText>
-				<MudText>
-					Email:
-					<MudLink Typo="Typo.body2" Color="Color.Tertiary" Underline="Underline.Hover" Href="mailto:conoverhomeinspections@outlook.com">conoverhomeinspections@outlook.com</MudLink>
-				</MudText>
-			</MudStack>
-		</MudStack>
-		<MudDivider DividerType="DividerType.Middle" Light="false" Class="mt-4 mb-0 py-4 mud-border-secondary" />
-		<MudText Align="Align.Center" Color="Color.Primary" Typo="Typo.subtitle1">&#169; 2024 Conover Home Inspections, LLC</MudText>
-		<MudText Align="Align.Center" Color="Color.Secondary" Typo="Typo.caption">In collaboration with</MudText>
-		<MudText Align="Align.Center" Color="Color.Secondary" Typo="Typo.subtitle2">&#169; FuchsFarbe Studios, LLC 2024</MudText>
-	</MudStack>
+    <MudStack Spacing="2" Justify="Justify.SpaceBetween" Class="w-100 px-4">
+        <MudDivider DividerType="DividerType.Middle" Light="false" Class="mb-4 mt-0 py-4 mud-border-secondary" />
+        <MudStack Row="false" Justify="Justify.SpaceEvenly" AlignItems="AlignItems.Start" Spacing="0">
+            <MudStack Spacing="1">
+                <MudText>
+                    Phone:
+                    <MudLink Typo="Typo.body2" Color="Color.Tertiary" Underline="Underline.Hover" Href="tel:727-278-0986">+1 (727) 278-0986</MudLink>
+                </MudText>
+                <MudText>
+                    Email:
+                    <MudLink Typo="Typo.body2" Color="Color.Tertiary" Underline="Underline.Hover" Href="mailto:conoverhomeinspections@outlook.com">conoverhomeinspections@outlook.com</MudLink>
+                </MudText>
+            </MudStack>
+        </MudStack>
+        <MudDivider DividerType="DividerType.Middle" Light="false" Class="mt-4 mb-0 py-4 mud-border-secondary" />
+        <MudText Align="Align.Center" Color="Color.Primary" Typo="Typo.subtitle1">&#169; 2024 Conover Home Inspections, LLC</MudText>
+        <MudText Align="Align.Center" Color="Color.Secondary" Typo="Typo.caption">
+            In collaboration with
+            <MudLink Href="@("https://fuchsfarbestudios.com")" Color="Color.Secondary" Typo="Typo.subtitle2" Target="_blank" Underline="Underline.Hover">
+                <MudText>&#169; FuchsFarbe Studios, LLC 2024</MudText>
+            </MudLink>
+        </MudText>
+    </MudStack>
 </footer>
 
 @code {
