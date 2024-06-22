@@ -10,79 +10,65 @@
 <MainSection>
     <MudText Align="Align.Center" Typo="Typo.h2">Foundations for a Confident Purchase</MudText>
 </MainSection>
-<MudPaper Elevation="0" Width="100%" Square="true" Class="@($"py-6 mud-theme-secondary")" Style="min-height: 100px; height: auto;">
-    <Certificates @rendermode="InteractiveAuto" />
-</MudPaper>
 <MainSection>
-    <MudGrid>
-        <MudItem xs="12" sm="12" md="6">
-            <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center" Class="mud-height-full">
-                <MudText Align="Align.Center" Typo="Typo.h3">Licensed and Insured Home Inspections</MudText>
-                <MudText Align="Align.Center" Typo="Typo.body1">
-                    Proudly servicing the following areas
-                </MudText>
-            </MudStack>
-        </MudItem>
-        <MudItem xs="12" sm="12" md="6">
-            <MudList Style="gap: 5px;">
-                <MudListItem>
-                    <MudCard Class="mud-theme-primary">
-                        <MudCardContent Style="color: #000;">
-                            <MudText Typo="Typo.h4">Pinellas County</MudText>
-                            <MudText Typo="Typo.body2">
-                                Providing exceptional home inspection services in Pinellas County
-                            </MudText>
-                        </MudCardContent>
-                    </MudCard>
-                </MudListItem>
-                <MudListItem>
-                    <MudCard Class="mud-theme-secondary">
-                        <MudCardContent Style="color: #000;">
-                            <MudText Typo="Typo.h4">Pasco County</MudText>
-                            <MudText Typo="Typo.body2">
-                                Your trusted partner for home inspections in Pasco County
-                            </MudText>
-                        </MudCardContent>
-                    </MudCard>
-                </MudListItem>
-                <MudListItem>
-                    <MudCard Class="mud-theme-primary">
-                        <MudCardContent Style="color: #000;">
-                            <MudText Typo="Typo.h4">Hernando County</MudText>
-                            <MudText Typo="Typo.body2">
-                                Offering comprehensive property inspection services in Hernando County
-                            </MudText>
-                        </MudCardContent>
-                    </MudCard>
-                </MudListItem>
-                <MudListItem>
-                    <MudCard Class="mud-theme-secondary">
-                        <MudCardContent Style="color: #000;">
-                            <MudText Typo="Typo.h4">Hillsborough County</MudText>
-                            <MudText Typo="Typo.body2">
-                                Ensuring safer homes with our inspection services in Hillsborough County
-                            </MudText>
-                        </MudCardContent>
-                    </MudCard>
-                </MudListItem>
-            </MudList>
-        </MudItem>
-    </MudGrid>
+    <Certificates @rendermode="InteractiveAuto" />
 </MainSection>
 <MainSection>
-    <MudContainer>
-        <MudPaper Class="py-8 px-6" Outlined="true" Square="true">
-            <MudStack Justify="Justify.Center" AlignItems="AlignItems.Start">
-                <MudText Align="Align.Left" Typo="Typo.h3">
-                    Contact us for expert inspections and detailed reports!
-                </MudText>
-                <MudText Align="Align.Left" Typo="Typo.body1">
-                    Conover Home Inspections offers thorough home inspection services across Pinellas, Pasco, Hernando and Hillsborough counties
-                </MudText>
-                <MudButton Class="rounded-0" DisableElevation="true" Href="/Contact" Color="Color.Secondary" Variant="Variant.Filled" Size="Size.Large" EndIcon="@Icons.Material.Sharp.Send">
-                    Schedule a Consultation
-                </MudButton>
-            </MudStack>
-        </MudPaper>
-    </MudContainer>
+    <MudText Align="Align.Center" Typo="Typo.h3">Licensed and Insured Home Inspections</MudText>
+    <MudText Align="Align.Center" Typo="Typo.body1">
+        Proudly servicing the following areas
+    </MudText>
+    <MudList Style="gap: 5px;">
+        <MudListItem>
+            <MudCard Class="mud-theme-primary">
+                <MudCardContent Style="color: #000;">
+                    <MudText Typo="Typo.h6">Pinellas County</MudText>
+                    <MudText Typo="Typo.body2">
+                        Providing exceptional home inspection services in Pinellas County
+                    </MudText>
+                </MudCardContent>
+            </MudCard>
+        </MudListItem>
+        <MudListItem>
+            <MudCard Class="mud-theme-secondary">
+                <MudCardContent>
+                    <MudText Typo="Typo.h6">Pasco County</MudText>
+                    <MudText Typo="Typo.body2">
+                        Your trusted partner for home inspections in Pasco County
+                    </MudText>
+                </MudCardContent>
+            </MudCard>
+        </MudListItem>
+        <MudListItem>
+            <MudCard Class="mud-theme-primary">
+                <MudCardContent>
+                    <MudText Typo="Typo.h6">Hernando County</MudText>
+                    <MudText Typo="Typo.body2">
+                        Offering comprehensive property inspection services in Hernando County
+                    </MudText>
+                </MudCardContent>
+            </MudCard>
+        </MudListItem>
+        <MudListItem>
+            <MudCard Class="mud-theme-secondary">
+                <MudCardContent>
+                    <MudText Typo="Typo.h6">Hillsborough County</MudText>
+                    <MudText Typo="Typo.body2">
+                        Ensuring safer homes with our inspection services in Hillsborough County
+                    </MudText>
+                </MudCardContent>
+            </MudCard>
+        </MudListItem>
+    </MudList>
+</MainSection>
+<MainSection>
+    <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center">
+    <MudText Align="Align.Center" Typo="Typo.h3">
+        Contact us for expert inspections and detailed reports!
+    </MudText>
+    <MudButton DisableElevation="true" Href="/Contact" Color="Color.Secondary" Variant="Variant.Filled" Size="Size.Large" EndIcon="@Icons.Material.Sharp.Send">Schedule a Consultation</MudButton>
+    <MudText Align="Align.Center" Typo="Typo.body1">
+        Conover Home Inspections offers thorough home inspection services, including 4 point, wind mitigation, roof certification, manufactured home, dock, seawall and boat lift inspections. I service Pinellas, Pasco, Hernando and Hillsborough counties.
+    </MudText>
+    </MudStack>
 </MainSection>
